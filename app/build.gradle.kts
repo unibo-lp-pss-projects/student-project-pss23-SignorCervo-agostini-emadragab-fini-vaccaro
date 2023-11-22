@@ -31,8 +31,9 @@ dependencies {
 
 tasks.test {
     useJUnit()
-    testLogging { events 'PASSED', 'FAILED', 'SKIPPED' }
-    testLogging.showStandardStreams = true
+    testLogging { events ("PASSED", "FAILED", "SKIPPED")
+    showStandardStreams = true
+    }
 }
 
 application {
