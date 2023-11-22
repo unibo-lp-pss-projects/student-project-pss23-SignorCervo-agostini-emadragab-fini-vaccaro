@@ -9,7 +9,7 @@ public class Main {
     SignorCervoGUI gui = new SignorCervoGUI();
     Game game = new Game(gui);
     public static void main(String[] args) throws InterruptedException, IOException {
-        Application.launch(SignorCervoGUI.class, args);
+        Application.launch(MenuGui.class, args);
         //game.Start();
     }
 }
