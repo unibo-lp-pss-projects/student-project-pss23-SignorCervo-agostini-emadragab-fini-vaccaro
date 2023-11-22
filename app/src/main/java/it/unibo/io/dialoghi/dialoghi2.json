@@ -1,0 +1,297 @@
+{
+    "rule": ["Non toccare mai le corna di Signor Cervo.", "Non entrare nella biblioteca.", "Vai nel bosco solo di giorno, segui il sentiero.", "Non svegliare il Signor Cervo.", "Signor Cervo detesta le persone maleducate", "Se Signor Cervo ti regala un libro rosso, non aprirlo.","Il carillon e' pericoloso: non ascoltarlo mai."],
+    "members": [
+        {
+            "dialog": "Nel bosco incontri una Creatura.\nVuole tutto quello che hai in tasca.",
+            "item": [],
+            "img": "sentiero4.png",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Quante moente ti sono rimaste?",
+            "item": [],
+            "img": "sentiero4.png",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "0: sei stato avido.\nLa Creatura ti trasforma in un albero e smetti di esistere.",
+                    "die": true
+                },
+                {
+                    "resp": "",
+                    "replay": "1: la creatura prende la moneta e ti lascia andare con un avvertimento.\nMentre se ne va, lascia cadere per sbaglio un oggetto...",
+                    "die": false
+                },
+                {
+                    "resp": "",
+                    "replay": "2-3: la creatura accetta le monete.\nPuoi andare... ma prima noti che la Creatura ha lasciato cadere qualcosa per terra.",
+                    "die": false
+                },
+                {
+                    "resp": "",
+                    "replay": "4: la creatura è stupida.\nPrende le monete ma ti offre qualcosa in cambio:",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "mappa.png",
+            "item": [
+            ],
+            "img": "sentiero4.png",
+            "respons": [
+                {
+                    "resp": "Letto.",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },        
+        {
+            "dialog": "sentiero4.png",
+            "item": [
+                {
+                    "name" : "Mappa",
+                    "number" : 1
+                }
+            ],
+            "img": "sentiero4.png",
+            "respons": [
+                {
+                    "resp": "Non ti serve. La lasci li e torni a casa.",
+                    "replay": "La mappa sembra ricomparire magicamente nella tua tasca ogni volta che la butti via.",
+                    "die": false
+                },
+                {
+                    "resp": "Prendi la mappa.\nPotrebbe servirti.",
+                    "replay": "Scelta saggia. Conservala\ncon cura.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "La cena e' pronta!\nSignor Cervo ti accoglie con una\nzuppa fumante e ti chiede\ncosa hai fatto nel bosco.",
+            "item": [
+            ],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Gli racconti della Creatura e gli mostri la mappa.",
+                    "replay": "Male: Signor Cervo prende la mappa e la brucia, poi ti lancia la zuppa bollente in faccia.\nTi caccia via.",
+                    "die": true
+                },
+                {
+                    "resp": "Fai finta di non senitire e continui a mangiare la zuppa..",
+                    "replay": "Signor Cervo pensa che tu non abbia sentito e lascia perdere.",
+                    "die": false
+                },
+                {
+                    "resp": "Decidi di mentire. Non vuoi che sappia della mappa.",
+                    "replay": "Hai fatto bene.\nSignor Cervo ti crede e finisce con calma la sua zuppa.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "E' nuovamente ora di andare a dormire.\nSignor Cervo ti prende da parte e ti regala questo:",
+            "item": [
+            ],
+            "img": "libro.jpg",
+            "respons": [
+                {
+                    "resp": "Lo ringrazi e vai nella tua stanza.",
+                    "replay": "Signor Cervo e' felice che il regalo ti sia piacuto.",
+                    "die": false
+                },
+                {
+                    "resp": "Ami i libri!\nLo apri subito perche' non vedi l'ora di leggerlo.",
+                    "replay": "Non avresti dovuto farlo.\nNel momento in cui lo apri, il libro ti ingoia e ti mangia vivo.",
+                    "die": true
+                },
+                {
+                    "resp": "Non accetti il libro.",
+                    "replay": "Molto maleducato da parte tua, i regali si accettano sempre.\nSignor Cervo ti ordina di andare nella tua stanza.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Stasera Singnor Cervo non e' andata nella biblioteca ma si e' addormentato subito.",
+            "item": [
+            ],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Decidi anche tu di andare a dormire.",
+                    "replay": "Ci provi ma e' difficile vai a esplorare la casa.",
+                    "die": false
+                },
+                {
+                    "resp": "La curiosita' ha la meglio ed esci dalla tua stanza per esplorare la casa.",
+                    "replay": "Sei fortunato!\nSingor Cervo dorme come un ghiro e non ti sente.",
+                    "die": false
+                },
+                {
+                    "resp": "Ti stai annoiando.\nVai a svegliare Signor Cervo per chiedergli di giocare a carte.",
+                    "replay": "Hai interrotto il sonno di Signor Cervo.\nE' furioso e ti trapassa con una delle sue corna.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Stasera Singnor Cervo non e' andata nella biblioteca ma si e' addormentato subito.",
+            "item": [
+            ],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Decidi anche tu di andare a dormire.",
+                    "replay": "Ci provi ma e' difficile vai a esplorare la casa.",
+                    "die": false
+                },
+                {
+                    "resp": "La curiosita' ha la meglio ed esci dalla tua stanza per esplorare la casa.",
+                    "replay": "Sei fortunato!\nSingor Cervo dorme come un ghiro e non ti sente.",
+                    "die": false
+                },
+                {
+                    "resp": "Ti stai annoiando.\nVai a svegliare Signor Cervo per chiedergli di giocare a carte.",
+                    "replay": "Hai interrotto il sonno di Signor Cervo.\nE' furioso e ti trapassa con una delle sue corna.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Hai tempo solo per una stanza: sceglila con cura.",
+            "item": [
+            ],
+            "img": "casa.png",
+            "respons": [
+                {
+                    "resp": "(1)",
+                    "replay": "E' la stanza delle scarpe!\nLa conosci gia'.\nScegline un'altra.",
+                    "die": false
+                },
+                {
+                    "resp": "(2)",
+                    "replay": "E' la cucina!\nScegli un'altra stanza.",
+                    "die": false
+                },
+                {
+                    "resp": "(3)",
+                    "replay": "Sembra interessante.",
+                    "die": false
+                },
+                {
+                    "resp": "(4)",
+                    "replay": "E' la biblioteca... suona un allarme: Signor Cervo ti taglia le gambe.",
+                    "die": true
+                },
+                {
+                    "resp": "(5)",
+                    "replay": "E' la camera di Signor Cervo.\nSi sveglia e ti rompe la testa con un martello.",
+                    "die": true
+                },
+                {
+                    "resp": "(6)",
+                    "replay": "E' la tua camera!\nScegli un'altra stanza.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Entri nella stanza numero 3.\nIl muro e' pieno di fotografie e sono tutte della stessa persona.\nMentre le osservi percepisci qualcosa di familiare ma non hai tempo di rifletterci...\nSenti un rumore in fondo al corridorio.",
+            "item": [
+            ],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "...",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Senti un rumore in fondo al corridoio.",
+            "item": [
+            ],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Ti nascondi dietro una pianta.",
+                    "replay": "Ottima idea!\nSignor Cervo non ti vede.",
+                    "die": false
+                },
+                {
+                    "resp": "Esci di corsa per tornare nella tua stanza.",
+                    "replay": "Sei stato visto.\nSingor Cervo decide di punirti strozzandoti.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Sei di nuovo nella tua stanza.\nDai un'occhiata alla mappa.",
+            "item": [
+            ],
+            "img": "mappa.png",
+            "respons": [
+                {
+                    "resp": "...",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Sei di nuovo nella tua stanza.\nDai un'occhiata alla mappa.",
+            "item": [
+            ],
+            "img": "casa.png",
+            "respons": [
+                {
+                    "resp": "...",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Sei di nuovo nella tua stanza.\nDai un'occhiata alla mappa.",
+            "item": [
+            ],
+            "img": "rivelazione.png",
+            "respons": [
+                {
+                    "resp": "...",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Il mattino arriva in fretta.\nQuando ti svegli ti accorgi che Signor Cervo e' uscito.\nLa porta della bibblioteca e' aperta.",
+            "item": [
+            ],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Non si entra in bibblioteca.\nLa ignori e vai a fare colazione.",
+                    "replay": "",
+                    "die": false
+                },
+                {
+                    "resp": "Solo una sbirciatina.",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        }
+    ]
+}

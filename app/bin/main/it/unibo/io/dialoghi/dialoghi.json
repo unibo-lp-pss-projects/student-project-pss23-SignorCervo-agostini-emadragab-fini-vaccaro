@@ -1,0 +1,260 @@
+{
+    "rule": ["Non toccare mai le corna di Signor Cervo.", "Non entrare nella biblioteca.", "Vai nel bosco solo di giorno, segui il sentiero.", "Non svegliare il Signor Cervo.", "Signor Cervo detesta le persone maleducate", "Se Signor Cervo ti regala un libro rosso, non aprirlo.","Il carillon e' pericoloso: non ascoltarlo mai."],
+    "members": [
+      {
+        "dialog": "Vuoi giocare a Signor Cervo?",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [
+            {
+                "resp": "si",
+                "replay": "Ricevi 4 monete usale con saggezza",
+                "die": false
+            },
+            {
+                "resp": "no",
+                "replay": "morto",
+                "die": true
+            }
+        ]
+      },
+      {
+        "dialog": "Sei nella tua stanza.\nSignor Cervo ti chima: la cena e' pronta!",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Non hai fame, ignori Signor Cervo e rimani a letto",
+            "replay": "Singor Cervo e' arrabbiatissimo.\nPrende un coltello e usa le tue dita per fare il brodo",
+            "die": true
+        },
+        {
+            "resp": "Arrivi in cucina e vedi una mancita di foglie e corteccia sul tuo piatto.\nRifiuti educatamente",
+            "replay": "Signor Cervo e' molto triste, ma aprezza la tua gentilezza nel rifiutare.",
+            "die": false
+        },
+        {
+            "resp": "Ti siedi a tavola, ringrazi Signor Cervo e mangi.\nNon e' male!",
+            "replay": "Signor Cervo e' entusiasta!\nPer premiarti ti da' una fetta di torta al cioccolato.",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "Dopo cena Signor Cevo ti ordina di andare a letto.\nSi chiude nella biblioteca.",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Vai a letto.\nIn fondo e' stata una giornata lunga.",
+            "replay": "Non succede niente.",
+            "die": false
+        },
+        {
+            "resp": "E' ancora troppo presto.\nDecidi di uscire a fare una passeggiata nel bosco.",
+            "replay": "Sei andato nel bosco di notte!\nUn lupo ti ha trovato e sbranato.",
+            "die": true
+        },
+        {
+            "resp": "Vai in giro per la casa, vuoi esplorare le sue mille stanze",
+            "replay": "Fai rumore e Signor Cervo ti sente.\nEntri in una stanza con un tappeto verde e ti chiudi dentro.\nPer questa volta sei salvo...",
+            "die": false,
+            "remember": {
+                "numSlide": 4,
+                "replay": "La stanza e' quella con il tappeto verde!\n Singnor Cervo vede le tue impronte sul tappeto e ti uccide." 
+            }
+        }]
+      },      
+      {
+        "dialog": "Buongiorno! Sei sveglio.\nSignor Cervo vuole andare a raccogliere funghi nel bosco per il pranzo.",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Non hai voglia di uscire.\nDici a Signor Cervo di andare da solo.",
+            "replay": "Signor Cervo e' oltraggiato.\nTi colpisce in testa con un libro antico e muori dissanguato.",
+            "die": true
+        },
+        {
+            "resp": "Vai nel bosco e vedi una strana luce in lontananza... ti alontani per un momento da Signor Cervo.",
+            "replay": "Non hai seguito il sentiero.\nSei entrato nella luce misteriosa e sei scomparso nel nulla per sempre.",
+            "die": true
+        },
+        {
+            "resp": "Accompagni Signor Cervo nel bosco e lo aiuti a cercare i funghi.",
+            "replay": "Hai trovato un tartufo!\nSignor Cervo e' molto orgoglioso di te e ti regala un fazzoletto ricamato.",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "Prima di preparare il pranzo, Singor Cervo entra nella Stanza delle Scarpe per torgliersi quelle spoche di fango.",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Vai in camera tua e aspetti che il pranzo sia pronto.",
+            "replay": "Hai sporcato ovunque e non hai nemmeno aiutato con il pranzo.\nSignor Cervo ti chiude in cantina e muori di stenti.",
+            "die": true
+        },
+        {
+            "resp": "Vai in cucina e cominci a tagliare le verdure.",
+            "replay": "Hai sporcato ovunque ma almeno hai cercato di aiutare.\nSignor Cervo ti costringe a usare il nuovo fazzolettino per pulire il fango.",
+            "die": false
+        },
+        {
+            "resp": "Non vuoi sporcare!\nVai con Signor Cervo a cambiare le scarpe.",
+            "replay": "Signor Cervo ne e' molto felice.",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "Il pranzo era delizioso.\nSignor Cervo ti chiede se vuoi andare con lui al negozio di antiquariato.",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Certo!\nNon vedi l'ora di spedere le tue monete.",
+            "replay": "Che bello!\nSiete pronti a partire.",
+            "die": false
+        },
+        {
+            "resp": "Non ne hai molta voglia.\nSei stanco e prometti a Singor Cervo che ci andraii la prossima volta.",
+            "replay": "Peccato.\nA Singor Cervo non interessa e ti obbliga comunque ad accompagnarlo.",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "Hai 4 monete.\nCosa vuoi comprare?",
+        "item": [{
+                "name" : "Coperta",
+                "number" : 2
+            },
+            {
+                "name": "Pianta",
+                "number": 1
+            },
+            {
+                "name": "Libro Verde",
+                "number": 2
+            },
+            {
+                "name": "Colori",
+                "number": 3
+            },
+            {
+                "name": "Porcellana",
+                "number": 2
+            },
+            {
+                "name": "Calzini",
+                "number": 1
+            },
+            {
+                "name": "Zaino",
+                "number": 3
+            },
+            {
+                "name": "Macchina Fotografica",
+                "number": 4
+            },
+            {
+                "name": "Carillon",
+                "number": 4
+            }
+        ],
+        "img": "/shop.png",
+        "respons": [        
+        ]
+      },
+      {
+        "dialog": "Ottima scelta!\nSignor Cervo ha deciso di comprare il carillon.\nTi chiede di ascoltare con lui la musica.",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Rifiuti educatamente e lo ringrazi per l'offerta.",
+            "replay": "Singor Cervo e' dispiaciuto ma tu sei salvo.\nIl carillon e' molto pericoloso.",
+            "die": false
+        },
+        {
+            "resp": "Non rispondi e scappi via.",
+            "replay": "Come ti sei permesso? Signor Cervo odia i maleducati.\nPer questa volta ti perodna, ma devi dargli quello che hai comprato al negozio.",
+            "die": false
+        },
+        {
+            "resp": "Ami la muscia!\nTi siedi vicino a Signor Cervo e la ascoltate insieme.",
+            "replay": "La muscia nel carillon e' stregata.\nNon fai in tempo a tapparti le orecchie e impotente ti butti dalla finestra.",
+            "die": true
+        }]
+      },
+      {
+        "dialog": "E' quasi ora di cena.\nSignor Cervo sta facendo una zuppa, ma le sue corna si sporcano.",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Prendi un fazzoletto e le pulisci.",
+            "replay": "Non devi MAI toccare le corna di Signor Cervo.\nSi arrabbia tantissimo e ti infila nel forno.",
+            "die": true
+        },
+        {
+            "resp": "Lo vedi, ma non dici niente.",
+            "replay": "Singor Cervo si accorge da solo e si pulisce.",
+            "die": false
+        },
+        {
+            "resp": "Dici a Signor Cervo che si e' sporcato.",
+            "replay": "Singor Cervo ti ringrazia e si pulisce.",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "Signor Cervo e' di buon umore e ti permette di fare ciò che vuoi mentre prepara la cena.",
+        "item": [],
+        "img": "/signorcervo.jpg",
+        "respons": [{
+            "resp": "Hai voglia di leggere, così vai a vedere cosa c'e' nella biblioteca.",
+            "replay": "Entrare nella biblioteca e' VIETATO!\nSignor Cervo ti vede e ti fa cadere addosso uno scaffale.",
+            "die": true
+        },
+        {
+            "resp": "C'e' ancora luce e vai a fare un giro nel bosco.",
+            "replay": "Ottima idea.\nIl bosco e' silenzioso e l'aria e' dolce.\nSegui il sentiero.",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "",
+        "item": [],
+        "img": "/sentiero1.png",
+        "respons": [{
+            "resp": "Vai avanti.",
+            "replay": "...",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "",
+        "item": [],
+        "img": "/sentiero2.png",
+        "respons": [{
+            "resp": "Vai avanti.",
+            "replay": "...",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "",
+        "item": [],
+        "img": "/sentiero3.png",
+        "respons": [{
+            "resp": "Vai avanti.",
+            "replay": "...",
+            "die": false
+        }]
+      },
+      {
+        "dialog": "",
+        "item": [],
+        "img": "/sentiero4.png",
+        "respons": [{
+            "resp": "Vai avanti.",
+            "replay": "...",
+            "die": false
+        }]
+      }
+    ]
+  }
+ 
