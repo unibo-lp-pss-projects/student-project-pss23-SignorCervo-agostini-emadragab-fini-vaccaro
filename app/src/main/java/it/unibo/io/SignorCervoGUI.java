@@ -1,5 +1,6 @@
 package it.unibo.io;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import javafx.application.Application;
@@ -16,9 +17,12 @@ import javafx.stage.Stage;
 public class SignorCervoGUI extends Application {
 
     private static TextArea terminal = new TextArea();
+    static Game game = new Game();
+    private static JsonReader j  = new JsonReader();
+    private boolean com = false;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws InterruptedException, IOException {
         primaryStage.setTitle("Signor Cervo Game");
         
         // Carica un'immagine (sostituisci "your_image.jpg" con il percorso del tuo file immagine)
@@ -36,19 +40,23 @@ public class SignorCervoGUI extends Application {
         // Crea una TextArea per il "terminale" del gioco con sfondo nero e testo bianco
         terminal.setStyle("-fx-control-inner-background: black; -fx-text-fill: white;");
         terminal.setEditable(false);
-        terminal.setText("Welcome to Signor Cervo.\n");
+        j.getRule();
 
         // Crea un campo di input per il giocatore
         TextField userInput = new TextField();
         userInput.setStyle("-fx-control-inner-background: black; -fx-text-fill: white;");
-        userInput.setPromptText("Type your command here");
+        userInput.setPromptText("premi invio per andare avanti");
 
         // Gestione dell'input del giocatore
         userInput.setOnAction(event -> {
+            terminal.clear();
+            game.output();
+
             String command = userInput.getText().trim();
-            if (!command.isEmpty()) {
-                terminal.appendText("> " + command + "\n");
+            if (!command.isEmpty()) {               
                 // Gestisci il comando e aggiorna il terminale
+                terminal.clear();
+                game.input(command);
                 userInput.clear();
             }
         });
@@ -66,15 +74,18 @@ public class SignorCervoGUI extends Application {
         primaryStage.getIcons().add(new Image("file:" + resources.get(6).getAbsolutePath()));
 
         primaryStage.show();
+
+        
     }
 
     public static void updateStatusTerminal(String text) {
-        terminal.setText(text);
+        terminal.appendText(text);
     }
 
     public static void main(String[] args) {
         launch(args);
     }
+
 }
 
 // Image image = new Image("file:///C:/Users/Admin/Desktop/GitHub/SignorCervo/Nome/src/main/java/it/unibo/io/resource/signorcervo.jpg");
