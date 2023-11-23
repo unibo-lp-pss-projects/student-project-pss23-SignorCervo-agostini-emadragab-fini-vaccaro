@@ -42,30 +42,23 @@ public class Game {
 
         j.printChoices(i);
 
-        if(j.checkShop()){
+        if(j.checkShop()) j.printIteam();
 
-            do{   
-
-                j.printIteam();
-                key = c.inputChoiceShop(myObj.nextLine());
-                key = key - 1;
-                player.addItem(j.shop(key));
-                System.out.println("\nfinito?");
-                System.out.println("\n1) si");
-                System.out.println("\n2) no");
-                key = c.inputChoice(myObj.nextLine());
-
-            }while(key == 2); 
-
-        }
     }
 
     public void input(String cmd){
+
+        if(j.checkShop()){
+
+            key = c.inputChoiceShop(cmd);
+            key = key - 1;
+            player.addItem(j.shop(key));
+            this.i++;
+            return;
+        } 
+        
         key = c.inputChoice(cmd);
         key = key - 1;
-        futureResponss.put(-1, "");
-
-        if(futureResponss.keySet().iterator().next() == -1) futureResponss = j.giveRemember(key);
             
         if(j.checkChoice(i, key)){
 
@@ -73,10 +66,6 @@ public class Game {
             this.i = 0;
             return;
 
-        }else if(futureResponss.keySet().iterator().next() == i){
-            
-            gui.updateStatusTerminal(futureResponss.values().iterator().next());
-            
         }
 
         j.printReply(key);

@@ -63,7 +63,8 @@ public class JsonReader {
 
         for(int i = 0; i < item.length(); i++){
             JSONObject resp = item.getJSONObject(i);
-            System.out.printf("%d. Nome: %s  prezzo: %d\n",i+1, resp.getString("name"), resp.getInt("number"));
+            String fromattedString = String.format("%d. %s %d$\n",i+1, resp.getString("name"), resp.getInt("number"));
+            gui.updateStatusTerminal(fromattedString);
         }
     }
 
