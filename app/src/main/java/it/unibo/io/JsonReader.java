@@ -1,6 +1,8 @@
 package it.unibo.io;
 
 import java.io.IOException;
+import java.io.File;
+import java.util.List;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -18,6 +20,9 @@ public class JsonReader {
     private static JSONArray r;
     private static SignorCervoGUI gui;
 
+    List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
+    String dialogPath = resource.get(1).toURI().toString().replace("file:/", "");
+    
     public void updateMembers(int i){
         e = members.getJSONObject(i);
         r = e.getJSONArray("respons");
@@ -34,7 +39,7 @@ public class JsonReader {
 
     public void readJson(){
         try{
-            String contents = new String((Files.readAllBytes(Paths.get("app\\src\\main\\java\\it\\unibo\\io\\dialoghi\\dialoghi.json"))));
+            String contents = new String((Files.readAllBytes(Paths.get(dialogPath))));
             JSONObject o = new JSONObject(contents);
             rule = o.getJSONArray("rule");
             members = o.getJSONArray("members");

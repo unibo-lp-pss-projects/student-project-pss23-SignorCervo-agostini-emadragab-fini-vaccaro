@@ -6,9 +6,9 @@ import java.util.List;
 public class GetResources {
 
     
-    public static List<File> findResourcesDirectory(File directory) {
+    public static List<File> findResourcesDirectory(File directory, String dirName) {
         List<File> foundResources = new ArrayList<>();
-        findResources(directory, foundResources);
+        findResources(directory, foundResources, dirName);
         return foundResources;
     }
 
@@ -27,17 +27,17 @@ public class GetResources {
         }
     }
 
-    private static void findResources(File directory, List<File> foundResources) {
+    private static void findResources(File directory, List<File> foundResources, String dirName) {
         File[] files = directory.listFiles();
 
         if (files != null) {
             for (File file : files) {
-                if (file.isDirectory() && file.getName().equals("resource") && file.toString().contains("src")) {
+                if (file.isDirectory() && file.getName().equals(dirName) && file.toString().contains("src")) {
                     System.out.println("Found resources directory: " + file.getAbsolutePath());
                     System.out.println("Files in the resources directory:");
                     listFilesInDirectory(file, foundResources);
                 } else if (file.isDirectory()) {
-                    findResources(file, foundResources);  // Recursive call for subdirectories
+                    findResources(file, foundResources, dirName);  // Recursive call for subdirectories
                 }
             }
         }

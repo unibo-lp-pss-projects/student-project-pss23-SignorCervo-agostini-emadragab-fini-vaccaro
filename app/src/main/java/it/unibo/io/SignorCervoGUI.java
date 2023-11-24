@@ -26,7 +26,7 @@ public class SignorCervoGUI extends Application {
         primaryStage.setTitle("Signor Cervo Game");
         
         // Carica un'immagine (sostituisci "your_image.jpg" con il percorso del tuo file immagine)
-        List<File> resources = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")));
+        List<File> resources = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "resource");
         String imagePath = resources.get(5).toURI().toString().replace("file:/", "");
         Image image = new Image("file:" + imagePath); // Carica l'immagine
 
