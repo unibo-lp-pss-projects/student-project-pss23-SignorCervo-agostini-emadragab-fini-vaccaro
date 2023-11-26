@@ -19,9 +19,10 @@ public class JsonReader {
     private static JSONObject e;
     private static JSONArray r;
     private static SignorCervoGUI gui;
+    private static JSONObject img;
 
     List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
-    String dialogPath = resource.get(1).toURI().toString().replace("file:/", "");
+    String dialogPath = resource.get(0).toURI().toString().replace("file:/", "");
     
     public void updateMembers(int i){
         e = members.getJSONObject(i);
@@ -74,8 +75,11 @@ public class JsonReader {
     }
 
     public String getDialog(int i){
-        // System.out.println("\n" + e.getString("dialog"));
         return (e.getString("dialog") + "\n");
+    }
+
+    public String getImage(int i){
+        return (e.getString("img"));
     }
 
     public Boolean checkChoice(int i, int key){

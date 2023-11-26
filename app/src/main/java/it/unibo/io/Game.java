@@ -24,14 +24,13 @@ public class Game {
     
     public void output(){
 
-        // I = number of members,  j = in a particular mamber number 
         if (this.i > j.getSize()) {
             return;
         }; 
 
         j.updateMembers(i);
         
-        //j.getDialog(i);
+        gui.updateImage(j.getImage(i));
         gui.updateStatusTerminal(j.getDialog(i));
 
         try {

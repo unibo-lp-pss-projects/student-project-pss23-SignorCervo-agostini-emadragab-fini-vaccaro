@@ -20,17 +20,14 @@ public class SignorCervoGUI extends Application {
     static Game game = new Game();
     private static JsonReader j  = new JsonReader();
     private boolean com = false;
+    private static List<File> resources;
+    private static ImageView imageView = new ImageView();
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException, IOException {
         primaryStage.setTitle("Signor Cervo Game");
-        
-        // Carica un'immagine (sostituisci "your_image.jpg" con il percorso del tuo file immagine)
-        List<File> resources = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "resource");
-        String imagePath = resources.get(5).toURI().toString().replace("file:/", "");
-        Image image = new Image("file:" + imagePath); // Carica l'immagine
 
-        ImageView imageView = new ImageView(image);
+        resources = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "resource");
 
         // Imposta il ridimensionamento dell'immagine per adattarla allo spazio disponibile
         imageView.setPreserveRatio(true);
@@ -82,10 +79,17 @@ public class SignorCervoGUI extends Application {
         terminal.appendText(text);
     }
 
+    public static void updateImage(String imageName) {
+        for (File resource : resources) {
+            if (resource.getName().equals(imageName)) {
+                Image newImage = new Image("file:" + resource.getAbsolutePath());
+                imageView.setImage(newImage);
+                return;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         launch(args);
     }
-
 }
-
-// Image image = new Image("file:///C:/Users/Admin/Desktop/GitHub/SignorCervo/Nome/src/main/java/it/unibo/io/resource/signorcervo.jpg");

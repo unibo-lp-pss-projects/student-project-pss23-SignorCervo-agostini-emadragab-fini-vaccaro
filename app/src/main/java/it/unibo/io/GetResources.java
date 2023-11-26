@@ -21,7 +21,6 @@ public class GetResources {
                     listFilesInDirectory(file, foundResources);  // Recursive call for subdirectories
                 } else {
                     foundResources.add(file);
-                    // System.out.println(file.getAbsolutePath());
                 }
             }
         }
@@ -33,32 +32,20 @@ public class GetResources {
         if (files != null) {
             for (File file : files) {
                 if (file.isDirectory() && file.getName().equals(dirName) && file.toString().contains("src")) {
-                    System.out.println("Found resources directory: " + file.getAbsolutePath());
-                    System.out.println("Files in the resources directory:");
                     listFilesInDirectory(file, foundResources);
                 } else if (file.isDirectory()) {
-                    findResources(file, foundResources, dirName);  // Recursive call for subdirectories
+                    findResources(file, foundResources, dirName);
                 }
             }
         }
     }
+
+    public static String findMatchingPath(List<File> foundResources, String fileName) {
+        for (File path : foundResources) {
+            if (path.getName().equals(fileName)) {
+                return path.getAbsolutePath();
+            }
+        }
+        return null;
+    }
 }
-
-//     public static void main(String[] args) {
-//         try {
-//             String projectPath = System.getProperty("user.dir");
-
-//             File projectDirectory = new File(projectPath);
-
-//             if (projectDirectory.exists() && projectDirectory.isDirectory()) {
-//                 System.out.println("Searching for resources directory in the project:");
-//                 List<File> resources = findResourcesDirectory(projectDirectory);
-//                 System.out.println(resources.get(6));
-//             } else {
-//                 System.out.println("The project directory does not exist or is not a directory.");
-//             }
-//         } catch (Exception e) {
-//             System.err.println("An error occurred: " + e.getMessage());
-//         }
-//     }
-// }
