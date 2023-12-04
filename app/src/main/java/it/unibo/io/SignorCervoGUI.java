@@ -2,7 +2,6 @@ package it.unibo.io;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -13,15 +12,18 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
 
 public class SignorCervoGUI extends Application {
 
-    private static TextArea terminal = new TextArea();
-    static Game game = new Game();
-    private static JsonReader j  = new JsonReader();
-    private boolean com = false;
+    private MediaPlayer mediaPlayer;
     private static List<File> resources;
     private static ImageView imageView = new ImageView();
+    private static TextArea terminal = new TextArea();
+    private static JsonReader j  = new JsonReader();
+    private static Game game = new Game();
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException, IOException {
@@ -59,7 +61,7 @@ public class SignorCervoGUI extends Application {
         });
 
         // Crea il layout del gioco con l'immagine sopra e l'input/terminale sotto
-        VBox gameLayout = new VBox(imageView, userInput, terminal);
+        VBox gameLayout = new VBox(imageView, terminal, userInput);
         gameLayout.setAlignment(Pos.CENTER);
 
         // Imposta lo sfondo della scena a nero
@@ -68,12 +70,33 @@ public class SignorCervoGUI extends Application {
         // Imposta la scena principale
         Scene scene = new Scene(gameLayout, 800, 600, Color.BLACK);
         primaryStage.setScene(scene);
-        primaryStage.getIcons().add(new Image("file:" + resources.get(6).getAbsolutePath()));
+        primaryStage.getIcons().add(new Image("file:" + getIcon("signorcervo.jpg")));
+
+        initializeMediaPlayer();
 
         primaryStage.show();
 
         
     }
+
+    private void initializeMediaPlayer() {
+    String musicFile = "music.mp3";
+    String musicPath = "";
+    for (File resource : resources) {
+        if (resource.getName().equals(musicFile)) {
+            musicPath = resource.getAbsolutePath();
+        }
+    }
+    Media sound = new Media(new File(musicPath).toURI().toString());
+    mediaPlayer = new MediaPlayer(sound);
+
+    // Set the music to loop indefinitely
+    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+    // Start playing the background music
+    mediaPlayer.play();
+}
+
 
     public static void updateStatusTerminal(String text) {
         terminal.appendText(text);
@@ -87,6 +110,16 @@ public class SignorCervoGUI extends Application {
                 return;
             }
         }
+    }
+
+    private String getIcon(String icon) {
+        String iconPath = "";
+        for (File resource : resources) {
+            if (resource.getName().equals(icon)) {
+                iconPath = resource.getAbsolutePath();
+            }
+        }
+        return iconPath;
     }
 
     public static void main(String[] args) {

@@ -9,7 +9,6 @@ public class Main {
     SignorCervoGUI gui = new SignorCervoGUI();
     
     public static void main(String[] args) throws InterruptedException, IOException {
-        Application.launch(SignorCervoGUI.class, args);
-        
+        Application.launch(SignorCervoGUI.class, args);   
     }
 }

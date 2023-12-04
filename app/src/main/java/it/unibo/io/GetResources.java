@@ -39,13 +39,4 @@ public class GetResources {
             }
         }
     }
-
-    public static String findMatchingPath(List<File> foundResources, String fileName) {
-        for (File path : foundResources) {
-            if (path.getName().equals(fileName)) {
-                return path.getAbsolutePath();
-            }
-        }
-        return null;
-    }
 }

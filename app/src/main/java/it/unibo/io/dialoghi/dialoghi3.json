@@ -126,6 +126,115 @@
                     "die": true
                 }
             ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "aggingi immagine",
+            "respons": [
+                {
+                    "resp": "...",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Ti accorgi subito che la donna nella foto è la persona della Stanza delle Fotografie.\nContinui a guardarti intorno: su cosa ti concentri?",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Il soffitto.",
+                    "replay": "Ci hai messo troppo.\nSignor Cervo è tornato e ti ha folgorato.",
+                    "die": true
+                },
+                {
+                    "resp": "Il pavimento.",
+                    "replay": "Ci hai messo troppo.\nSignor Cervo è tornato e sei stato bruciato vivo.",
+                    "die": true
+                },
+                {
+                    "resp": "Le librerie.",
+                    "replay": "Che strano.\nQuella al centro sembra un pò storta...",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Oh no! Senti il rumore delle chiavi nella serratura.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Prendi la foto, il biglietto e corri nella tua stanza.",
+                    "replay": "Sei stato imprudente\nSignor Cervo si accorge che mancano e vieni lobotomizzato.",
+                    "die": true
+                },
+                {
+                    "resp": "Lasci tutto come hai trovato.",
+                    "replay": "Hai fatto bene.\n Signor Cervo non si accorge di niente.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Signor Cervo è tornato.\nVai a salutarlo e noti che è macchiato di rosso.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Gli chiedi cos'è successo.",
+                    "replay": "È una domanda personale. Non avresti dovuto.\nOra in mezzo al liquido rosso sui suoi vestiti c'è anche il tuo.",
+                    "die": true
+                },
+                {
+                    "resp": "Fai finta di niente.",
+                    "replay": "Molto bene. A Signor Cervo non piacciono gli impiccioni.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "È stata una giornata pesante. È ora di andare a dormire.\nMentre percorri il corridoio noti qualcosa sul pavimento:",
+            "item": [],
+            "img": "",
+            "respons": [
+                {
+                    "resp": "Strano. Decidi di portarla a Signor Cervo a andare a letto.",
+                    "replay": "Sai troppo. Signor Cervo ti affoga infilandoti la testa dentro un secchio pieno d' acqua.",
+                    "die": true
+                },
+                {
+                    "resp": "Raccogli la chiave e la nascondi nella tua stanza.\nPrimao poi troverai cià che apre.",
+                    "replay": "Non succede nulla: Signor Cervo crede di aver perso la chiave nel bosco.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Stai per addormentarti ma senti un rumore... c'è qualcuno fuori dalla finestra.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "",
+                    "die": false
+                }
+            ]
         }
     ]
 }
