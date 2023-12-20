@@ -1,6 +1,15 @@
 package it.unibo.io;
+/**
+ * The 'Choice' class represents the player's choices in the game.
+ */
 
 public class Choice {
+    
+    /**
+     * Maps the player's input to a choice in the game.
+     * @param input The player's input.
+     * @return The corresponding choice.
+     */
     
     public Integer inputChoice(String input){
         switch(input){
@@ -16,6 +25,12 @@ public class Choice {
                 return 0;
         }
     }
+
+    /**
+     * Maps the player's input to a choice in the shop.
+     * @param input The playrr's input
+     * @return The corresponding choice in the shop.
+     */
 
     public Integer inputChoiceShop(String input){
         switch(input){

@@ -7,9 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+/**
+ * The `JsonReader` class is responsible for reading and processing JSON data for the Signor Cervo game.
+ */
 
 public class JsonReader {
 
@@ -23,11 +26,21 @@ public class JsonReader {
 
     List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
     String dialogPath = resource.get(0).toURI().toString().replace("file:/", "");
+
+    /**
+     * Update the members based on the index.
+     *
+     * @param i The index of the member to update.
+     */
     
     public void updateMembers(int i){
         e = members.getJSONObject(i);
         r = e.getJSONArray("respons");
     }
+
+    /**
+     * Get and display the game rules.
+     */
 
     public void getRule(){
         gui.updateStatusTerminal("-------------------REGOLE-------------------\n");
@@ -37,6 +50,10 @@ public class JsonReader {
         }
         gui.updateStatusTerminal("---------------------------------------------\n PREMERE INVIO PER INIZIARE");
     }
+
+    /**
+     * Read JSON data from the specified file.
+     */
 
     public void readJson(){
         try{
@@ -50,9 +67,21 @@ public class JsonReader {
         }
     }
 
+    /**
+     * Get the size of the members.
+     *
+     * @return The size of the members.
+     */
+
     public Integer getSize(){
         return members.length();
     }
+
+    /**
+     * Display choices for the player.
+     *
+     * @param i The index of the member.
+     */
 
     public void printChoices(int i){
             
@@ -64,6 +93,10 @@ public class JsonReader {
 
     }
 
+    /**
+     * Display items available for purchase.
+     */
+
     public void printIteam(){
         JSONArray item = e.optJSONArray("item");
 
@@ -74,34 +107,82 @@ public class JsonReader {
         }
     }
 
+    /**
+     * Get the dialogue for a given member.
+     *
+     * @param i The index of the member.
+     * @return The dialogue.
+     */
+
     public String getDialog(int i){
         return (e.getString("dialog") + "\n");
     }
 
+    /**
+     * Get the image associated with a member.
+     *
+     * @param i The index of the member.
+     * @return The image path.
+     */
+
     public String getImage(int i){
         return (e.getString("img"));
     }
+
+    /**
+     * Check if the chosen option leads to death.
+     *
+     * @param i   The index of the member.
+     * @param key The choice made by the player.
+     * @return True if the choice leads to death, false otherwise.
+     */
 
     public Boolean checkChoice(int i, int key){
         resp = r.getJSONObject(key);
         return resp.getBoolean("die");
     }
 
+    /**
+     * Check if the member has a shop.
+     *
+     * @return True if the member has a shop, false otherwise.
+     */
+
     public boolean checkShop() {
         JSONArray item = e.optJSONArray("item");
         return 1 < item.length();
     }
+
+    /**
+     * Display the reply associated with a choice.
+     *
+     * @param key The choice made by the player.
+     */
 
     public void printReply(int key){
         resp = r.getJSONObject(key);
         gui.updateStatusTerminal(resp.getString("replay")); 
     }
 
+    /**
+     * Get the item from a shop.
+     *
+     * @param key The choice made by the player.
+     * @return The purchased item.
+     */
+
     public Item shop(int key) {
         JSONArray item = e.optJSONArray("item");
         JSONObject resp = item.getJSONObject(key);
         return new Item(resp.getString("name"), resp.getInt("number"));
     }
+
+    /**
+     * Get the information to remember for a given choice.
+     *
+     * @param key The choice made by the player.
+     * @return A map containing the slide number and the information to remember.
+     */
 
     public Map<Integer, String> giveRemember(int key){
         resp = r.getJSONObject(key);

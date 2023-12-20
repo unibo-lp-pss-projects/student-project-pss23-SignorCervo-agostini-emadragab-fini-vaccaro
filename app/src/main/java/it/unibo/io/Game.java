@@ -1,10 +1,13 @@
 package it.unibo.io;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
+/**
+ * The `Game` class represents the game logic for the Signor Cervo game.
+ */
 
 public class Game {
 
@@ -17,10 +20,17 @@ public class Game {
     Integer key = 2;
     Map<Integer, String> futureResponss = new HashMap<Integer,String>();
 
+    /**
+     * Constructs a `Game` object and initializes the JSON reader.
+     */
+
     Game(){
         j.readJson();
     }
 
+    /**
+     * Displays the output for the current game state.
+     */
     
     public void output(){
 
@@ -44,6 +54,12 @@ public class Game {
         if(j.checkShop()) j.printIteam();
 
     }
+
+    /**
+     * Handles the player's input and updates the game state accordingly.
+     *
+     * @param cmd The player's input command.
+     */
 
     public void input(String cmd){
 

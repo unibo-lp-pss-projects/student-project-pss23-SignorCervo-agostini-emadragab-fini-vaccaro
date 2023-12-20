@@ -3,13 +3,20 @@ package it.unibo.io;
 import java.util.ArrayList;
 
 /**
- * Classe Player rappresenta il giocatore
+ * The `Player` class represents a player in the game.
  */
+
 public class Player {
 
     private ArrayList<Item> item = new ArrayList<>();
     private Integer coin = 4;
     private static SignorCervoGUI gui;
+
+    /**
+     * Adds an item to the player's inventory and updates the GUI.
+     *
+     * @param item The item to be added.
+     */
     
     public void addItem(Item item) {
         if (0 > coin - item.getNum()){
@@ -22,6 +29,13 @@ public class Player {
         }
         
     }
+
+    /**
+     * Checks if the player has a specific item.
+     *
+     * @param item The item to check for.
+     * @return True if the player has the item, false otherwise.
+     */
     
     public boolean getItem(Item name) {
         if (this.item.contains(name)){
@@ -30,6 +44,12 @@ public class Player {
             return false;
         }
     }
+
+    /**
+     * Returns the number of coins the player currently has.
+     *
+     * @return The number of coins.
+     */
     
     public Integer getCoin() {
         return this.coin;

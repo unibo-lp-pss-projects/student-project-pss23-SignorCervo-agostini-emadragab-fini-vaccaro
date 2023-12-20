@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+/**
+ * SignorCervoGUI is a JavaFX application for the Signor Cervo Game.
+ */
 
 public class SignorCervoGUI extends Application {
 
@@ -24,6 +27,14 @@ public class SignorCervoGUI extends Application {
     private static TextArea terminal = new TextArea();
     private static JsonReader j  = new JsonReader();
     private static Game game = new Game();
+
+    /**
+     * The main entry point for the JavaFX application.
+     *
+     * @param primaryStage The primary stage for this application.
+     * @throws InterruptedException If a thread is interrupted.
+     * @throws IOException          If an IO operation fails.
+     */
 
     @Override
     public void start(Stage primaryStage) throws InterruptedException, IOException {
@@ -79,6 +90,11 @@ public class SignorCervoGUI extends Application {
         
     }
 
+    /**
+     * Initialize the media player and start the music.
+     *
+     */
+
     private void initializeMediaPlayer() {
     String musicFile = "music.mp3";
     String musicPath = "";
@@ -95,12 +111,23 @@ public class SignorCervoGUI extends Application {
 
     // Start playing the background music
     mediaPlayer.play();
-}
+    }
 
+    /**
+     * Update the terminal with the given text.
+     *
+     * @param text The text to append to the terminal.
+     */
 
     public static void updateStatusTerminal(String text) {
         terminal.appendText(text);
     }
+
+    /**
+     * Update the image displayed in the application.
+     *
+     * @param imageName The name of the image file.
+     */
 
     public static void updateImage(String imageName) {
         for (File resource : resources) {
@@ -112,6 +139,13 @@ public class SignorCervoGUI extends Application {
         }
     }
 
+    /**
+     * Get the absolute path of the specified icon file.
+     *
+     * @param icon The name of the icon file.
+     * @return The absolute path of the icon file.
+     */
+
     private String getIcon(String icon) {
         String iconPath = "";
         for (File resource : resources) {
@@ -121,6 +155,12 @@ public class SignorCervoGUI extends Application {
         }
         return iconPath;
     }
+
+    /**
+     * The main method to launch the JavaFX application.
+     *
+     * @param args Command-line arguments.
+     */
 
     public static void main(String[] args) {
         launch(args);
