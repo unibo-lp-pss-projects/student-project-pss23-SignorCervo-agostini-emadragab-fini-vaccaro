@@ -27,6 +27,13 @@ dependencies {
     }
     testImplementation("junit:junit:$junitVersion") // Usa JUnit 4
     implementation("org.json:json:20230227")
+    implementation("com.squareup.moshi:moshi:1.14.0")
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+    //decodificare stringhe
+    implementation ("org.apache.commons:commons-text:1.11.0")
+
 }
 
 tasks.test {
