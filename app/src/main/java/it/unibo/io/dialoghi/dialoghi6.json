@@ -1,0 +1,110 @@
+{
+    "rule": ["Fai meno rumore possibile.", "Non entrare mai nella Stanza delle Scarpe.", "Fidati di chi vuole aiutarti.", "Se puoi scegliere fra l'attacco e la fuga, scappa.", "Difenditi quando devi.", "Non aprire mai il libro rosso*.", "La torcia non è sempre indispensabile.", "Pensa a te stesso.", "Le regole precedenti continuano a valere, a meno che non siano annullate o modificate da quelle nuove.", "Questa parte sarà più difficile. Oltre alle regole usa bene il cervello", "Buona fortuna"],
+    "members":[
+        {
+            "dialog": "Signor Cervo è entrato in silenzio nel seminterrato",
+            "item": [],
+            "img": "",
+            "response": [
+                {
+                    "resp": "Gli punti addosso la torcia per vedere meglio",
+                    "replay": "Se fossi rimasto al buio non ti avrebbe visto.\nCorre verso di te e ti stacca le braccia",
+                    "die": true
+                },
+                {
+                    "resp": "Sacrifichi Signora Pecora e la spingi addosso a lui per distrarlo",
+                    "replay": "Per ora ha funzionato.\nCorri su per le scale.",
+                    "die": false                   
+                },
+                {
+                    "resp": "Cerchi di scappare e trascini con te Signora Pecora",
+                    "replay": "In due fate troppo rumore.\nVi sente e ti rompe un barattolo sulla testa.\nMuoru dissanguato.",
+                    "die": true                   
+                }
+            ]
+        },
+        {
+            "dialog": "Arrivi in cima alle scale ma Signor Cervo ha nuovamente chiuso la porta-libreria.\nSei bloccato.",
+            "item": [],
+            "img": "",
+            "response": [
+                {
+                    "resp": "Aspetti che Signor Cervo ti raggiunga e tiri fuori il coltello per difenderti",
+                    "replay": "Buona idea!\nSfortunatamente Signor Cervo ha una pistola in mano.",
+                    "die": false
+                },
+                {
+                    "resp": "Provi a forzare la serratura con il coltello nel tentativo di romperla",
+                    "replay": "Stai sprecando il tuo tempo.\nSignor Cervo ti raggiunge con una pistola in mano.",
+                    "die": false                   
+                },
+                {
+                    "resp": "Non hai un coltello. Cerchi di tornare indietro e nasconderti.",
+                    "replay": "Vai a sbattere contro Signor Cervo e gli tocchi per sbaglio le corna.\nTi punta la pistola in mezzo agli occhi e preme il grilletto.",
+                    "die": true                   
+                }
+            ]
+        },
+        {
+            "dialog": "Signor Cervo ti strascina nel seminterrato.\nNoti sorpreso che la Signora Pecora è ancora illesa.",
+            "item": [],
+            "img": "",
+            "response": [
+                {
+                    "resp": "Chiedi al Signor Cervo perchè ha risparmiato Signora Pecora",
+                    "replay": "MAI FARE DOMANDE PERSONALI A SIGNOR CERVO:\nVieni gambizzato e mangiato vivo.",
+                    "die": true
+                },
+                {
+                    "resp": "Non puoi fare altro che stare in silenzio e guardarti intorno",
+                    "replay": "Scelta molto saggia.\nNoti che in alto a destra c'è una finestrella, ma sembra troppo piccola per te.",
+                    "die": false                   
+                },
+                {
+                    "resp": "Cerchi di divincolarti e scappare di nuovo.\nForse stavolta riuscirai ad aprire la porta",
+                    "replay": "Che problemi hai?\nSignor Cervo è infuriato e ti colpisce ripetutamente con una mazza chiodata.",
+                    "die": true                   
+                }
+            ]
+        },
+        {
+            "dialog": "Signor Cervo inizia a parlare",
+            "item": [],
+            "img": "",
+            "response": [
+                {
+                    "resp": "Lo lasci parlare.\nFinchè sta parlando non ti farà nulla",
+                    "replay": "Saggia decisione.\nAscolti con attenzione, potrebbe essererti utile.",
+                    "die": false
+                },
+                {
+                    "resp": "Lo interrompi per fargli perdere tempo",
+                    "replay": "Come ti permetti?\nSignor Cervo ti smembra con una motosega.",
+                    "die": true                   
+                },
+                {
+                    "resp": "Guardi meglio la finestrella",
+                    "replay": "È molto maleducato non mantenere il contatto visivo con chi ti parla.\nSignor Cervo ti costringe a prestare attenzione.",
+                    "die": false                   
+                }
+            ]
+        },
+        {
+            "dialog": "Signor Cervo ringrazia Signora Pecora per aver fatto da esca.",
+            "item": [],
+            "img": "",
+            "response": [
+                {
+                    "resp": "Ti senti confuso e tradito ma continui as aspettare.\nSenti che qualcosa sta per succedere",
+                    "replay": "",
+                    "die": false
+                },
+                {
+                    "resp": "Nel frattempo Signora Pecora ti lega le mani dietro la schiena con una corda.",
+                    "replay": "",
+                    "die": false                   
+                }
+            ]
+        }
+    ]
+}

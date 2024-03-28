@@ -1,6 +1,8 @@
 package it.unibo.io;
 
 import java.io.IOException;
+import java.io.File;
+import java.util.List;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -16,23 +18,29 @@ public class JsonReader {
     private static JSONObject resp;
     private static JSONObject e;
     private static JSONArray r;
+    private static SignorCervoGUI gui;
+    private static JSONObject img;
 
+    List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
+    String dialogPath = resource.get(0).toURI().toString().replace("file:/", "");
+    
     public void updateMembers(int i){
         e = members.getJSONObject(i);
         r = e.getJSONArray("respons");
     }
 
     public void getRule(){
-        System.out.println("----------REGOLE----------");
+        gui.updateStatusTerminal("-------------------REGOLE-------------------\n");
         for(int i = 0; i < rule.length(); i++){
-            System.out.printf("%d. %s%n", i + 1, rule.get(i));
+            String fromattedString = String.format("%d. %s%n", i + 1, rule.get(i));
+            gui.updateStatusTerminal(fromattedString);
         }
-        System.out.println("--------------------------");
+        gui.updateStatusTerminal("---------------------------------------------\n PREMERE INVIO PER INIZIARE");
     }
 
     public void readJson(){
         try{
-            String contents = new String((Files.readAllBytes(Paths.get("Nome\\src\\main\\java\\it\\unibo\\io\\dialoghi\\dialoghi.json"))));
+            String contents = new String((Files.readAllBytes(Paths.get(dialogPath))));
             JSONObject o = new JSONObject(contents);
             rule = o.getJSONArray("rule");
             members = o.getJSONArray("members");
@@ -50,7 +58,8 @@ public class JsonReader {
             
         for(int j = 0; j < r.length(); j++){
             resp = r.getJSONObject(j);
-            System.out.printf("\n%d. %s%n", j + 1, resp.getString("resp"));
+            String fromattedString = String.format("\n%d. %s%n", j + 1, resp.getString("resp"));
+            gui.updateStatusTerminal(fromattedString);
         }
 
     }
@@ -60,13 +69,17 @@ public class JsonReader {
 
         for(int i = 0; i < item.length(); i++){
             JSONObject resp = item.getJSONObject(i);
-            System.out.printf("%d. Nome: %s  prezzo: %d\n",i+1, resp.getString("name"), resp.getInt("number"));
+            String fromattedString = String.format("%d. %s %d$\n",i+1, resp.getString("name"), resp.getInt("number"));
+            gui.updateStatusTerminal(fromattedString);
         }
     }
 
     public String getDialog(int i){
-        // System.out.println("\n" + e.getString("dialog"));
-        return ("\n" + e.getString("dialog"));
+        return (e.getString("dialog") + "\n");
+    }
+
+    public String getImage(int i){
+        return (e.getString("img"));
     }
 
     public Boolean checkChoice(int i, int key){
@@ -81,7 +94,7 @@ public class JsonReader {
 
     public void printReply(int key){
         resp = r.getJSONObject(key);
-        System.out.println(resp.getString("replay")); 
+        gui.updateStatusTerminal(resp.getString("replay")); 
     }
 
     public Item shop(int key) {

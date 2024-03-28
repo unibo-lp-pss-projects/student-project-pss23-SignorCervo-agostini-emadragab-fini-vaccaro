@@ -9,14 +9,16 @@ public class Player {
 
     private ArrayList<Item> item = new ArrayList<>();
     private Integer coin = 4;
+    private static SignorCervoGUI gui;
     
     public void addItem(Item item) {
         if (0 > coin - item.getNum()){
-            System.out.println("Non hai abbastanza monete");
+            gui.updateStatusTerminal("Non hai abbastanza monete");
         }else{
             this.coin = this.coin - item.getNum();
             this.item.add(item);
-            System.out.printf("Hai comprato %s", item.getName());
+            String fromattedString = String.format("Hai comprato %s", item.getName());
+            gui.updateStatusTerminal(fromattedString);
         }
         
     }

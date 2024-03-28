@@ -10,6 +10,7 @@ repositories {
 val javaFXModules = listOf(
     "base",
     "controls",
+    "media",
     "fxml",
     "swing",
     "graphics"

@@ -1,5 +1,7 @@
 package it.unibo.io;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -47,7 +49,12 @@ public class MenuGui extends Application {
     private void startGame() {
         SignorCervoGUI gameCervoGUI = new SignorCervoGUI();
         Stage gameStage = new Stage();
-        gameCervoGUI.start(gameStage);
+        try {
+            gameCervoGUI.start(gameStage);
+        } catch (InterruptedException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 }

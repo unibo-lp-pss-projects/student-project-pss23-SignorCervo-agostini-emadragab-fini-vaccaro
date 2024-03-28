@@ -4,7 +4,7 @@
       {
         "dialog": "Vuoi giocare a Signor Cervo?",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [
             {
                 "resp": "si",
@@ -21,7 +21,7 @@
       {
         "dialog": "Sei nella tua stanza.\nSignor Cervo ti chima: la cena e' pronta!",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
             "resp": "Non hai fame, ignori Signor Cervo e rimani a letto",
             "replay": "Singor Cervo e' arrabbiatissimo.\nPrende un coltello e usa le tue dita per fare il brodo",
@@ -41,7 +41,7 @@
       {
         "dialog": "Dopo cena Signor Cevo ti ordina di andare a letto.\nSi chiude nella biblioteca.",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
             "resp": "Vai a letto.\nIn fondo e' stata una giornata lunga.",
             "replay": "Non succede niente.",
@@ -65,7 +65,7 @@
       {
         "dialog": "Buongiorno! Sei sveglio.\nSignor Cervo vuole andare a raccogliere funghi nel bosco per il pranzo.",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
             "resp": "Non hai voglia di uscire.\nDici a Signor Cervo di andare da solo.",
             "replay": "Signor Cervo e' oltraggiato.\nTi colpisce in testa con un libro antico e muori dissanguato.",
@@ -85,7 +85,7 @@
       {
         "dialog": "Prima di preparare il pranzo, Singor Cervo entra nella Stanza delle Scarpe per torgliersi quelle spoche di fango.",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
             "resp": "Vai in camera tua e aspetti che il pranzo sia pronto.",
             "replay": "Hai sporcato ovunque e non hai nemmeno aiutato con il pranzo.\nSignor Cervo ti chiude in cantina e muori di stenti.",
@@ -105,7 +105,7 @@
       {
         "dialog": "Il pranzo era delizioso.\nSignor Cervo ti chiede se vuoi andare con lui al negozio di antiquariato.",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
             "resp": "Certo!\nNon vedi l'ora di spedere le tue monete.",
             "replay": "Che bello!\nSiete pronti a partire.",
@@ -156,14 +156,14 @@
                 "number": 4
             }
         ],
-        "img": "/shop.png",
+        "img": "shop.png",
         "respons": [        
         ]
       },
       {
         "dialog": "Ottima scelta!\nSignor Cervo ha deciso di comprare il carillon.\nTi chiede di ascoltare con lui la musica.",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
             "resp": "Rifiuti educatamente e lo ringrazi per l'offerta.",
             "replay": "Singor Cervo e' dispiaciuto ma tu sei salvo.\nIl carillon e' molto pericoloso.",
@@ -183,7 +183,7 @@
       {
         "dialog": "E' quasi ora di cena.\nSignor Cervo sta facendo una zuppa, ma le sue corna si sporcano.",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
             "resp": "Prendi un fazzoletto e le pulisci.",
             "replay": "Non devi MAI toccare le corna di Signor Cervo.\nSi arrabbia tantissimo e ti infila nel forno.",
@@ -201,11 +201,11 @@
         }]
       },
       {
-        "dialog": "Signor Cervo e' di buon umore e ti permette di fare ciò che vuoi mentre prepara la cena.",
+        "dialog": "Signor Cervo e' di buon umore e ti permette di fare cio' che vuoi mentre prepara la cena.",
         "item": [],
-        "img": "/signorcervo.jpg",
+        "img": "signorcervo.jpg",
         "respons": [{
-            "resp": "Hai voglia di leggere, così vai a vedere cosa c'e' nella biblioteca.",
+            "resp": "Hai voglia di leggere, cosi' vai a vedere cosa c'e' nella biblioteca.",
             "replay": "Entrare nella biblioteca e' VIETATO!\nSignor Cervo ti vede e ti fa cadere addosso uno scaffale.",
             "die": true
         },
@@ -218,7 +218,7 @@
       {
         "dialog": "",
         "item": [],
-        "img": "/sentiero1.png",
+        "img": "sentiero1.png",
         "respons": [{
             "resp": "Vai avanti.",
             "replay": "...",
@@ -228,7 +228,7 @@
       {
         "dialog": "",
         "item": [],
-        "img": "/sentiero2.png",
+        "img": "sentiero2.png",
         "respons": [{
             "resp": "Vai avanti.",
             "replay": "...",
@@ -238,7 +238,7 @@
       {
         "dialog": "",
         "item": [],
-        "img": "/sentiero3.png",
+        "img": "sentiero3.png",
         "respons": [{
             "resp": "Vai avanti.",
             "replay": "...",
@@ -248,7 +248,7 @@
       {
         "dialog": "",
         "item": [],
-        "img": "/sentiero4.png",
+        "img": "sentiero4.png",
         "respons": [{
             "resp": "Vai avanti.",
             "replay": "...",

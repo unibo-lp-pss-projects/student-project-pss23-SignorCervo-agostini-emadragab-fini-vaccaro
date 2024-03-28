@@ -201,11 +201,11 @@
         }]
       },
       {
-        "dialog": "Signor Cervo e' di buon umore e ti permette di fare ciò che vuoi mentre prepara la cena.",
+        "dialog": "Signor Cervo e' di buon umore e ti permette di fare cio' che vuoi mentre prepara la cena.",
         "item": [],
         "img": "/signorcervo.jpg",
         "respons": [{
-            "resp": "Hai voglia di leggere, così vai a vedere cosa c'e' nella biblioteca.",
+            "resp": "Hai voglia di leggere, cosi' vai a vedere cosa c'e' nella biblioteca.",
             "replay": "Entrare nella biblioteca e' VIETATO!\nSignor Cervo ti vede e ti fa cadere addosso uno scaffale.",
             "die": true
         },
