@@ -7,7 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MenuGui extends Application {
@@ -29,17 +28,17 @@ public class MenuGui extends Application {
             System.exit(0);
         });
 
-// Layout del menu con i bottoni
+        // Layout del menu con i bottoni
         VBox menuLayout = new VBox(20);
-        menuLayout.getChildren().addAll(startButton,exitButton);
+        menuLayout.getChildren().addAll(startButton, exitButton);
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setStyle("-fx-background-color: black;");
-// Settiamo la scena del menu
+
+        // Settiamo la scena del menu
         Scene menuScene = new Scene(menuLayout, 800, 600);
         primaryStage.setScene(menuScene);
 
         primaryStage.show();
-
 
     }
 
