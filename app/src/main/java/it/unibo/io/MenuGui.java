@@ -22,6 +22,14 @@ public class MenuGui extends Application {
             startGame();
         });
 
+        // Bottone per andare ai livelli del gioco
+        Button levelsButton = new Button("Livelli del gioco");
+        levelsButton.setOnAction(e ->{
+            primaryStage.close();
+            startLevels();
+        });
+
+
         // Bottone per uscire dal gioco
         Button exitButton = new Button("Esci dal Gioco");
         exitButton.setOnAction(e -> {
@@ -30,7 +38,7 @@ public class MenuGui extends Application {
 
         // Layout del menu con i bottoni
         VBox menuLayout = new VBox(20);
-        menuLayout.getChildren().addAll(startButton, exitButton);
+        menuLayout.getChildren().addAll(startButton, levelsButton, exitButton);
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setStyle("-fx-background-color: black;");
 
@@ -56,4 +64,13 @@ public class MenuGui extends Application {
         }
     }
 
+    private void startLevels() {
+        Levels levels = new Levels();
+        Stage levelsStage = new Stage();
+        try {
+            levels.start(levelsStage);
+        } catch (Exception e) {
+             e.printStackTrace();
+        }
+    }
 }

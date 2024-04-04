@@ -18,6 +18,7 @@ public class Levels extends Application {
     levelsLayout.setAlignment(Pos.CENTER);
     levelsLayout.setHgap(10);
     levelsLayout.setVgap(10);
+
     // Aggiungi i bottoni dei livelli
     for (int i = 0; i < 6; i++) {
       Button levelButton = new Button("Livello " + (i + 1));
