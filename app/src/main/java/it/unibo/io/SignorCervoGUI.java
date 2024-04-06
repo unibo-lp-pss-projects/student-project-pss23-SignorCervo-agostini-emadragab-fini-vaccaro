@@ -1,20 +1,23 @@
 package it.unibo.io;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
 
 public class SignorCervoGUI extends Application {
 
@@ -22,7 +25,7 @@ public class SignorCervoGUI extends Application {
     private static List<File> resources;
     private static ImageView imageView = new ImageView();
     private static TextArea terminal = new TextArea();
-    private static JsonReader j  = new JsonReader();
+    private static JsonReader j = new JsonReader();
     private static Game game = new Game();
 
     @Override
@@ -52,7 +55,7 @@ public class SignorCervoGUI extends Application {
             game.output();
 
             String command = userInput.getText().trim();
-            if (!command.isEmpty()) {               
+            if (!command.isEmpty()) {
                 // Gestisci il comando e aggiorna il terminale
                 terminal.clear();
                 game.input(command);
@@ -64,11 +67,37 @@ public class SignorCervoGUI extends Application {
         VBox gameLayout = new VBox(imageView, terminal, userInput);
         gameLayout.setAlignment(Pos.CENTER);
 
+        // Bottone che porta il giocatore al menu principale
+        Button backButton = new Button("Menu principale");
+        backButton.setOnAction(e -> {
+            // Chiude la finestra attuale
+            primaryStage.close(); 
+            MenuGui menu = new MenuGui();
+            Stage menuStage = new Stage();
+            try {
+                // Apre la finestra del menu
+                menu.start(menuStage); 
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        // Layout per il bottone del menu
+        HBox menuButtonLayout = new HBox(backButton);
+        menuButtonLayout.setAlignment(Pos.TOP_RIGHT); //angolo a destra
+        
+        // BorderPane per contenere il layout del gioco e il layout del bottone del menu
+        BorderPane root = new BorderPane();
+        root.setCenter(gameLayout); // Layout del gioco
+        root.setTop(menuButtonLayout); // Layout del bottone del menu
+        // Imposta lo sfondo della scena a nero
+        root.setStyle("-fx-background-color: black;");
+
         // Imposta lo sfondo della scena a nero
         gameLayout.setStyle("-fx-background-color: black;");
 
         // Imposta la scena principale
-        Scene scene = new Scene(gameLayout, 800, 600, Color.BLACK);
+        Scene scene = new Scene(root, 800, 600, Color.BLACK);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("file:" + getIcon("signorcervo.jpg")));
 
@@ -76,27 +105,25 @@ public class SignorCervoGUI extends Application {
 
         primaryStage.show();
 
-        
     }
 
     private void initializeMediaPlayer() {
-    String musicFile = "music.mp3";
-    String musicPath = "";
-    for (File resource : resources) {
-        if (resource.getName().equals(musicFile)) {
-            musicPath = resource.getAbsolutePath();
+        String musicFile = "music.mp3";
+        String musicPath = "";
+        for (File resource : resources) {
+            if (resource.getName().equals(musicFile)) {
+                musicPath = resource.getAbsolutePath();
+            }
         }
+        Media sound = new Media(new File(musicPath).toURI().toString());
+        mediaPlayer = new MediaPlayer(sound);
+
+        // Set the music to loop indefinitely
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+
+        // Start playing the background music
+        mediaPlayer.play();
     }
-    Media sound = new Media(new File(musicPath).toURI().toString());
-    mediaPlayer = new MediaPlayer(sound);
-
-    // Set the music to loop indefinitely
-    mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-
-    // Start playing the background music
-    mediaPlayer.play();
-}
-
 
     public static void updateStatusTerminal(String text) {
         terminal.appendText(text);
