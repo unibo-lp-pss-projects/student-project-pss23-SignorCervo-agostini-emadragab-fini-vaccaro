@@ -2,6 +2,11 @@ package it.unibo.io;
 
 public class Choice {
     
+    /**
+    * Converte l'input in un intero, rappresentante la scelta dell'utente.
+    * @param input L'input dell'utente.
+    * @return La scelta dell'utente in formato intero.
+    */
     public Integer inputChoice(String input){
         switch(input){
             case "1":
@@ -17,6 +22,11 @@ public class Choice {
         }
     }
 
+    /**
+    * Converte l'input in un intero, rappresentante la scelta dell'utente per lo shop.
+    * @param input L'input dell'utente.
+    * @return La scelta dell'utente per lo shop in formato intero.
+    */
     public Integer inputChoiceShop(String input){
         switch(input){
             case "1":
