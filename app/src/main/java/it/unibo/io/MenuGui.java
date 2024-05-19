@@ -2,6 +2,7 @@ package it.unibo.io;
 
 import java.io.IOException;
 
+import it.unibo.io.start.QuizGui;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -29,12 +30,18 @@ public class MenuGui extends Application {
             System.exit(0);
         });
 
-// Layout del menu con i bottoni
+        Button quizButton = new Button("Avvia Quiz");
+        quizButton.setOnAction(e -> {
+            primaryStage.close();
+            startQuiz();
+        });
+
+        // Layout del menu con i bottoni
         VBox menuLayout = new VBox(20);
-        menuLayout.getChildren().addAll(startButton,exitButton);
+        menuLayout.getChildren().addAll(startButton,exitButton, quizButton);
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setStyle("-fx-background-color: black;");
-// Settiamo la scena del menu
+        // Settiamo la scena del menu
         Scene menuScene = new Scene(menuLayout, 800, 600);
         primaryStage.setScene(menuScene);
 
@@ -42,6 +49,16 @@ public class MenuGui extends Application {
 
 
     }
+
+    private void startQuiz() {
+        QuizGui quizGui = new QuizGui();
+        Stage quizStage = new Stage();
+        try {
+            quizGui.start(quizStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }  
 
     /**
      * Inizia il gioco con una nuova istanza di SignorCervoGUI
