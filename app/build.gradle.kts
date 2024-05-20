@@ -20,7 +20,7 @@ val supportedPlatforms = listOf("linux", "mac", "win")
 
 dependencies {
     val junitVersion = "4.13.2" // Aggiornato alla versione più recente di JUnit 4
-    val javaFxVersion = "15"
+    val javaFxVersion = "22"
     for (platform in supportedPlatforms) {
         for (module in javaFXModules) {
             implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
