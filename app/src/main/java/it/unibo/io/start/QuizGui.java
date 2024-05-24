@@ -1,4 +1,5 @@
 package it.unibo.io.start;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -27,9 +28,6 @@ import retrofit2.Response;
 
 public class QuizGui extends Application {
 
-    ApiService apiService = RetrofitClient.getClient("https://opentdb.com/").create(ApiService.class);
-    Call<TriviaResponse> call = apiService.getTriviaCall();
-
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -39,9 +37,8 @@ public class QuizGui extends Application {
 
         // Impostazione della scena e visualizzazione dello stage
         Scene scene = new Scene(root, 400, 350);
-        
+
         primaryStage.setResizable(false);
-        
         primaryStage.setScene(scene);
         primaryStage.setTitle("Trivia Quiz");
         primaryStage.show();
@@ -53,39 +50,8 @@ public class QuizGui extends Application {
                 e.printStackTrace();
             }
         });
-        TriviaQuizController controller = loader.getController();
-
-        getTrivia(controller);
-
     }
-
-    private void getTrivia(TriviaQuizController controller) {
-        call.enqueue(new Callback<TriviaResponse>() {
-
-            @Override
-            public void onResponse(Call<TriviaResponse> call, Response<TriviaResponse> response) {
-                if (response.isSuccessful()) {
-                    // Gestione della risposta
-                    List<Result> results = response.body().getResults();
-                    System.out.println("size di results = " + "  " + results.size());
-
-                    Platform.runLater(() -> {
-                        controller.setQuestions(results);
-                        call.cancel();
-                    });
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<TriviaResponse> call, Throwable t) {
-                // Gestione dell'errore
-                t.printStackTrace();
-            }
-
-        });
-    }
-
+    
     @Override
     public void stop() throws Exception {
 

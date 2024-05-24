@@ -1,16 +1,15 @@
 package it.unibo.io.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import it.unibo.io.model.Trivia;
+import it.unibo.io.service.TriviaService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
-import java.util.List;
-
-import it.unibo.io.model.Result;
-import it.unibo.io.model.Trivia;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class TriviaQuizController {
 
@@ -28,6 +27,7 @@ public class TriviaQuizController {
 
     private List<Trivia> trivias = new ArrayList<>();
     private int currentIndex = 0;
+    private TriviaService triviaService;
 
     public void initialize() {
         // Inizializzazione del ToggleGroup se necessario
@@ -38,18 +38,17 @@ public class TriviaQuizController {
             option3.setToggleGroup(answerGroup);
             option4.setToggleGroup(answerGroup);
         }
-        // this.questionNumber.setText(String.valueOf(currentIndex +1));
+        triviaService = new TriviaService();
+        loadTriviaQuestions();
     }
 
-    public void setQuestions(List<Result> results) {
-        for (Result result : results) {
-            Trivia trivia = new Trivia();
-            trivia.setQuestion(result.getQuestion());
-            trivia.setCorrect_answer(result.getCorrect_answer());
-            trivia.setIncorrect_answers(result.getIncorrect_answers());
-            trivia.updateAllAnswers();
-            trivias.add(trivia);
-        }
+
+    public void loadTriviaQuestions() {
+        triviaService.loadTriviaQuestions(this::setQuestions, Throwable::printStackTrace);
+        
+    }
+    public void setQuestions(List<Trivia> trivias) {
+        this.trivias = trivias;
         displayNextQuestion();
     }
 
