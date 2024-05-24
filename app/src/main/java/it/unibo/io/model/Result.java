@@ -38,4 +38,28 @@ public class Result {
         return this.incorrect_answers;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
+    }
+
+    public void setCorrect_answer(String correct_answer) {
+        this.correct_answer = correct_answer;
+    }
+
+    public void setIncorrect_answers(List<String> incorrect_answers) {
+        this.incorrect_answers = incorrect_answers;
+    }
+
 }
