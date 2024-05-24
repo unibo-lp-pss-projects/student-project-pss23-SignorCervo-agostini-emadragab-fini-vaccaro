@@ -23,30 +23,22 @@ public class TriviaQuizController {
     private RadioButton option1, option2, option3, option4;
 
     @FXML
-    private ToggleGroup answerGroup;
+    private ToggleGroup answerGroup = new ToggleGroup();
 
     private List<Trivia> trivias = new ArrayList<>();
     private int currentIndex = 0;
     private TriviaService triviaService;
 
     public void initialize() {
-        // Inizializzazione del ToggleGroup se necessario
-        if (answerGroup == null) {
-            answerGroup = new ToggleGroup();
-            option1.setToggleGroup(answerGroup);
-            option2.setToggleGroup(answerGroup);
-            option3.setToggleGroup(answerGroup);
-            option4.setToggleGroup(answerGroup);
-        }
         triviaService = new TriviaService();
         loadTriviaQuestions();
     }
 
-
     public void loadTriviaQuestions() {
         triviaService.loadTriviaQuestions(this::setQuestions, Throwable::printStackTrace);
-        
+
     }
+
     public void setQuestions(List<Trivia> trivias) {
         this.trivias = trivias;
         displayNextQuestion();
@@ -58,16 +50,22 @@ public class TriviaQuizController {
             questionLabel.setText(currentTrivia.getQuestion());
             List<String> options = currentTrivia.getAll_answers();
             Collections.shuffle(options);
+            // Pulizia dei radio button esistenti
+            answerGroup.getToggles().clear();
 
-            option1.setText(options.size() > 0 ? options.get(0) : "");
-            option2.setText(options.size() > 1 ? options.get(1) : "");
-            option3.setText(options.size() > 2 ? options.get(2) : "");
-            option4.setText(options.size() > 3 ? options.get(3) : "");
-
-            answerGroup.getToggles().forEach(toggle -> {
-                ((RadioButton) toggle).setSelected(false);
-            });
-            questionNumber.setText(String.valueOf(currentIndex +1));
+            // Impostazione del testo per i radio button esistenti o loro nascondimento se non necessari
+            RadioButton[] buttons = { option1, option2, option3, option4 };
+            for (int i = 0; i < buttons.length; i++) {
+                if (i < options.size()) {
+                    buttons[i].setText(options.get(i));
+                    buttons[i].setVisible(true);
+                    buttons[i].setToggleGroup(answerGroup);
+                } else {
+                    buttons[i].setVisible(false);
+                    buttons[i].setToggleGroup(null);
+                }
+            }
+            questionNumber.setText(String.valueOf(currentIndex + 1));
             currentIndex++;
         }
     }
@@ -79,7 +77,6 @@ public class TriviaQuizController {
             System.out.println("Selected Answer: " + selected.getText());
         }
         String answer = selected.getText();
-        
 
     }
 
