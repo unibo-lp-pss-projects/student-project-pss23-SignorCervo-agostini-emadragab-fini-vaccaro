@@ -1,0 +1,26 @@
+.padding {
+    -fx-padding: 0 25 0 25;
+}
+
+/* domanda e numero */
+.infoLabel {
+    -fx-text-fill: #ff0000;
+}
+
+/* per tutte le label */
+.label {
+    -fx-font-size: 24px;
+}
+
+/* radio buttons */
+.radio-button-base {
+    -fx-font-size: 22px;
+    -fx-text-fill: #666;
+}
+
+/* bottoni */
+.button-base {
+    -fx-font-size: 24px;
+    -fx-background-color: #ececec;
+    /* -fx-text-fill: #000; */
+}

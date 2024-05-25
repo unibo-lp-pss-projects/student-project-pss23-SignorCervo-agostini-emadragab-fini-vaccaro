@@ -36,7 +36,7 @@ public class QuizGui extends Application {
         Parent root = loader.load();
 
         // Impostazione della scena e visualizzazione dello stage
-        Scene scene = new Scene(root, 400, 350);
+        Scene scene = new Scene(root, 600, 450);
 
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
