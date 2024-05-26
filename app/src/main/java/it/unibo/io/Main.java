@@ -6,7 +6,7 @@ import javafx.application.Application;
 
 public class Main {
 
-    SignorCervoGUI gui = new SignorCervoGUI();
+    static MenuGui gui = new MenuGui();
     
     /**
     * Metodo principale per avviare l'applicazione.
@@ -15,6 +15,6 @@ public class Main {
      @throws IOException Se si verifica un errore di input/output.
     */
     public static void main(String[] args) throws InterruptedException, IOException {
-        Application.launch(SignorCervoGUI.class, args);   
+        Application.launch(MenuGui.class, args);
     }
 }
