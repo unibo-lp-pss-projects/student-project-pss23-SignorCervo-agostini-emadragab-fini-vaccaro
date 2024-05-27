@@ -48,7 +48,9 @@ public class TriviaService {
 
             @Override
             public void onFailure(Call<TriviaResponse> call, Throwable t) {
-                onError.accept(t);
+                Platform.runLater(() -> {
+                    onError.accept(t);
+                });
             }
 
         });

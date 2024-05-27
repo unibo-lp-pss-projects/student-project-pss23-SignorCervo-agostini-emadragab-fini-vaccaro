@@ -28,12 +28,21 @@ import retrofit2.Response;
 
 public class QuizGui extends Application {
 
+    private List<Trivia> trivias;
+    
+    public QuizGui(List<Trivia> trivias) {
+        this.trivias = trivias;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         URL url = getClass().getResource("/layouts/TriviaQuiz.fxml");
         FXMLLoader loader = new FXMLLoader(url);
         Parent root = loader.load();
+
+        TriviaQuizController controller = loader.getController();
+        controller.setQuestions(trivias);
 
         // Impostazione della scena e visualizzazione dello stage
         Scene scene = new Scene(root, 600, 450);

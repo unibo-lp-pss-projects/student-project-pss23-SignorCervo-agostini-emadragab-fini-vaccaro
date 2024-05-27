@@ -33,7 +33,8 @@ public class MenuGui extends Application {
         Button quizButton = new Button("Avvia Quiz");
         quizButton.setOnAction(e -> {
             primaryStage.close();
-            startQuiz();
+            QuizManager quizManager = new QuizManager(new Stage());
+            quizManager.startQuiz();
         });
 
         // Layout del menu con i bottoni
@@ -49,16 +50,6 @@ public class MenuGui extends Application {
 
 
     }
-
-    private void startQuiz() {
-        QuizGui quizGui = new QuizGui();
-        Stage quizStage = new Stage();
-        try {
-            quizGui.start(quizStage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }  
 
     /**
      * Inizia il gioco con una nuova istanza di SignorCervoGUI
