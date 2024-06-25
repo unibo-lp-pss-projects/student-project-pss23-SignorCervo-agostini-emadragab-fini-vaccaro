@@ -5,6 +5,7 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -56,12 +57,8 @@ public class SignorCervoGUI extends Application {
             terminal.clear();
             game.output();
 
-            String command = userInput.getText().trim();
-            if (!command.isEmpty()) {
-                terminal.clear();
-                game.input(command);
-                userInput.clear();
-            }
+
+
         });
 
         VBox gameLayout = new VBox(imageView, terminal, userInput);
@@ -99,6 +96,13 @@ public class SignorCervoGUI extends Application {
      */
     public static void updateStatusTerminal(String text) {
         terminal.appendText(text);
+    }
+
+    public static void updateButton(String text, int i) {
+        Button choice = new Button(text);
+        choice.setOnAction(e -> {
+            game.input(String.valueOf(i));
+        });
     }
 
     /**

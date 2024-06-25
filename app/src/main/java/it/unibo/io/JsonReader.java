@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.scene.control.Button;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -80,14 +81,15 @@ public class JsonReader {
      * @param i l'indice del membro
      */
     public void printChoices(int i){
-            
+
         for(int j = 0; j < r.length(); j++){
             resp = r.getJSONObject(j);
             String fromattedString = String.format("\n%d. %s%n", j + 1, resp.getString("resp"));
-            gui.updateStatusTerminal(fromattedString);
+            gui.updateButton(fromattedString, j + 1);
         }
 
     }
+
 
     /**
      * Stampa gli oggetti disponibili per l'acquisto.
