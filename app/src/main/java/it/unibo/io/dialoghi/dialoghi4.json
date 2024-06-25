@@ -1,0 +1,333 @@
+{
+    "rule": ["Non toccare mai le corna di Signor Cervo.", "Non entrare nella biblioteca.", "Vai nel bosco solo di giorno, segui il sentiero.", "Non svegliare il Signor Cervo.", "Signor Cervo detesta le persone maleducate", "Se Signor Cervo ti regala un libro rosso, non aprirlo.","Il carillon e' pericoloso: non ascoltarlo mai."],
+    "members": [
+        {
+            "dialog": "Le creature sono venute a prenderti. Ti chiedono di seguirle e ti promettono che finché non uscirai dal sentiero con loto sarai al sicuro.",
+            "item": [],
+            "img": "creature.png",
+            "respons": [
+                {
+                    "resp": "Segui le creature e porta con te la mappa.",
+                    "replay": "Le creature ti accompagnano nel bosco e vi fermate in una radura.",
+                    "die": false
+                },
+                {
+                    "resp": "Chiudi la finestra.",
+                    "replay": "Le creature di offendono e ti traformano in polvere. Volevano solo aiutarti.",
+                    "die": true
+                },
+                {
+                    "resp": "Segui le creature, non portare nulla con te.",
+                    "replay": "Puoi seguire le creature, ma non sei del tutto sicuro...",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "La radura è illuminata dalla luna e scorgi qualcosa di scuro sotto un albero. È coperta da un telo.",
+            "item": [],
+            "img": "creature.png",
+            "respons": [
+                {
+                    "resp": "Sollevi il telo",
+                    "replay": "Quello che vedi ti fa pentire do aver sollevato il telo, ma non avevi altra scelta.",
+                    "die": false
+                },
+                {
+                    "resp": "Lo lasci lì. È sicuramente una coperta dimenticata da qualcuno...",
+                    "replay": "Una folata di vento muove il telo e scopre ciò che nascondeva.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "warning.png",
+            "respons": []
+        },
+        {
+            "dialog": "Sull' erba ci sono due corpi:\nSignor Muflone non ha più gli occhi.\nSignor Volpe non ha più le mani.",
+            "item": [],
+            "img": "creature.png",
+            "respons": [
+                {
+                    "resp": "Sei agitato.",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "creature.png",
+            "respons": [
+                {
+                    "resp": "È troppo. Scappi via.",
+                    "replay": "Signor Cervo scopre che sei uscito di notte invece che dormire: ti infila in una vasca piena di acido.",
+                    "die": true
+                },
+                {
+                    "resp": "Chiedi spiegazioni alle creature.",
+                    "replay": "Le creature sono felici. Vogliono aiutarti.",
+                    "die": false
+                },
+                {
+                    "resp": "Non riesci a dire né fare niente.",
+                    "replay": "Reagisci. LEcreature si stanno spazientendo e vogliono spiegare.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Le creature ti dicono che è stato Signor Cervo e ti chiedono di fare attenzione.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Non ci credi: sono state le creaure a uccidere Signor Volpe e Signor Muflone. TOrni a casa e riferisci tutto a Signor Cervo.",
+                    "replay": "Peggio per te. Avresti dovuto ascoltare.",
+                    "die": true
+                },
+                {
+                    "resp": "Ci credi, ma torni a casa e faifinta di niente. Vuoi prima recuperare le tue cose.",
+                    "replay": "Hai fatto bene. Ci sono ancora delle questioni in sospeso...",
+                    "die": false
+                },
+                {
+                    "resp": "Non sai dove andare, quindi vaghi nel bosco alla ricerca di una via di fuga.",
+                    "replay": "Sei uscito dal sentiero! LE creature non possono più proteggerti. Vieni ingoiato dal buio.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Le creature ti concedono una domanda prima che tu vada.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Chiedi che fine ha fato Signora Pecora.",
+                    "replay": "Domanda giusta. Hai con te la mappa?",
+                    "die": false
+                },
+                {
+                    "resp": "Chiedi perché Signor Cervo ha fatto questo ai suoi ospiti.",
+                    "replay": "Le creature non sono ancora pronte a rispondere a questa domanda. Hai sprecato la tua occasione.",
+                    "die": false
+                },
+                {
+                    "resp": "Chiedi alle creature se possono aiutarti ancora.",
+                    "replay": "Le creature non rispettano chi si prende tutto il braccio quando gli viene concesso un dito. Vai a finire sotto il telo insieme a Signor Muflone e Signor Volpe.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Hai con te la mappa?",
+            "item": [],
+            "img": "sentiero1.png",
+            "respons": [
+                {
+                    "resp": "Si, l'ho presa prima di uscire.",
+                    "replay": "Le creature indicano la X di colore rosso.",
+                    "die": false
+                },
+                {
+                    "resp": "No, l'ho lasciata volontariamente nella mia stanza.",
+                    "replay": "Le creature sono stanche della tua inattitudine. Vieni liquefatto.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Sei di nuovo a casa. Il tuo cuore batte così forte che lo senti rimbombare nelle orecchie.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Signor Cervo dorme. Vai in biblioteca.",
+                    "replay": "Cattiva, pessima idea. Signor Cervo si sveglia e ti strappa via i denti uno a uno.",
+                    "die": true
+                },
+                {
+                    "resp": "Non è ancora il momento. Prima di tutto vai nella tua stanza e prendi ciò che potrebbe servirti.",
+                    "replay": "Sei stato saggio.\nPer ora rimani lì.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [{
+                "name" : "Chiave",
+                "number" : 1
+            },
+            {
+                "name": "Moneta",
+                "number": 2
+            },
+            {
+                "name": "Pizza",
+                "number": 3
+            },
+            {
+                "name": "Coltello",
+                "number": 4
+            },
+            {
+                "name": "Acqua",
+                "number": 5
+            },
+            {
+                "name": "Il tuo acquisto al negozio di antiquariato",
+                "number": 6
+            },
+            {
+                "name": "Torcia",
+                "number": 7
+            }
+        ],
+            "img": "cose_utili.png",
+            "respons": [
+                {
+                    "resp": "Puoi scegliere tre cose.\nAlcune di queste saranno inutili.",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Prega di aver scelto gli oggetti giusti.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Dormi fino al mattino seguente.",
+                    "replay": "Come ti è venuto in mente?\nSignor Cervo è entrato nella tua stanza menre dormivi e ti ha strappato via gli occhi.",
+                    "die": true
+                },
+                {
+                    "resp": "Stai sveglio.",
+                    "replay": "Ben fatto. Se vuoi rimanere vivo devi essere vigile.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Hai superato la notte.\nSignor Cervo ti chiama per la colazione.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Fai finta di dormire.",
+                    "replay": "Pensi che funzionerà?\nPrima o poi dovrai uscire.",
+                    "die": false
+                },
+                {
+                    "resp": "Lo ringrazi e vai in cucina.",
+                    "replay": "Bravo. Non dimenticare le buone maniere.",
+                    "die": false
+                },
+                {
+                    "resp": "Gli dici che non hai fame.",
+                    "replay": "Hai rifiutato il cibo di Signor Cervo. Ti imbocca a forza finché non smetti di respirare.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Signor Cervo sta per uscire.\nTi informa che quella mattina sarai solo a casa.",
+            "item": [],
+            "img": "",
+            "respons": [
+                {
+                    "resp": "Ti mostri dispiaciuto.",
+                    "replay": "A Signor Cervo fa piacere.",
+                    "die": false
+                },
+                {
+                    "resp": "Gli dici di tornare presto.",
+                    "replay": "Signor Cervo non ama che gli vengano dati ordini. Ti prende ripetutamente a bastonate",
+                    "die": true
+                },                
+                {
+                    "resp": "Annuisci e lo saluti.",
+                    "replay": "Signor Cervo è contrariato per la tua mancanza di afflizione, ma apprezza iltuo saluto.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Signor Cervo è appena uscito.\n Cosa fai?",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Vai dritto in biblioteca",
+                    "replay": "Avresti dovuto aspettare!\nSignor Cervo ti vede dalla finestra e per te è finita.",
+                    "die": true
+                },
+                {
+                    "resp": "Vai nella tua stanza a prendere gli oggetti.",
+                    "replay": "Molto saggio. Signor Cervo non sospetta nulla e va via definitivamente.",
+                    "die": false
+                },
+                {
+                    "resp": "Esci a camminare nel bosco.",
+                    "replay": "Hsi sprecato un'occasione. Le creature sono molto arrabbiate con te.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Hai i tuoi oggetti. Arrivi davanti alla porta della biblioteca e la trovi di nuovo aperta.\nRicordi il bigliettino di Signora Pecora ed entri.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "...",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "biblioteca.png",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "La libreria al centro ha proprio un aspetto strano...",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "...",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "biblioteca2.png",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        }
+    ]
+}
