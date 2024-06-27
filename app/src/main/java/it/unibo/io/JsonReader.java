@@ -48,7 +48,7 @@ public class JsonReader {
             String fromattedString = String.format("%d. %s%n", i + 1, rule.get(i));
             gui.updateStatusTerminal(fromattedString);
         }
-        gui.updateStatusTerminal("---------------------------------------------\n PREMERE INVIO PER INIZIARE");
+//        gui.updateStatusTerminal("---------------------------------------------\n PREMERE INVIO PER INIZIARE");
     }
 
     /**
@@ -84,8 +84,7 @@ public class JsonReader {
 
         for(int j = 0; j < r.length(); j++){
             resp = r.getJSONObject(j);
-            String fromattedString = String.format("\n%d. %s%n", j + 1, resp.getString("resp"));
-            gui.updateButton(fromattedString, j + 1);
+            gui.updateButton(resp.getString("resp"), j + 1);
         }
 
     }
@@ -99,8 +98,7 @@ public class JsonReader {
 
         for(int i = 0; i < item.length(); i++){
             JSONObject resp = item.getJSONObject(i);
-            String fromattedString = String.format("%d. %s %d$\n",i+1, resp.getString("name"), resp.getInt("number"));
-            gui.updateStatusTerminal(fromattedString);
+            gui.updateButton(resp.getString("name"), i+1);
         }
     }
 

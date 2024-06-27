@@ -60,32 +60,33 @@ public class Game {
      * Metodo per gestire l'input dell'utente.
      * Elabora la scelta dell'utente e aggiorna lo stato del gioco di conseguenza.
      *
-     * @param cmd il comando inserito dall'utente
+     * @param cmd numero della risposta
      */
-    public void input(String cmd){
+    public void input(int cmd){
 
         if(j.checkShop()){
 
-            key = c.inputChoiceShop(cmd);
+            key = cmd;
             key = key - 1;
             player.addItem(j.shop(key));
             this.i++;
             return;
         } 
         
-        key = c.inputChoice(cmd);
+        key = cmd;
         key = key - 1;
             
         if(j.checkChoice(i, key)){
 
-            j.printReply(key);           
+
+            j.printReply(key);
             this.i = 0;
             return;
 
         }
 
         j.printReply(key);
-        
+
         this.i++;
     }
 }

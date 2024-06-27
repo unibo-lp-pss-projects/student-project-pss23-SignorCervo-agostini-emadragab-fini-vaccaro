@@ -1,7 +1,11 @@
 package it.unibo.io;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -25,6 +29,7 @@ public class SignorCervoGUI extends Application {
     private MediaPlayer mediaPlayer;
     private static List<File> resources;
     private static ImageView imageView = new ImageView();
+    private static VBox buttonLayout = new VBox(10);
     private static TextArea terminal = new TextArea();
     private static JsonReader j  = new JsonReader();
     private static Game game = new Game();
@@ -50,21 +55,28 @@ public class SignorCervoGUI extends Application {
         terminal.setEditable(false);
         j.getRule();
 
-        TextField userInput = new TextField();
-        userInput.setStyle("-fx-control-inner-background: black; -fx-text-fill: white;");
-        userInput.setPromptText("premi invio per andare avanti");
-        userInput.setOnAction(event -> {
-            terminal.clear();
-            game.output();
+//        TextField userInput = new TextField();
+//        userInput.setStyle("-fx-control-inner-background: black; -fx-text-fill: white;");
+//        userInput.setPromptText("premi invio per andare avanti");
+//        userInput.setOnAction(event -> {
+//            terminal.clear();
+//            game.output();
+//        });
 
-
-
-        });
-
-        VBox gameLayout = new VBox(imageView, terminal, userInput);
+        VBox gameLayout = new VBox(10, imageView, terminal);
         gameLayout.setAlignment(Pos.CENTER);
         gameLayout.setStyle("-fx-background-color: black;");
-        Scene scene = new Scene(gameLayout, 800, 600, Color.BLACK);
+        buttonLayout.setAlignment(Pos.CENTER);
+        Button answerButton = new Button("vai avanti");
+        answerButton.setStyle("-fx-background-color: gray; -fx-text-fill: white;");
+        answerButton.setOnAction(event -> {
+            terminal.clear();
+            buttonLayout.getChildren().clear();
+            game.output();
+        });
+        buttonLayout.getChildren().add(answerButton);
+        gameLayout.getChildren().add(buttonLayout);
+        Scene scene = new Scene(gameLayout, 800, 800, Color.BLACK);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("file:" + getIcon("signorcervo.jpg")));
 
@@ -99,10 +111,26 @@ public class SignorCervoGUI extends Application {
     }
 
     public static void updateButton(String text, int i) {
-        Button choice = new Button(text);
-        choice.setOnAction(e -> {
-            game.input(String.valueOf(i));
+        Button answerButton = new Button(text);
+        answerButton.setStyle("-fx-background-color: gray; -fx-text-fill: white;");
+        answerButton.setOnAction(event -> {
+            terminal.clear();
+            game.input(i);
+            buttonLayout.getChildren().clear();
+            new Thread(() -> {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                javafx.application.Platform.runLater(() -> {
+                    terminal.clear();
+                    game.output();
+                });
+            }).start();
         });
+
+        buttonLayout.getChildren().add(answerButton);
     }
 
     /**
