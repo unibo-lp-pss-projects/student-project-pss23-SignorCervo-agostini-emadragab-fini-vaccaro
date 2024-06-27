@@ -110,6 +110,12 @@ public class SignorCervoGUI extends Application {
         terminal.appendText(text);
     }
 
+    /**
+     * Aggiorna i bottoni 
+     *
+     * @param text il testo da aggiungere nei bottoni
+     * @param i il numero della risposta
+     */
     public static void updateButton(String text, int i) {
         Button answerButton = new Button(text);
         answerButton.setStyle("-fx-background-color: gray; -fx-text-fill: white;");
