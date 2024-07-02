@@ -74,6 +74,13 @@ public class Game {
         
         key = c.inputChoice(cmd);
         key = key - 1;
+
+        String requiredItem = j.checkRequire(i,key);
+        if (requiredItem != null && !player.hasItem(requiredItem)) {
+            gui.updateStatusTerminal("Non hai l'oggetto richiesto: " + requiredItem + ". Rimani bloccato e muori.\n");
+            this.i = 0;
+            return;
+        }
             
         if(j.checkChoice(i, key)){
 

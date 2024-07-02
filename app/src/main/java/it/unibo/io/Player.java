@@ -24,7 +24,7 @@ public class Player {
         }else{
             this.coin = this.coin - item.getNum();
             this.item.add(item);
-            String fromattedString = String.format("Hai comprato %s", item.getName());
+            String fromattedString = String.format("Hai scelto %s", item.getName());
             gui.updateStatusTerminal(fromattedString);
         }
         
@@ -33,16 +33,17 @@ public class Player {
     /**
      * Checks if the player has a specific item.
      *
-     * @param item The item to check for.
+     * @param itemName The item to check for.
      * @return True if the player has the item, false otherwise.
      */
     
-    public boolean getItem(Item name) {
-        if (this.item.contains(name)){
-            return true;
-        }else{
-            return false;
+    public boolean hasItem(String itemName) {
+        for ( Item item : this.item) {
+            if (item.getName().equals(itemName)) {
+                return true;
+            }
         }
+        return false;
     }
 
     /**

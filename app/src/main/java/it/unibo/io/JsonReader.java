@@ -13,7 +13,6 @@ import org.json.JSONObject;
 /**
  * The `JsonReader` class is responsible for reading and processing JSON data for the Signor Cervo game.
  */
-
 public class JsonReader {
 
     private static JSONArray rule;
@@ -22,180 +21,187 @@ public class JsonReader {
     private static JSONObject e;
     private static JSONArray r;
     private static SignorCervoGUI gui;
-    private static JSONObject img;
 
     List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
-    String dialogPath = resource.get(0).toURI().toString().replace("file:/", "");
+    String dialogPath = resource.get(1).toURI().toString().replace("file:/", "");
 
     /**
-     * Update the members based on the index.
+     * Updates the members based on the index.
      *
      * @param i The index of the member to update.
      */
-    
-    public void updateMembers(int i){
+    public void updateMembers(int i) {
         e = members.getJSONObject(i);
         r = e.getJSONArray("respons");
     }
 
     /**
-     * Get and display the game rules.
+     * Displays the game rules.
      */
-
-    public void getRule(){
-        gui.updateStatusTerminal("-------------------REGOLE-------------------\n");
-        for(int i = 0; i < rule.length(); i++){
-            String fromattedString = String.format("%d. %s%n", i + 1, rule.get(i));
-            gui.updateStatusTerminal(fromattedString);
+    public void getRule() {
+        gui.updateStatusTerminal("-------------------RULES-------------------\n");
+        for (int i = 0; i < rule.length(); i++) {
+            String formattedString = String.format("%d. %s%n", i + 1, rule.get(i));
+            gui.updateStatusTerminal(formattedString);
         }
-        gui.updateStatusTerminal("---------------------------------------------\n PREMERE INVIO PER INIZIARE");
+        gui.updateStatusTerminal("---------------------------------------------\n PRESS ENTER TO START");
     }
 
     /**
-     * Read JSON data from the specified file.
+     * Reads JSON data from the specified file.
      */
-
-    public void readJson(){
-        try{
-            String contents = new String((Files.readAllBytes(Paths.get(dialogPath))));
+    public void readJson() {
+        try {
+            String contents = new String(Files.readAllBytes(Paths.get(dialogPath)));
             JSONObject o = new JSONObject(contents);
             rule = o.getJSONArray("rule");
             members = o.getJSONArray("members");
-
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Get the size of the members.
+     * Returns the size of the members.
      *
      * @return The size of the members.
      */
-
-    public Integer getSize(){
+    public Integer getSize() {
         return members.length();
     }
 
     /**
-     * Display choices for the player.
+     * Displays choices for the player.
      *
      * @param i The index of the member.
      */
-
-    public void printChoices(int i){
-            
-        for(int j = 0; j < r.length(); j++){
+    public void printChoices(int i) {
+        for (int j = 0; j < r.length(); j++) {
             resp = r.getJSONObject(j);
-            String fromattedString = String.format("\n%d. %s%n", j + 1, resp.getString("resp"));
-            gui.updateStatusTerminal(fromattedString);
+            String formattedString = String.format("\n%d. %s%n", j + 1, resp.getString("resp"));
+            gui.updateStatusTerminal(formattedString);
         }
-
     }
 
     /**
-     * Display items available for purchase.
+     * Displays items available for purchase.
      */
-
-    public void printIteam(){
+    public void printIteam() {
         JSONArray item = e.optJSONArray("item");
-
-        for(int i = 0; i < item.length(); i++){
-            JSONObject resp = item.getJSONObject(i);
-            String fromattedString = String.format("%d. %s %d$\n",i+1, resp.getString("name"), resp.getInt("number"));
-            gui.updateStatusTerminal(fromattedString);
+        if (item != null) {
+            for (int i = 0; i < item.length(); i++) {
+                JSONObject resp = item.getJSONObject(i);
+                String name = resp.getString("name");
+                int number = resp.optInt("number", 0);
+    
+                String formattedString;
+                if (number == 0) {
+                    formattedString = String.format("%d. %s\n", i + 1, name);
+                } else {
+                    formattedString = String.format("%d. %s %d$\n", i + 1, name, number);
+                }
+    
+                gui.updateStatusTerminal(formattedString);
+            }
         }
     }
 
     /**
-     * Get the dialogue for a given member.
+     * Gets the dialogue for a given member.
      *
      * @param i The index of the member.
      * @return The dialogue.
      */
-
-    public String getDialog(int i){
-        return (e.getString("dialog") + "\n");
+    public String getDialog(int i) {
+        return e.getString("dialog") + "\n";
     }
 
     /**
-     * Get the image associated with a member.
+     * Gets the image associated with a member.
      *
      * @param i The index of the member.
      * @return The image path.
      */
-
-    public String getImage(int i){
-        return (e.getString("img"));
+    public String getImage(int i) {
+        return e.getString("img");
     }
 
     /**
-     * Check if the chosen option leads to death.
+     * Checks if the chosen option leads to death.
      *
      * @param i   The index of the member.
      * @param key The choice made by the player.
      * @return True if the choice leads to death, false otherwise.
      */
-
-    public Boolean checkChoice(int i, int key){
+    public Boolean checkChoice(int i, int key) {
         resp = r.getJSONObject(key);
         return resp.getBoolean("die");
     }
 
     /**
-     * Check if the member has a shop.
+     * Gets the required item for a choice, if any.
+     *
+     * @param i   The index of the member.
+     * @param key The choice made by the player.
+     * @return The name of the required item, or null if none.
+     */
+    public String checkRequire(int i, int key) {
+        resp = r.getJSONObject(key);
+        return resp.has("require") ? resp.getString("require") : null;
+    }
+
+    /**
+     * Checks if the member has a shop.
      *
      * @return True if the member has a shop, false otherwise.
      */
-
     public boolean checkShop() {
         JSONArray item = e.optJSONArray("item");
-        return 1 < item.length();
+        return item != null && item.length() > 0;
     }
 
     /**
-     * Display the reply associated with a choice.
+     * Displays the reply associated with a choice.
      *
      * @param key The choice made by the player.
      */
-
-    public void printReply(int key){
+    public void printReply(int key) {
         resp = r.getJSONObject(key);
-        gui.updateStatusTerminal(resp.getString("replay")); 
+        gui.updateStatusTerminal(resp.getString("replay"));
     }
 
     /**
-     * Get the item from a shop.
+     * Gets the item from a shop.
      *
      * @param key The choice made by the player.
      * @return The purchased item.
      */
-
     public Item shop(int key) {
         JSONArray item = e.optJSONArray("item");
-        JSONObject resp = item.getJSONObject(key);
-        return new Item(resp.getString("name"), resp.getInt("number"));
+        if (item != null) {
+            JSONObject resp = item.getJSONObject(key);
+            return new Item(resp.getString("name"), resp.getInt("number"));
+        }
+        return null;
     }
 
     /**
-     * Get the information to remember for a given choice.
+     * Gets the information to remember for a given choice.
      *
      * @param key The choice made by the player.
      * @return A map containing the slide number and the information to remember.
      */
-
-    public Map<Integer, String> giveRemember(int key){
+    public Map<Integer, String> giveRemember(int key) {
         resp = r.getJSONObject(key);
-        if(resp.has("remember")){
+        if (resp.has("remember")) {
             JSONObject remember = resp.getJSONObject("remember");
-            return new HashMap<Integer,String>() {{
+            return new HashMap<Integer, String>() {{
                 put(remember.getInt("numSlide"), remember.getString("replay"));
             }};
-        }else{
-            return new HashMap<Integer,String>() {{
+        } else {
+            return new HashMap<Integer, String>() {{
                 put(-1, "");
             }};
         }
     }
-        
 }

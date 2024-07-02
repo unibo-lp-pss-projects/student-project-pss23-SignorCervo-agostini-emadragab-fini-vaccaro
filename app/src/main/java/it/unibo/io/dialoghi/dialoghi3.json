@@ -2,63 +2,59 @@
     "rule": ["Non toccare mai le corna di Signor Cervo.", "Non entrare nella biblioteca.", "Vai nel bosco solo di giorno, segui il sentiero.", "Non svegliare il Signor Cervo.", "Signor Cervo detesta le persone maleducate", "Se Signor Cervo ti regala un libro rosso, non aprirlo.","Il carillon e' pericoloso: non ascoltarlo mai."],
     "members": [
         {
-            "dialog": "Missione annullata!\nLa porta di ingresso si apre.\nSignor Cervo e' tornato a casa e ti informa che ci saranno degli ospiti a cena.\nPuoi Scegliere cosa metterti, a patto che non gli faccia fare brutta figura.",
+            "dialog": "Vuoi giocare a Signor Cervo?",
             "item": [],
             "img": "signorcervo.jpg",
             "respons": [
                 {
-                    "resp": "Scegli..",
-                    "replay": "",
+                    "resp": "si",
+                    "replay": "Missione annullata!\nLa porta di ingresso si apre.\nSignor Cervo e' tornato a casa e ti informa che ci saranno degli ospiti a cena.",
                     "die": false
+                },
+                {
+                    "resp": "no",
+                    "replay": "morto",
+                    "die": true
                 }
             ]
         },
         {
-            "dialog": "",
+            "dialog": "Puoi Scegliere cosa metterti, a patto che non gli faccia fare brutta figura:",
             "item": [{
-                "name" : "Coperta",
-                "number" : 2
+                "name" : "Salopette",
+                "number" : -1
             },
             {
-                "name": "Pianta",
-                "number": 1
+                "name": "Maglione",
+                "number" : -1
             },
             {
-                "name": "Libro Verde",
-                "number": 2
+                "name": "Minigonna",
+                "number" : -1
             },
             {
-                "name": "Colori",
-                "number": 3
+                "name": "Maglioncino e shorts",
+                "number" : -1
             },
             {
-                "name": "Porcellana",
-                "number": 2
+                "name": "Gonna",
+                "number" : -1
             },
             {
-                "name": "Calzini",
-                "number": 1
+                "name": "Completo",
+                "number" : -1
             },
             {
-                "name": "Zaino",
-                "number": 3
+                "name": "Maglione di lana",
+                "number" : -1
             },
             {
-                "name": "Macchina Fotografica",
-                "number": 4
-            },
-            {
-                "name": "Carillon",
-                "number": 4
+                "name": "Shorts di jeans",
+                "number" : -1
             }
         ],
             "img": "vestiti.png",
             "respons": [
-                {
-                    "resp": "Scegli..",
-                    "replay": "",
-                    "die": false
-                }
             ]
         },
         {

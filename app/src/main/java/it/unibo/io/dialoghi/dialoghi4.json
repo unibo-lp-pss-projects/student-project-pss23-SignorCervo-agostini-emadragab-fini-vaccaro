@@ -2,6 +2,23 @@
     "rule": ["Non toccare mai le corna di Signor Cervo.", "Non entrare nella biblioteca.", "Vai nel bosco solo di giorno, segui il sentiero.", "Non svegliare il Signor Cervo.", "Signor Cervo detesta le persone maleducate", "Se Signor Cervo ti regala un libro rosso, non aprirlo.","Il carillon e' pericoloso: non ascoltarlo mai."],
     "members": [
         {
+            "dialog": "Vuoi giocare a Signor Cervo?",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "si",
+                    "replay": "",
+                    "die": false
+                },
+                {
+                    "resp": "no",
+                    "replay": "morto",
+                    "die": true
+                }
+            ]
+        },
+        {
             "dialog": "Le creature sono venute a prenderti. Ti chiedono di seguirle e ti promettono che finché non uscirai dal sentiero con loto sarai al sicuro.",
             "item": [],
             "img": "creature.png",
