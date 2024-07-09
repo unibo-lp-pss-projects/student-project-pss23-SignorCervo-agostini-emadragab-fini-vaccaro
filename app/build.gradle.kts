@@ -27,6 +27,7 @@ dependencies {
         }
     }
     testImplementation("junit:junit:$junitVersion") // Usa JUnit 4
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     implementation("org.json:json:20230227")
 }
 

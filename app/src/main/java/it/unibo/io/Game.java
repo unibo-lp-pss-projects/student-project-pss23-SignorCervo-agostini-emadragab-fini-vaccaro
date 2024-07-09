@@ -1,14 +1,14 @@
 package it.unibo.io;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * The `Game` class represents the game logic for the Signor Cervo game.
+ * La classe Game rappresenta il gioco principale.
  */
-
 public class Game {
 
     private static JsonReader j  = new JsonReader();
@@ -21,17 +21,18 @@ public class Game {
     Map<Integer, String> futureResponss = new HashMap<Integer,String>();
 
     /**
-     * Constructs a `Game` object and initializes the JSON reader.
+     * Costruttore della classe Game.
+     * Inizializza il gioco leggendo i dati dal file JSON.
      */
-
     Game(){
         j.readJson();
     }
 
     /**
-     * Displays the output for the current game state.
+     * Metodo per generare l'output del gioco.
+     * Aggiorna l'interfaccia grafica con l'immagine e il dialogo correnti.
+     * Stampa le scelte disponibili e gli oggetti nel negozio, se presenti.
      */
-    
     public void output(){
 
         if (this.i > j.getSize()) {
@@ -56,43 +57,36 @@ public class Game {
     }
 
     /**
-     * Handles the player's input and updates the game state accordingly.
+     * Metodo per gestire l'input dell'utente.
+     * Elabora la scelta dell'utente e aggiorna lo stato del gioco di conseguenza.
      *
-     * @param cmd The player's input command.
+     * @param cmd numero della risposta
      */
-
-    public void input(String cmd){
+    public void input(int cmd){
 
         if(j.checkShop()){
 
-            key = c.inputChoiceShop(cmd);
+            key = cmd;
             key = key - 1;
             player.addItem(j.shop(key));
             this.i++;
             return;
         } 
         
-        key = c.inputChoice(cmd);
+        key = cmd;
         key = key - 1;
-
-        String requiredItem = j.checkRequire(i,key);
-        if (requiredItem != null && !player.hasItem(requiredItem)) {
-            gui.updateStatusTerminal("Non hai l'oggetto richiesto: " + requiredItem + ". Rimani bloccato e muori.\n");
-            this.i = 0;
-            return;
-        }
             
         if(j.checkChoice(i, key)){
 
-            j.printReply(key);           
+
+            j.printReply(key);
             this.i = 0;
             return;
 
         }
 
         j.printReply(key);
-        
+
         this.i++;
     }
 }
-
