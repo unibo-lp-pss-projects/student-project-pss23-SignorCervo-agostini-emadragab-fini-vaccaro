@@ -27,6 +27,7 @@ dependencies {
         }
     }
     testImplementation("junit:junit:$junitVersion") // Usa JUnit 4
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     implementation("org.json:json:20230227")
     implementation("com.squareup.moshi:moshi:1.14.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")

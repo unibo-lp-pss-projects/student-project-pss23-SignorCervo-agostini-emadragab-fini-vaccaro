@@ -1,5 +1,9 @@
 package it.unibo.io;
 
+/**
+ * The `Item` class represents an item in the Signor Cervo game.
+ */
+
 public class Item {
 
     private String name;

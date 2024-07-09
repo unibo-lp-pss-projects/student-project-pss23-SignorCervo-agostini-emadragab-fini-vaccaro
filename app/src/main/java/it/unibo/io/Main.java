@@ -1,8 +1,11 @@
 package it.unibo.io;
 
 import java.io.IOException;
-
 import javafx.application.Application;
+
+/**
+ * The `Main` class is the entry point for the Signor Cervo game.
+ */
 
 public class Main {
 
