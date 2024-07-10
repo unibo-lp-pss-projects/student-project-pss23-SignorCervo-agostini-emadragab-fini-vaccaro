@@ -5,11 +5,15 @@
             "dialog": "Nel bosco incontri una Creatura.\nVuole tutto quello che hai in tasca.",
             "item": [],
             "img": "sentiero4.png",
-            "respons": [
+            "respons": [{
+                "resp": ".",
+                "replay": "...",
+                "die": false
+            }
             ]
         },
         {
-            "dialog": "Quante moente ti sono rimaste?",
+            "dialog": "Quante moente gli consegni sono rimaste?",
             "item": [],
             "img": "sentiero4.png",
             "respons": [
@@ -24,7 +28,12 @@
                     "die": false
                 },
                 {
-                    "resp": "2 o 3",
+                    "resp": "2",
+                    "replay": "La creatura accetta le monete.\nPuoi andare... ma prima noti che la Creatura ha lasciato cadere qualcosa per terra.",
+                    "die": false
+                },
+                {
+                    "resp": "3",
                     "replay": "La creatura accetta le monete.\nPuoi andare... ma prima noti che la Creatura ha lasciato cadere qualcosa per terra.",
                     "die": false
                 },
@@ -40,7 +49,11 @@
             "item": [
             ],
             "img": "mappa.png",
-            "respons": [
+            "respons": [{
+                "resp": "Continua",
+                "replay": "...",
+                "die": false
+            }
             ]
         },        
         {

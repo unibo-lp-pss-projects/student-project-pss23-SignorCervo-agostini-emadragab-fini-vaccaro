@@ -27,7 +27,7 @@ public class JsonReader {
     private static SignorCervoGUI gui;
 
     List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
-    String dialogPath = resource.get(0).toURI().toString().replace("file:/", "");
+    String dialogPath = resource.get(1).toURI().toString().replace("file:/", "");
 
     /**
      * Aggiorna i membri del dialogo corrente.

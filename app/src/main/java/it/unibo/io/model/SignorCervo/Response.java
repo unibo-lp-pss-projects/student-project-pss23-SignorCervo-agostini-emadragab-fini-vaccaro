@@ -8,7 +8,7 @@ public class Response {
     private String replay;
     private boolean die;
     private String require;
-    private Object remeber;
+    private Object remember;
 
     /**
      * Restituisce il testo della risposta.
