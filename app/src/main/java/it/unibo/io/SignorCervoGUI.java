@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
+import javax.xml.validation.Validator;
+
 /**
  * La classe SignorCervoGUI rappresenta l'interfaccia grafica del gioco "Signor Cervo".
  * Estende la classe Application di JavaFX per creare l'interfaccia utente.
@@ -117,6 +119,11 @@ public class SignorCervoGUI extends Application {
      * @param i il numero della risposta
      */
     public static void updateButton(String text, int i) {
+        if (isDoubleOrInt(text)) {
+            if (game.playerCoin(Integer.parseInt(text))) {
+                return;
+            }
+        }
         Button answerButton = new Button(text);
         answerButton.setStyle("-fx-background-color: gray; -fx-text-fill: white;");
         answerButton.setOnAction(event -> {
@@ -177,5 +184,24 @@ public class SignorCervoGUI extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+    }
+
+
+    /**
+     * Controlla se una stringa è un double o un intero.
+     * @return -1 se non è una stringa valida, 0 se è un int, 1 se è un double
+     */
+    public static boolean isDoubleOrInt(String num){
+        try{
+            Integer.parseInt(num);
+            return true;
+        }catch(Exception e){
+            try{
+                Double.parseDouble(num);
+                return true;
+            }catch(Exception w){
+                return false;
+            }
+        }
     }
 }

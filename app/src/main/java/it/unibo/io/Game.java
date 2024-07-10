@@ -89,4 +89,18 @@ public class Game {
 
         this.i++;
     }
+
+    /**
+     *
+     * Controllo delle monete del player con quelle passate.
+     *
+     * @param coin monete
+     */
+    public boolean playerCoin(int coin){
+        if (player.getCoin() >= coin){
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
