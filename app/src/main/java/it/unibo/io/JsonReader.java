@@ -3,6 +3,7 @@ package it.unibo.io;
 import java.io.IOException;
 import java.io.File;
 import java.util.List;
+import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javafx.scene.control.Button;
 import it.unibo.io.model.SignorCervo.Member;
+import it.unibo.io.model.SignorCervo.Remember;
 import it.unibo.io.model.SignorCervo.Response;
 import it.unibo.io.model.SignorCervo.RootDialog;
 
@@ -20,14 +22,14 @@ import it.unibo.io.model.SignorCervo.RootDialog;
  */
 public class JsonReader {
 
-    private static List<String> rule;
-    private static List<Member> members;
+    private static List<String> rule = new ArrayList<>();
+    private static List<Member> members = new ArrayList<>();
     private static Member currentMember;
     private static Response currentResponse;
     private static SignorCervoGUI gui;
 
     List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
-    String dialogPath = resource.get(0).toURI().toString().replace("file:/", "");
+    String dialogPath = resource.get(5).toURI().toString().replace("file:/", "");
 
     /**
      * Aggiorna i membri del dialogo corrente.
@@ -53,13 +55,13 @@ public class JsonReader {
     /**
      * Legge il file JSON contenente i dati dei dialoghi.
      */
-    public void readJson(){
+    public void readJson() {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             RootDialog rootdialog = objectMapper.readValue(new File(dialogPath), RootDialog.class);
-            rule = rootdialog.getRule();
-            members = rootdialog.getMembers();
-        } catch(IOException e) {
+            rule = rootdialog.getRule() != null ? rootdialog.getRule() : new ArrayList<>();
+            members = rootdialog.getMembers() != null ? rootdialog.getMembers() : new ArrayList<>();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -143,7 +145,7 @@ public class JsonReader {
     public String checkRequire(int i, int key) {
         updateMembers(i);
         currentResponse = currentMember.getRespons().get(key);
-        return currentResponse.isRequire();
+        return currentResponse.getRequire();
     }
 
     /**
@@ -183,12 +185,10 @@ public class JsonReader {
      */
     public Map<Integer, String> giveRemember(int key){
         currentResponse = currentMember.getRespons().get(key);
+        Remember remember = currentResponse.getRemember();
         Map<Integer, String> rememberMap = new HashMap<>();
-        if(currentResponse.getReplay() != null && !currentResponse.getReplay().isEmpty()){
-            // Qui si aggiunge una logica ipotetica, visto che nel modello originale
-            // non è presente una chiave "remember" e "numSlide".
-            // La sostituzione effettiva dipenderà dalla specifica logica dell'applicazione.
-            rememberMap.put(0, currentResponse.getReplay()); // Esempio
+        if(remember != null) {
+            rememberMap.put(remember.getNumSlide(), remember.getReplay());
         } else {
             rememberMap.put(-1, "");
         }

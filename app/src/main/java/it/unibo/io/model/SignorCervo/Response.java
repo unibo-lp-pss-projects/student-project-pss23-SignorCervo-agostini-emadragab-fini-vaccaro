@@ -8,7 +8,7 @@ public class Response {
     private String replay;
     private boolean die;
     private String require;
-    private Object remeber;
+    private Remember remember;
 
     /**
      * Restituisce il testo della risposta.
@@ -56,7 +56,7 @@ public class Response {
     }
 
     /**
-     * Imposta la bandiera di morte.
+     * Imposta la morte o meno del giocatore.
      * 
      * @param die True se la risposta porta alla morte, altrimenti false.
      */
@@ -69,9 +69,34 @@ public class Response {
      * 
      * @return Nome dell' oggetto richiesto.
      */
-    public String isRequire() {
+    public String getRequire() {
         return require;
     }
 
-    
+    /**
+     * Imposta il nome dell'oggetto richiesto.
+     * 
+     * @param require Nome dell'oggetto richiesto.
+     */
+    public void setRequire(String require) {
+        this.require = require;
+    }
+
+    /**
+     * Restituisce l'oggetto Remember associato alla risposta.
+     * 
+     * @return L'oggetto Remember associato alla risposta.
+     */
+    public Remember getRemember() {
+        return remember;
+    }
+
+    /**
+     * Imposta l'oggetto Remember associato alla risposta.
+     * 
+     * @param remember L'oggetto Remember da associare alla risposta.
+     */
+    public void setRemember(Remember remember) {
+        this.remember = remember;
+    }    
 }

@@ -22,7 +22,7 @@
             "dialog": "Signor Cervo è entrato in silenzio nel seminterrato",
             "item": [],
             "img": "signorcervo_insanguinato.png",
-            "response": [
+            "respons": [
                 {
                     "resp": "Gli punti addosso la torcia per vedere meglio",
                     "replay": "Se fossi rimasto al buio non ti avrebbe visto.\nCorre verso di te e ti stacca le braccia",
@@ -44,7 +44,7 @@
             "dialog": "Arrivi in cima alle scale ma Signor Cervo ha nuovamente chiuso la porta-libreria.\nSei bloccato.",
             "item": [],
             "img": "signorcervo_insanguinato.png",
-            "response": [
+            "respons": [
                 {
                     "resp": "Aspetti che Signor Cervo ti raggiunga e tiri fuori il coltello per difenderti",
                     "replay": "Buona idea!\nSfortunatamente Signor Cervo ha una pistola in mano.",
@@ -66,7 +66,7 @@
             "dialog": "Signor Cervo ti strascina nel seminterrato.\nNoti sorpreso che la Signora Pecora è ancora illesa.",
             "item": [],
             "img": "signorcervo_insanguinato.png",
-            "response": [
+            "respons": [
                 {
                     "resp": "Chiedi al Signor Cervo perchè ha risparmiato Signora Pecora",
                     "replay": "MAI FARE DOMANDE PERSONALI A SIGNOR CERVO:\nVieni gambizzato e mangiato vivo.",
@@ -88,7 +88,7 @@
             "dialog": "Signor Cervo inizia a parlare",
             "item": [],
             "img": "signorcervo.jpg",
-            "response": [
+            "respons": [
                 {
                     "resp": "Lo lasci parlare.\nFinchè sta parlando non ti farà nulla",
                     "replay": "Saggia decisione.\nAscolti con attenzione, potrebbe essererti utile.",
@@ -110,7 +110,7 @@
             "dialog": "Signor Cervo ringrazia Signora Pecora per aver fatto da esca.\nTi senti confuso e tradito ma continui as aspettare.\nSenti che qualcosa sta per succedere.\nNel frattempo Signora Pecora ti lega le mani dietro la schiena con una corda.",
             "item": [],
             "img": "signorcervo.jpg",
-            "response": [
+            "respons": [
             ]
         },
         {

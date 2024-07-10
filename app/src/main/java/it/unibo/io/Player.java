@@ -26,10 +26,10 @@ public class Player {
      */
     
     public void addItem(Item item) {
-        if (0 > coin - item.getNum()){
+        if (0 > coin - item.getNumber()){
             gui.updateStatusTerminal("Non hai abbastanza monete");
         }else{
-            this.coin = this.coin - item.getNum();
+            this.coin = this.coin - item.getNumber();
             this.item.add(item);
             String fromattedString = String.format("Hai scelto %s", item.getName());
             gui.updateStatusTerminal(fromattedString);
