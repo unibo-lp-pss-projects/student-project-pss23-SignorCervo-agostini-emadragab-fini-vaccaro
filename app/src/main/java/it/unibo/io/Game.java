@@ -1,6 +1,5 @@
 package it.unibo.io;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,21 +10,23 @@ import java.util.concurrent.TimeUnit;
  */
 public class Game {
 
-    private static JsonReader j  = new JsonReader();
+    private static JsonReader j = new JsonReader();
     private SignorCervoGUI gui;
     int i = 0; 
     Choice c = new Choice();
     Scanner myObj = new Scanner(System.in);
     Player player = new Player();
     Integer key = 2;
+    int level = 0;
     Map<Integer, String> futureResponss = new HashMap<Integer,String>();
 
     /**
      * Costruttore della classe Game.
      * Inizializza il gioco leggendo i dati dal file JSON.
      */
-    Game(){
-        j.readJson();
+    Game(int dialogo){
+        j.readJson(dialogo);
+        level = dialogo;
     }
 
     /**
@@ -33,10 +34,10 @@ public class Game {
      * Aggiorna l'interfaccia grafica con l'immagine e il dialogo correnti.
      * Stampa le scelte disponibili e gli oggetti nel negozio, se presenti.
      */
-    public void output(){
+    public boolean output(){
 
-        if (this.i > j.getSize()) {
-            return;
+        if (this.i == j.getSize()) {
+            return false;
         }; 
 
         j.updateMembers(i);
@@ -53,7 +54,7 @@ public class Game {
         j.printChoices(i);
 
         if(j.checkShop()) j.printIteam();
-
+        return true;
     }
 
     /**
@@ -103,4 +104,8 @@ public class Game {
             return true;
         }
     }
+
+    public int getLevel() {
+      return level;
+  }
 }

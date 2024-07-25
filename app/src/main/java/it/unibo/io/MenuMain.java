@@ -11,17 +11,17 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class MenuGui extends Application {
+public class MenuMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("MENU");
+        primaryStage.setTitle("MAIN-MENU");
 
         // Bottone per iniziare a giocare
-        Button startButton = new Button("Inizia a Giocare");
+        Button startButton = new Button("Gioca a SignorCervo");
         startButton.setOnAction(e -> {
             primaryStage.close();
-            startGame();
+            menuStart();
         });
 
         // Bottone per uscire dal gioco
@@ -30,7 +30,7 @@ public class MenuGui extends Application {
             System.exit(0);
         });
 
-        Button quizButton = new Button("Avvia Quiz");
+        Button quizButton = new Button("Gioca a QuizTrivia");
         quizButton.setOnAction(e -> {
             primaryStage.close();
             startQuiz();
@@ -58,20 +58,16 @@ public class MenuGui extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }  
+    } 
 
-    /**
-     * Inizia il gioco con una nuova istanza di SignorCervoGUI
-     */
-    private void startGame() {
-        SignorCervoGUI gameCervoGUI = new SignorCervoGUI();
-        Stage gameStage = new Stage();
-        try {
-            gameCervoGUI.start(gameStage);
-        } catch (InterruptedException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
+    private void menuStart() {
+      MenuSignorCervo menuSG = new MenuSignorCervo();
+      Stage levelStage = new Stage();
+      try {
+          menuSG.start(levelStage);
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
+  }
 
 }
