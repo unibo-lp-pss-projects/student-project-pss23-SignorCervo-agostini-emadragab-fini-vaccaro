@@ -1,14 +1,11 @@
 package it.unibo.io;
 
-import java.io.IOException;
-
 import it.unibo.io.start.QuizGui;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class MenuMain extends Application {
@@ -24,21 +21,21 @@ public class MenuMain extends Application {
             menuStart();
         });
 
-        // Bottone per uscire dal gioco
-        Button exitButton = new Button("Esci dal Gioco");
-        exitButton.setOnAction(e -> {
-            System.exit(0);
-        });
-
         Button quizButton = new Button("Gioca a QuizTrivia");
         quizButton.setOnAction(e -> {
             primaryStage.close();
             startQuiz();
         });
 
+        // Bottone per uscire dal gioco
+        Button exitButton = new Button("Esci dal Gioco");
+        exitButton.setOnAction(e -> {
+            System.exit(0);
+        });
+
         // Layout del menu con i bottoni
         VBox menuLayout = new VBox(20);
-        menuLayout.getChildren().addAll(startButton,exitButton, quizButton);
+        menuLayout.getChildren().addAll(startButton, quizButton, exitButton);
         menuLayout.setAlignment(Pos.CENTER);
         menuLayout.setStyle("-fx-background-color: black;");
         // Settiamo la scena del menu

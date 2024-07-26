@@ -1,23 +1,17 @@
 package it.unibo.io;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.ButtonType;
+import java.util.Optional;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -34,8 +28,7 @@ public class MenuSignorCervo extends Application {
       // Bottone per iniziare il gioco da zero
       Button startNewGameButton = new Button("Nuova Partita");
       startNewGameButton.setOnAction(e -> {
-         primaryStage.close();
-         startGame(0);
+         showConfirmationAlert();
       });
 
       // Bottone per continuare la partita salvata
@@ -71,7 +64,7 @@ public class MenuSignorCervo extends Application {
       // creo una lista dei bottoni
       List<Button> buttons = Arrays.asList(startNewGameButton, continueGameButton, levelsButton, backToMainMenuButton);
       // imposto la larghezza e l'altezza minima di ciascun bottone
-      for(Button button:buttons){
+      for (Button button : buttons) {
          button.setMinWidth(100);
          button.setMinHeight(10);
       }
@@ -84,22 +77,23 @@ public class MenuSignorCervo extends Application {
 
       // Settiamo la scena del menu
       Scene menuScene = new Scene(menuLayout, 800, 600);
-      primaryStage.setScene(menuScene);   
+      primaryStage.setScene(menuScene);
       primaryStage.show();
    }
+
    /**
-   * Inizia il gioco con una nuova istanza di SignorCervoGUI
-   */
+    * Inizia il gioco con una nuova istanza di SignorCervoGUI
+    */
    private void startGame(int level) {
       SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level));
       Stage gameStage = new Stage();
       try {
          gameCervoGUI.start(gameStage);
+         updateLevelFile(level);
       } catch (InterruptedException | IOException e) {
          e.printStackTrace();
       }
    }
-
 
    private void handleContinuaPartitaButton(Stage primaryStage) throws IOException {
       // controllo se il file checkpoint esiste oppure se è vuoto
@@ -115,13 +109,44 @@ public class MenuSignorCervo extends Application {
       // TODO else carica il file checkpoint.json e continua partita
    }
 
-      private void menuLevelStart() {
-         MenuLevel menuLevel = new MenuLevel();
-         Stage levelStage = new Stage();
-         try {
-            menuLevel.start(levelStage);
-         } catch (Exception e) {
-            e.printStackTrace();
-         }
+   private void menuLevelStart() {
+      MenuLevel menuLevel = new MenuLevel();
+      Stage levelStage = new Stage();
+      try {
+         menuLevel.start(levelStage);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
    }
+
+   // Metodo per azzerare il file level
+   private void resetLevelFile() {
+      SignorCervoGUI.writeNumberToFile(0);
    }
+
+   // Metodo per aggiornare il file level con il progresso
+   private void updateLevelFile(int level) {
+      SignorCervoGUI.writeNumberToFile(level);
+   }
+
+   private void showConfirmationAlert() {
+      Alert alert = new Alert(AlertType.CONFIRMATION);
+      alert.setTitle("Conferma Nuova Partita");
+      alert.setHeaderText("Sei sicuro?");
+      alert.setContentText("Se inizi una nuova partita perderai tutti i tuoi progressi.");
+
+      ButtonType buttonTypeYes = new ButtonType("Si");
+      ButtonType buttonTypeNo = new ButtonType("No");
+
+      alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+      Optional<ButtonType> result = alert.showAndWait();
+      if (result.get() == buttonTypeYes) {
+         primaryStage.close();
+         resetLevelFile();
+         startGame(0);
+      } else {
+         alert.close();
+      }
+   }
+}

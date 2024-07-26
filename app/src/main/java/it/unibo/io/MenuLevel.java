@@ -155,41 +155,4 @@ public class MenuLevel extends Application {
       }
       return number;
    }
-
-   // Metodo per salvare il numero del livello in un file
-   public static void writeNumberToFile(int number) {
-      try {
-         // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
-         List<File> resourcesDirs = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")),
-               "date");
-         // se i
-         File resourcesDir = resourcesDirs.isEmpty()
-               ? new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/date")
-               : resourcesDirs.get(0);
-
-         // Crea la directory se non esiste
-         if (!resourcesDir.exists()) {
-            resourcesDir.mkdirs();
-            System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
-         }
-
-         // Specifica il percorso del file 'level'
-         File file = new File(resourcesDir, "level");
-
-         // Crea il file se non esiste
-         if (!file.exists()) {
-            file.createNewFile();
-            System.out.println("File 'level' creato: " + file.getPath());
-         }
-
-         // Scrive il numero nel file
-         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(String.valueOf(number));
-            System.out.println("Numero scritto nel file: " + number);
-         }
-      } catch (IOException e) {
-         System.err.println("Errore durante la scrittura del file: " + e.getMessage());
-      }
-   }
-
 }

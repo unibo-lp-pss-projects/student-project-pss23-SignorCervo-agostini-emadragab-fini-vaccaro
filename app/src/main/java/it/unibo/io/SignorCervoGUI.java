@@ -235,39 +235,36 @@ public class SignorCervoGUI extends Application {
    // Metodo per salvare il numero del livello in un file
    public static void writeNumberToFile(int number) {
       try {
-          // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
-          List<File> resourcesDirs = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "date");
-
-          File resourcesDir;
-          if (resourcesDirs.isEmpty()) {
-              // Se la directory 'date' non esiste, la crea
-              resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/date");
-              if (!resourcesDir.exists()) {
-                  resourcesDir.mkdirs();
-                  System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
-              }
-          } else {
-              // Usa la directory trovata
-              resourcesDir = resourcesDirs.get(0);
-          }
-
-          // Specifica il percorso del file 'level'
-          File file = new File(resourcesDir, "level");
-
-          // Crea il file se non esiste
-          if (!file.exists()) {
-              file.createNewFile();
-              System.out.println("File 'level' creato: " + file.getPath());
-          }
-
-          // Scrive il numero nel file
-          try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-              writer.write(String.valueOf(number));
-              System.out.println("Numero scritto nel file: " + number);
-          }
+         // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
+         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/date");
+         if (!resourcesDir.exists()) {
+            resourcesDir.mkdirs();
+            System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
+         }
+   
+         // Specifica il percorso del file 'level'
+         File file = new File(resourcesDir, "level");
+   
+         // Stampa di debug per verificare il percorso assoluto
+         System.out.println("Percorso assoluto del file: " + file.getAbsolutePath());
+   
+         // Crea il file se non esiste
+         if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("File 'level' creato: " + file.getPath());
+         }
+   
+         // Scrive il numero nel file
+         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            writer.write(String.valueOf(number));
+            System.out.println("Numero scritto nel file: " + number);
+         }
       } catch (IOException e) {
-          System.err.println("Errore durante la scrittura del file: " + e.getMessage());
+         System.err.println("Errore durante la scrittura del file: " + e.getMessage());
       }
-  }
+   }
+   
+   
+
 
 } 
