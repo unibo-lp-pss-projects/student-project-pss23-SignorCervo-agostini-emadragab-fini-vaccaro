@@ -1,11 +1,28 @@
 {
-    "rule": ["Fai meno rumore possibile.", "Non entrare mai nella Stanza delle Scarpe.", "Fidati di chi vuole aiutarti.", "Se puoi scegliere fra l'attacco e la fuga, scappa.", "Difenditi quando devi.", "Non aprire mai il libro rosso*.", "La torcia non è sempre indispensabile.", "Pensa a te stesso.", "Le regole precedenti continuano a valere, a meno che non siano annullate o modificate da quelle nuove.", "Questa parte sarà più difficile. Oltre alle regole usa bene il cervello", "Buona fortuna"],
+    "rule": ["Nuove regole.\nFai meno rumore possibile.", "Non entrare mai nella Stanza delle Scarpe.", "Fidati di chi vuole aiutarti.", "Se puoi scegliere fra l'attacco e la fuga, scappa.", "Difenditi quando devi.", "Non aprire mai il libro rosso*.", "La torcia non è sempre indispensabile.", "Pensa a te stesso.", "Le regole precedenti continuano a valere, a meno che non siano annullate o modificate da quelle nuove.", "Questa parte sarà più difficile. Oltre alle regole usa bene il cervello", "Buona fortuna"],
     "members":[
+        {
+            "dialog": "Vuoi giocare a Signor Cervo?",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "si",
+                    "replay": "",
+                    "die": false
+                },
+                {
+                    "resp": "no",
+                    "replay": "morto",
+                    "die": true
+                }
+            ]
+        },
         {
             "dialog": "Signor Cervo è entrato in silenzio nel seminterrato",
             "item": [],
-            "img": "",
-            "response": [
+            "img": "signorcervo_insanguinato.png",
+            "respons": [
                 {
                     "resp": "Gli punti addosso la torcia per vedere meglio",
                     "replay": "Se fossi rimasto al buio non ti avrebbe visto.\nCorre verso di te e ti stacca le braccia",
@@ -26,8 +43,8 @@
         {
             "dialog": "Arrivi in cima alle scale ma Signor Cervo ha nuovamente chiuso la porta-libreria.\nSei bloccato.",
             "item": [],
-            "img": "",
-            "response": [
+            "img": "signorcervo_insanguinato.png",
+            "respons": [
                 {
                     "resp": "Aspetti che Signor Cervo ti raggiunga e tiri fuori il coltello per difenderti",
                     "replay": "Buona idea!\nSfortunatamente Signor Cervo ha una pistola in mano.",
@@ -48,8 +65,8 @@
         {
             "dialog": "Signor Cervo ti strascina nel seminterrato.\nNoti sorpreso che la Signora Pecora è ancora illesa.",
             "item": [],
-            "img": "",
-            "response": [
+            "img": "signorcervo_insanguinato.png",
+            "respons": [
                 {
                     "resp": "Chiedi al Signor Cervo perchè ha risparmiato Signora Pecora",
                     "replay": "MAI FARE DOMANDE PERSONALI A SIGNOR CERVO:\nVieni gambizzato e mangiato vivo.",
@@ -70,8 +87,8 @@
         {
             "dialog": "Signor Cervo inizia a parlare",
             "item": [],
-            "img": "",
-            "response": [
+            "img": "signorcervo.jpg",
+            "respons": [
                 {
                     "resp": "Lo lasci parlare.\nFinchè sta parlando non ti farà nulla",
                     "replay": "Saggia decisione.\nAscolti con attenzione, potrebbe essererti utile.",
@@ -90,20 +107,155 @@
             ]
         },
         {
-            "dialog": "Signor Cervo ringrazia Signora Pecora per aver fatto da esca.",
+            "dialog": "Signor Cervo ringrazia Signora Pecora per aver fatto da esca.\nTi senti confuso e tradito ma continui as aspettare.\nSenti che qualcosa sta per succedere.\nNel frattempo Signora Pecora ti lega le mani dietro la schiena con una corda.",
             "item": [],
-            "img": "",
-            "response": [
+            "img": "signorcervo.jpg",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "Signor Cervo si vanta si essere riuscito nel suo intento nonostante le altre sue vittime, morte ne lbosco e traformate in Creature, abbiano cercato di aiutarti.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "Signor Cervo si avvicina a te con un coltello e te lo punta al petto.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
                 {
-                    "resp": "Ti senti confuso e tradito ma continui as aspettare.\nSenti che qualcosa sta per succedere",
-                    "replay": "",
+                    "resp": "Gli dai un calcio.",
+                    "replay": "Gli fai male ma non lo fermi. Più infuriato di prima, Signor Cervo ti strappa via il cuore dal petto.",
+                    "die": true
+                },
+                {
+                    "resp": "Ancora un pò di pazienza...",
+                    "replay": "Fa in tempo a farti un taglio molto piccolo, ma l'aiuto arriva proprio nel momento giusto.",
+                    "die": false                   
+                },
+                {
+                    "resp": "Urli fortissimo per confonderlo.",
+                    "replay": "Funziona! In una frazione di secondo arriva qualcuno ad aiutarti.",
+                    "die": false                   
+                }
+            ]
+        },
+        {
+            "dialog": "La finestrella si spalanca con una forte folata di vento. È una Creatura, e sembra molto arrabbiata.\nIn un millisecondo rompe la cordicella che ti lega le mani e vola su per le scale.\n Senti la porta-libreria spalancarsi.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "Senti la porta-libreria spalancarsi.",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "Ne approfitti per attaccare Signor Cervo con il coltello, se ce l'hai..",
+                    "replay": "Avresti dovuto scegliere la fuga. Signor Cervo ha una pistola e la usa.",
+                    "die": true
+                },
+                {
+                    "resp": "Corri su per le scale e chiudi la porta. È pesante, quindi ci impieghi qualche secondo.",
+                    "replay": "Non ha senso chiudere la porta. Signor Cervo è il padrone di casa e ha la chiave. Non hai guadagnato più tempo.",
+                    "die": false                   
+                },
+                {
+                    "resp": "Corri su per le scale e lasci la porta aperta, non devi perdere tempo.",
+                    "replay": "Ottima decisione. Puoi accelerare e guadagnare terreno.",
+                    "die": false                   
+                }
+            ]
+        },
+        {
+            "dialog": "Ci sono tre stanze con la porta aperta. Dove ti nascondi?",
+            "item": [],
+            "img": "stanze.png",
+            "respons": [
+                {
+                    "resp": "(1)",
+                    "replay": "Signor cervo ha riempito il pavimento di lame. Vieni macellato.",
+                    "die": true
+                },
+                {
+                    "resp": "(2)",
+                    "replay": "È la stanza di Signor Cervo! L'ha riempita di trappole e ti trova subito.",
+                    "die": true
+                },
+                {
+                    "resp": "(3)",
+                    "replay": "Vai nella tua stanza e ti chiudi dentro. Hai poco tempo.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "C'è qualcosa sul tuo letto che prima non c'era. Qualcuno deve averlo messo lì per aiutarti.",
+            "item": [],
+            "img": "oggetto_stanza.png",
+            "respons": [
+                {
+                    "resp": "Apri il libro.",
+                    "replay": "È contro le regole. Vieni risucchiato e ingoiato dal libro.",
+                    "die": true
+                },
+                {
+                    "resp": "Prendi il libro.",
+                    "replay": "Bravo. Fidati di chi ti vuole aiutare.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "Era solo questione di tempo prima che la porta si spalancasse. È Signora Pecora! Non fai in tempo a prenderealtro e rimani con gli altri oggetti che avevi già.",
+            "item": [],
+            "img": "signorapecora.png",
+            "respons": [
+                {
+                    "resp": "Apri il libro verso di lei.",
+                    "replay": "Ottimo! Signora Pecora viene ingoiata dal libro e smette di esistere. Ora devi preoccuparti solo di Signor Cervo.",
                     "die": false
                 },
                 {
-                    "resp": "Nel frattempo Signora Pecora ti lega le mani dietro la schiena con una corda.",
-                    "replay": "",
-                    "die": false                   
+                    "resp": "Scappi senza usare niente contro di lei.",
+                    "replay": "Signora Pecoraha una buona mira. Ti colpisce esattamente a centro della testa.",
+                    "die": true
                 }
+            ]
+        },
+        {
+            "dialog": "È arrivato il momento di uscire dalla tua stanza.\nSenti all'improvviso molto freddo. Davanti a te c'è la Creatura che ti ha aiutato.\nLascia cadere sul pavimento iil mazzo di chiavi di Signor Cervo.\n\n\nNon fai in tempo a ringraziarla, ma prima che se ne vada senza dire niente ti guarda negli occhi.\n\nNon ha sembianze umane, ma noti che sono molto simili ai tuoi.",
+            "item": [],
+            "img": "signorapecora.jpg",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "Capisci che la Creatura ha chiuso Signor Cervo nel seminterrato.\n\nHai un'ultima decisione da prendere.",
+            "item": [],
+            "img": "black.png",
+            "respons": [
+                {
+                    "resp": "È tuo padre. Non puoi lasciarlo lì\nI sensi di colpa ti assalgono e vai a liberarlo.",
+                    "replay": "Come hai potuto pensare che Signor Cervo avesse ancora na coscienza?\n\nÈ finita. Avevi il pezzo mancante e se l'è preso.",
+                    "die": true
+                },
+                {
+                    "resp": "Chiudi a chiave Signor Cervo nel seminterrato e lo lasci lì per sempre.",
+                    "replay": "Signor Cervo è circondato dai pezzi che compongono Amelia.\nSignor Cervo è in pace.\n\nSei libero.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "fine.png",
+            "respons": [
             ]
         }
     ]

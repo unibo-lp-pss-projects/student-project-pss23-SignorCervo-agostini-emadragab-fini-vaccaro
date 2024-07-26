@@ -1,36 +1,45 @@
 package it.unibo.io;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
 
     private String name;
-    private int num;
+    private int number;
 
     /**
-    * Costruttore per creare un nuovo oggetto Item con un nome e un numero.
-    * @param name Il nome dell'oggetto.
-    * @param num Il numero associato all'oggetto.
-    */
-    public Item(String name, int num) {
-        this.name = name;
-        this.num = num;
-    }
-
-    /**
-    * Restituisce il nome dell'oggetto.
-    * @return Il nome dell'oggetto.
-    */
+     * Restituisce il nome dell'elemento.
+     * 
+     * @return Il nome dell'elemento.
+     */
     public String getName() {
         return name;
     }
-    
+
     /**
-    * Restituisce il numero associato all'oggetto.
-    * @return Il numero associato all'oggetto.
-    */
-    public int getNum() {
-        return num;
+     * Imposta il nome dell'elemento.
+     * 
+     * @param name Il nome da impostare.
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
-    
-}
+    /**
+     * Restituisce il numero associato all'elemento.
+     * 
+     * @return Il numero dell'elemento.
+     */
+    public int getNumber() {
+        return number;
+    }
 
+    /**
+     * Imposta il numero associato all'elemento.
+     * 
+     * @param number Il numero da impostare.
+     */
+    public void setNumber(int number) {
+        this.number = number;
+    }
+}

@@ -2,27 +2,59 @@
     "rule": ["Non toccare mai le corna di Signor Cervo.", "Non entrare nella biblioteca.", "Vai nel bosco solo di giorno, segui il sentiero.", "Non svegliare il Signor Cervo.", "Signor Cervo detesta le persone maleducate", "Se Signor Cervo ti regala un libro rosso, non aprirlo.","Il carillon e' pericoloso: non ascoltarlo mai."],
     "members": [
         {
-            "dialog": "Missione annullata!\nLa porta di ingresso si apre.\nSignor Cervo e' tornato a casa e ti informa che ci saranno degli ospiti a cena.\nPuoi Scegliere cosa metterti, a patto che non gli faccia fare brutta figura.",
+            "dialog": "Vuoi giocare a Signor Cervo?",
             "item": [],
             "img": "signorcervo.jpg",
             "respons": [
                 {
-                    "resp": "Scegli..",
-                    "replay": "",
+                    "resp": "si",
+                    "replay": "Missione annullata!\nLa porta di ingresso si apre.\nSignor Cervo e' tornato a casa e ti informa che ci saranno degli ospiti a cena.",
                     "die": false
+                },
+                {
+                    "resp": "no",
+                    "replay": "morto",
+                    "die": true
                 }
             ]
         },
         {
-            "dialog": "",
-            "item": [],
+            "dialog": "Puoi Scegliere cosa metterti, a patto che non gli faccia fare brutta figura:",
+            "item": [{
+                "name" : "Salopette",
+                "number" : -1
+            },
+            {
+                "name": "Maglione",
+                "number" : -1
+            },
+            {
+                "name": "Minigonna",
+                "number" : -1
+            },
+            {
+                "name": "Maglioncino e shorts",
+                "number" : -1
+            },
+            {
+                "name": "Gonna",
+                "number" : -1
+            },
+            {
+                "name": "Completo",
+                "number" : -1
+            },
+            {
+                "name": "Maglione di lana",
+                "number" : -1
+            },
+            {
+                "name": "Shorts di jeans",
+                "number" : -1
+            }
+        ],
             "img": "vestiti.png",
             "respons": [
-                {
-                    "resp": "Scegli..",
-                    "replay": "",
-                    "die": false
-                }
             ]
         },
         {
@@ -89,7 +121,7 @@
             "img": "signorcervo.jpg",
             "respons": [
                 {
-                    "resp": "Corri in bibblioteca mentre lui e' fuori",
+                    "resp": "Corri in biblioteca mentre lui e' fuori",
                     "replay": "La porta e' spalancata.\nSignor Cervo e' ancora nel bosco.",
                     "die": false
                 },
@@ -123,14 +155,14 @@
                 {
                     "resp": "I cassetti, chissa' cosa ci nasconde.",
                     "replay": "Accidenti, i cassetti sono chiusi a chiave.\nScegli un altro posto.",
-                    "die": true
+                    "die": false
                 }
             ]
         },
         {
             "dialog": "",
             "item": [],
-            "img": "aggingi immagine",
+            "img": "cartolina.png",
             "respons": [
                 {
                     "resp": "...",
@@ -196,7 +228,7 @@
             ]
         },
         {
-            "dialog": "È stata una giornata pesante. È ora di andare a dormire.\nMentre percorri il corridoio noti qualcosa sul pavimento:",
+            "dialog": "È stata una giornata pesante. È ora di andare a dormire.\nMentre percorri il corridoio noti qualcosa sul pavimento, una chiave:",
             "item": [],
             "img": "",
             "respons": [
@@ -227,7 +259,31 @@
         {
             "dialog": "",
             "item": [],
-            "img": "signorcervo.jpg",
+            "img": "fuori_dalla_finestra1.png",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "fuori_dalla_finestra2.png",
+            "respons": [
+                {
+                    "resp": "",
+                    "replay": "",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "fuori_dalla_finestra3.png",
             "respons": [
                 {
                     "resp": "",

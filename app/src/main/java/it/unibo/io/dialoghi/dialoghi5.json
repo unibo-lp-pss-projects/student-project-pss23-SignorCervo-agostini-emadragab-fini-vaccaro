@@ -1,0 +1,216 @@
+{
+    "rule": ["Non toccare mai le corna di Signor Cervo.", "Non entrare nella biblioteca.", "Vai nel bosco solo di giorno, segui il sentiero.", "Non svegliare il Signor Cervo.", "Signor Cervo detesta le persone maleducate", "Se Signor Cervo ti regala un libro rosso, non aprirlo.","Il carillon e' pericoloso: non ascoltarlo mai."],
+    "members": [
+        {
+            "dialog": "Le regole non ti aiuteranno più.\nVuoi giocare a Signor Cervo?",
+            "item": [],
+            "img": "signorcervo.jpg",
+            "respons": [
+                {
+                    "resp": "si",
+                    "replay": "Ricorda quali sono i 3 oggetti che hai addosso.\nUsa il buonsenso.",
+                    "die": false
+                },
+                {
+                    "resp": "no",
+                    "replay": "morto",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "C'è una strana luce dietro la libreria.",
+            "item": [],
+            "img": "biblioteca2.png",
+            "respons": [
+                {
+                    "resp": "Sposti la libreria ed entri.",
+                    "replay": "La libreria si sposta.\nPuoi entrare.",
+                    "die": false
+                },
+                {
+                    "resp": "Ispezioni il resto della stanza.",
+                    "replay": "Ci sono delle impronte e finiscono davanti alla libreria.\nCi entri.",
+                    "die": false
+                },
+                {
+                    "resp": "Hai paura, torni indietro.",
+                    "replay": "Hai sprecato un'occasione preziosa. Le creature ti perseguitano finchè non decidi di butarti sotto un treno.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "La libreria si chiude dietro di te. C'è una botola ma è chiua a chiave.\n L'hai portata con te?",
+            "item": [],
+            "img": "botola.png",
+            "respons": [
+                {
+                    "resp": "Si.",
+                    "replay": "Hai la chiave e la infili nel buco della serratura. Funziona!",
+                    "die": false,
+                    "require": "chiave"
+                },
+                {
+                    "resp": "No.",
+                    "replay": "Non hai la chiave. Rimani bloccato dietro la porta e Signor Cervo ti trova. Diventi cibo per gli animali selvatici.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "È troppo buio.\nForse sarebbe meglio usare la torcia.",
+            "item": [],
+            "img": "scale.png",
+            "respons": [
+                {
+                    "resp": "Si.",
+                    "replay": "Hai la torcia! Hai fatto bene a prenderla.",
+                    "die": false,
+                    "require": "torcia"
+                },
+                {
+                    "resp": "No.",
+                    "replay": "Niente torcia. Cadi dalle scale e muori per un trauma cranico.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Nella stanza ci sono molte cose.",
+            "item": [],
+            "img": "tavolo_numerato.png",
+            "respons": [
+                {
+                    "resp": "(1)",
+                    "replay": "Il tavolo.\nCi sono degli strani barattoli.\nDevono essere gli occhi di Signor Muflone e le mani i Signor Volpe.\nQuesto non ti aiuta. Devi trovare Signora Pecora, guarda da un'altra parte.\n\nDecidi di guardare nell'armadio e trovi Signora Pecora.",
+                    "die": false
+                },
+                {
+                    "resp": "(2)",
+                    "replay": "L'armadio.\nC'è un'impronta insanguinata sullo specchio. Forse sei sulla strada giusta.\nProvi ad aprire l'armadio...\nDentro c'è Signora Pecora!\nL'hai trovata.\nÈ sporca di rosso ma sta bene.",
+                    "die": false
+                },
+                {
+                    "resp": "(3)",
+                    "replay": "Lo scaffale.\nTanti barattoli con dentro gli organi e parti del corpo. Disgustoso, ma non è ciò che cerchi...\nDecidi di guardare nell'armadio e trovi Signora Pecora.",
+                    "die": false
+                },
+                {
+                    "resp": "(4)",
+                    "replay": "La lavagna.\nOh no, è una trappola!\nLa lavagna si rovescia e ti colpisce con forza.\nPensavi davvero che Signor -cervo non avesse valutato l'eventualità di estranei nel suo sotterraneo?",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Signora Pecora è estremamente turbata.",
+            "item": [],
+            "img": "signorapecora.png",
+            "respons": [
+                {
+                    "resp": "Le dai dell'acqua.",
+                    "replay": "Hai trovato la soluzione più veloce.",
+                    "die": false
+                },
+                {
+                    "resp": "Non hai acqua con te, ma la aiuti a respirare e a calmarsi.",
+                    "replay": "Ci mette un pò a calmarsi ma alla finee si riprende.",
+                    "die": false
+                },
+                {
+                    "resp": "La ignori, vuoi uscire il prima possibile.",
+                    "replay": "Sigora Pecora ha un attacco di panico. Dura così tanto che Signor Cervo torna a casa e ti trova nel seminterrato. Vieni smembrato e diviso nei barattoli.",
+                    "die": true
+                }
+            ]
+        },
+        {
+            "dialog": "Ha una storia da raccontarti.\nPrima che scappiate vuole che la ascolti.",
+            "item": [],
+            "img": "signorapecora.png",
+            "respons": [
+                {
+                    "resp": "Non c'è tempo! Bisogna uscire subito.",
+                    "replay": "La porta dietro la botola è chiusa, ricordi? Non puoi uscire. L'univa opzione è ascoltare Signora Pecora",
+                    "die": false
+                },
+                {
+                    "resp": "Ascolta la stroia di Signora Pecora.",
+                    "replay": "Ascolti la stroia di Signora Pecora.",
+                    "die": false
+                }
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "storia1.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "storia2.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "storia3.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "storia4.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "storia5.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "storia6.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "storia7.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "Signora Pecora si ferma\n\n\n\n'Ovviamente', prosegue, 'il più simile sarai tu.\nHai proprio lo stesso cuore di tua madre'.",
+            "item": [],
+            "img": "signorapecora.jpg",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "Il tuo cuore salta un battito.\nSenti qualcosa in fondo alla stanza ma non fai in tempo a puntare la torcia.",
+            "item": [],
+            "img": "signorapecora.png",
+            "respons": [
+            ]
+        },
+        {
+            "dialog": "",
+            "item": [],
+            "img": "signorcervo_insanguinato.png",
+            "respons": [
+            ]
+        }
+    ]
+}

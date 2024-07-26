@@ -5,61 +5,60 @@
             "dialog": "Nel bosco incontri una Creatura.\nVuole tutto quello che hai in tasca.",
             "item": [],
             "img": "sentiero4.png",
-            "respons": [
-                {
-                    "resp": "",
-                    "replay": "",
-                    "die": false
-                }
+            "respons": [{
+                "resp": ".",
+                "replay": "...",
+                "die": false
+            }
             ]
         },
         {
-            "dialog": "Quante moente ti sono rimaste?",
+            "dialog": "Quante moente gli consegni sono rimaste?",
             "item": [],
             "img": "sentiero4.png",
             "respons": [
                 {
-                    "resp": "",
-                    "replay": "0: sei stato avido.\nLa Creatura ti trasforma in un albero e smetti di esistere.",
+                    "resp": "0",
+                    "replay": "Sei stato avido.\nLa Creatura ti trasforma in un albero e smetti di esistere.",
                     "die": true
                 },
                 {
-                    "resp": "",
-                    "replay": "1: la creatura prende la moneta e ti lascia andare con un avvertimento.\nMentre se ne va, lascia cadere per sbaglio un oggetto...",
+                    "resp": "1",
+                    "replay": "La creatura prende la moneta e ti lascia andare con un avvertimento.\nMentre se ne va, lascia cadere per sbaglio un oggetto...",
                     "die": false
                 },
                 {
-                    "resp": "",
-                    "replay": "2-3: la creatura accetta le monete.\nPuoi andare... ma prima noti che la Creatura ha lasciato cadere qualcosa per terra.",
+                    "resp": "2",
+                    "replay": "La creatura accetta le monete.\nPuoi andare... ma prima noti che la Creatura ha lasciato cadere qualcosa per terra.",
                     "die": false
                 },
                 {
-                    "resp": "",
-                    "replay": "4: la creatura è stupida.\nPrende le monete ma ti offre qualcosa in cambio:",
+                    "resp": "3",
+                    "replay": "La creatura accetta le monete.\nPuoi andare... ma prima noti che la Creatura ha lasciato cadere qualcosa per terra.",
+                    "die": false
+                },
+                {
+                    "resp": "4",
+                    "replay": "La creatura è stupita.\nPrende le monete ma ti offre qualcosa in cambio:",
                     "die": false
                 }
             ]
         },
         {
-            "dialog": "mappa.png",
+            "dialog": "",
             "item": [
             ],
-            "img": "sentiero4.png",
-            "respons": [
-                {
-                    "resp": "Letto.",
-                    "replay": "",
-                    "die": false
-                }
+            "img": "mappa.png",
+            "respons": [{
+                "resp": "Continua",
+                "replay": "...",
+                "die": false
+            }
             ]
         },        
         {
-            "dialog": "sentiero4.png",
+            "dialog": "È una strana mappa.",
             "item": [
-                {
-                    "name" : "Mappa",
-                    "number" : 1
-                }
             ],
             "img": "sentiero4.png",
             "respons": [
@@ -102,7 +101,7 @@
             "dialog": "E' nuovamente ora di andare a dormire.\nSignor Cervo ti prende da parte e ti regala questo:",
             "item": [
             ],
-            "img": "libro.jpg",
+            "img": "libro.png",
             "respons": [
                 {
                     "resp": "Lo ringrazi e vai nella tua stanza.",
@@ -118,29 +117,6 @@
                     "resp": "Non accetti il libro.",
                     "replay": "Molto maleducato da parte tua, i regali si accettano sempre.\nSignor Cervo ti ordina di andare nella tua stanza.",
                     "die": false
-                }
-            ]
-        },
-        {
-            "dialog": "Stasera Singnor Cervo non e' andata nella biblioteca ma si e' addormentato subito.",
-            "item": [
-            ],
-            "img": "signorcervo.jpg",
-            "respons": [
-                {
-                    "resp": "Decidi anche tu di andare a dormire.",
-                    "replay": "Ci provi ma e' difficile vai a esplorare la casa.",
-                    "die": false
-                },
-                {
-                    "resp": "La curiosita' ha la meglio ed esci dalla tua stanza per esplorare la casa.",
-                    "replay": "Sei fortunato!\nSingor Cervo dorme come un ghiro e non ti sente.",
-                    "die": false
-                },
-                {
-                    "resp": "Ti stai annoiando.\nVai a svegliare Signor Cervo per chiedergli di giocare a carte.",
-                    "replay": "Hai interrotto il sonno di Signor Cervo.\nE' furioso e ti trapassa con una delle sue corna.",
-                    "die": true
                 }
             ]
         },
@@ -211,11 +187,6 @@
             ],
             "img": "signorcervo.jpg",
             "respons": [
-                {
-                    "resp": "...",
-                    "replay": "",
-                    "die": false
-                }
             ]
         },
         {
@@ -242,11 +213,6 @@
             ],
             "img": "mappa.png",
             "respons": [
-                {
-                    "resp": "...",
-                    "replay": "",
-                    "die": false
-                }
             ]
         },
         {
@@ -255,11 +221,6 @@
             ],
             "img": "casa.png",
             "respons": [
-                {
-                    "resp": "...",
-                    "replay": "",
-                    "die": false
-                }
             ]
         },
         {
@@ -268,11 +229,6 @@
             ],
             "img": "rivelazione.png",
             "respons": [
-                {
-                    "resp": "...",
-                    "replay": "",
-                    "die": false
-                }
             ]
         },
         {
