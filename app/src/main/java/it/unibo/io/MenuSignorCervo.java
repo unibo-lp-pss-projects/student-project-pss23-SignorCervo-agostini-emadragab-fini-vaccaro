@@ -7,6 +7,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+
 import java.util.Optional;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -15,10 +17,12 @@ import javafx.scene.control.Alert.AlertType;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import org.json.JSONObject;
 
 public class MenuSignorCervo extends Application {
 
    private Stage primaryStage;
+   private int dialogo;
 
    @Override
    public void start(Stage primaryStage) throws Exception {
@@ -106,7 +110,32 @@ public class MenuSignorCervo extends Application {
          errorAlert.showAndWait();
          return;
       }
-      // TODO else carica il file checkpoint.json e continua partita
+      String content = new String(Files.readAllBytes(Paths.get("checkpoint.json")));
+      primaryStage.close();
+      JSONObject checkpoint = new JSONObject(content);
+      int dialogo = checkpoint.getInt("dialogo");  // Leggi dialogo dal checkpoint
+      loadGameFromCheckpoint(checkpoint, dialogo); // se il file esiste e non è vuoto fai partire il gioco dal checkpoint
+   }
+
+   // carica il gioco usando il file di checkpoint
+   private void loadGameFromCheckpoint(JSONObject checkpoint, int dialogo) {
+      // partendo da nuova istanza di SignorCervoGUI
+      Game game = new Game(dialogo);
+      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(game);
+      Stage gameStage = new Stage();
+      try {
+         gameCervoGUI.start(gameStage);
+
+         // facciamo partire il gioco usando i dati che abbiamo salvato con questi metodi
+         game.loadState(checkpoint.getJSONObject("gameState"));
+         String imageUrl = checkpoint.getString("currentImage");
+         Image image = new Image(imageUrl);
+         gameCervoGUI.updateImageView(image);
+         gameCervoGUI.updateTerminal(checkpoint.getString("terminalText"));
+
+      } catch (InterruptedException | IOException e) {
+         e.printStackTrace();
+      }
    }
 
    private void menuLevelStart() {

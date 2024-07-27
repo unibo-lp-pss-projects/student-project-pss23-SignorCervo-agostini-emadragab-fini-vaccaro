@@ -10,13 +10,19 @@ import java.util.concurrent.TimeUnit;
 
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -24,6 +30,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 import javax.xml.validation.Validator;
+
+import org.json.JSONObject;
 
 /**
  * La classe SignorCervoGUI rappresenta l'interfaccia grafica del gioco "Signor
@@ -69,16 +77,16 @@ public class SignorCervoGUI extends Application {
       terminal.setEditable(false);
       j.getRule();
 
-      // TextField userInput = new TextField();
-      // userInput.setStyle("-fx-control-inner-background: black; -fx-text-fill:
-      // white;");
-      // userInput.setPromptText("premi invio per andare avanti");
-      // userInput.setOnAction(event -> {
-      // terminal.clear();
-      // game.output();
-      // });
+      // Bottone che porta il giocatore al menu principale
+      Button backButton = new Button("Menu principale");
+      backButton.setOnAction(e -> handleMenuPrincipaleButton());
+      backButton.setStyle("-fx-background-color: gray; -fx-text-fill: white;");
+      // Layout per il bottone del menu
+      HBox menuButtonLayout = new HBox(backButton);
+      menuButtonLayout.setAlignment(Pos.TOP_RIGHT); // angolo a destra
+      menuButtonLayout.setPadding(new Insets(10));
 
-      VBox gameLayout = new VBox(10, imageView, terminal);
+      VBox gameLayout = new VBox(10, menuButtonLayout, imageView, terminal);
       gameLayout.setAlignment(Pos.CENTER);
       gameLayout.setStyle("-fx-background-color: black;");
       buttonLayout.setAlignment(Pos.CENTER);
@@ -91,6 +99,7 @@ public class SignorCervoGUI extends Application {
       });
       buttonLayout.getChildren().add(answerButton);
       gameLayout.getChildren().add(buttonLayout);
+
       Scene scene = new Scene(gameLayout, 800, 800, Color.BLACK);
       primaryStage.setScene(scene);
       primaryStage.getIcons().add(new Image("file:" + getIcon("signorcervo.jpg")));
@@ -123,6 +132,10 @@ public class SignorCervoGUI extends Application {
     */
    public static void updateStatusTerminal(String text) {
       terminal.appendText(text);
+   }
+
+   public void updateTerminal(String text) {
+      terminal.setText(text);
    }
 
    /**
@@ -173,6 +186,10 @@ public class SignorCervoGUI extends Application {
             return;
          }
       }
+   }
+
+   public void updateImageView(Image image) {
+      imageView.setImage(image);
    }
 
    /**
@@ -241,19 +258,19 @@ public class SignorCervoGUI extends Application {
             resourcesDir.mkdirs();
             System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
          }
-   
+
          // Specifica il percorso del file 'level'
          File file = new File(resourcesDir, "level");
-   
+
          // Stampa di debug per verificare il percorso assoluto
          System.out.println("Percorso assoluto del file: " + file.getAbsolutePath());
-   
+
          // Crea il file se non esiste
          if (!file.exists()) {
             file.createNewFile();
             System.out.println("File 'level' creato: " + file.getPath());
          }
-   
+
          // Scrive il numero nel file
          try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(String.valueOf(number));
@@ -263,8 +280,64 @@ public class SignorCervoGUI extends Application {
          System.err.println("Errore durante la scrittura del file: " + e.getMessage());
       }
    }
-   
-   
 
+   private void handleMenuPrincipaleButton() {
+      Alert exitAlert = new Alert(AlertType.CONFIRMATION);
+      exitAlert.setTitle("Conferma Uscita");
+      exitAlert.setHeaderText("Vuoi tornare al menu principale?");
+      exitAlert.setContentText("Dovrai confermare se salvare il checkpoint.");
 
-} 
+      ButtonType result = exitAlert.showAndWait().orElse(ButtonType.CANCEL);
+
+      if (result == ButtonType.OK) {
+         // stop la musica
+         if (mediaPlayer != null) {
+            mediaPlayer.stop();
+         }
+
+         Alert saveAlert = new Alert(AlertType.CONFIRMATION);
+         saveAlert.setTitle("Salva Checkpoint");
+         saveAlert.setHeaderText("Vuoi salvare il checkpoint?");
+         saveAlert.setContentText("Potrai riprendere a giocare da questo punto.");
+
+         ButtonType saveResult = saveAlert.showAndWait().orElse(ButtonType.CANCEL);
+
+         if (saveResult == ButtonType.OK) {
+            saveCheckpoint();
+         }
+         goToMainMenu();
+      }
+   }
+
+   private void saveCheckpoint() {
+      JSONObject checkpoint = new JSONObject();
+
+      // dati da salvare nel file checkpoint.json
+      checkpoint.put("gameState", game.getState());
+      checkpoint.put("currentImage", imageView.getImage().getUrl());
+      checkpoint.put("terminalText", terminal.getText());
+      checkpoint.put("dialogo", game.getDialogo());
+
+      try (FileWriter file = new FileWriter("checkpoint.json")) {
+         file.write(checkpoint.toString());
+         file.flush();
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
+
+   private void goToMainMenu() {
+      // Chiude la finestra attuale
+      if (primaryStage != null) {
+         primaryStage.close();
+      }
+      MenuSignorCervo menu = new MenuSignorCervo();
+      Stage menuStage = new Stage();
+      try {
+         // Apre la finestra del menu
+         menu.start(menuStage);
+      } catch (Exception ex) {
+         ex.printStackTrace();
+      }
+   }
+}

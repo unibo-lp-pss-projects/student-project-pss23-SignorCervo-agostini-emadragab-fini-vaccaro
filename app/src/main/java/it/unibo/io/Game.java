@@ -5,107 +5,149 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import org.json.JSONObject;
+
 /**
  * La classe Game rappresenta il gioco principale.
  */
 public class Game {
 
-    private static JsonReader j = new JsonReader();
-    private SignorCervoGUI gui;
-    int i = 0; 
-    Choice c = new Choice();
-    Scanner myObj = new Scanner(System.in);
-    Player player = new Player();
-    Integer key = 2;
-    int level = 0;
-    Map<Integer, String> futureResponss = new HashMap<Integer,String>();
+   private static JsonReader j = new JsonReader();
+   private SignorCervoGUI gui;
+   int i = 0;
+   Choice c = new Choice();
+   Scanner myObj = new Scanner(System.in);
+   Player player = new Player();
+   Integer key = 2;
+   int level = 0;
+   private int dialogo;
+   Map<Integer, String> futureResponss = new HashMap<Integer, String>();
 
-    /**
-     * Costruttore della classe Game.
-     * Inizializza il gioco leggendo i dati dal file JSON.
-     */
-    Game(int dialogo){
-        j.readJson(dialogo);
-        level = dialogo;
-    }
+   /**
+    * Costruttore della classe Game.
+    * Inizializza il gioco leggendo i dati dal file JSON.
+    */
+   Game(int dialogo) {
+      j.readJson(dialogo);
+      level = dialogo;
+      this.dialogo = dialogo;
+   }
 
-    /**
-     * Metodo per generare l'output del gioco.
-     * Aggiorna l'interfaccia grafica con l'immagine e il dialogo correnti.
-     * Stampa le scelte disponibili e gli oggetti nel negozio, se presenti.
-     */
-    public boolean output(){
+   /**
+    * Metodo per generare l'output del gioco.
+    * Aggiorna l'interfaccia grafica con l'immagine e il dialogo correnti.
+    * Stampa le scelte disponibili e gli oggetti nel negozio, se presenti.
+    */
+   public boolean output() {
 
-        if (this.i == j.getSize()) {
-            return false;
-        }; 
+      if (this.i == j.getSize()) {
+         return false;
+      }
+      ;
 
-        j.updateMembers(i);
-        
-        gui.updateImage(j.getImage(i));
-        gui.updateStatusTerminal(j.getDialog(i));
+      j.updateMembers(i);
 
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+      gui.updateImage(j.getImage(i));
+      gui.updateStatusTerminal(j.getDialog(i));
 
-        j.printChoices(i);
+      try {
+         TimeUnit.SECONDS.sleep(1);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
 
-        if(j.checkShop()) j.printIteam();
-        return true;
-    }
+      j.printChoices(i);
 
-    /**
-     * Metodo per gestire l'input dell'utente.
-     * Elabora la scelta dell'utente e aggiorna lo stato del gioco di conseguenza.
-     *
-     * @param cmd numero della risposta
-     */
-    public void input(int cmd){
+      if (j.checkShop())
+         j.printIteam();
+      return true;
+   }
 
-        if(j.checkShop()){
+   /**
+    * Metodo per gestire l'input dell'utente.
+    * Elabora la scelta dell'utente e aggiorna lo stato del gioco di conseguenza.
+    *
+    * @param cmd numero della risposta
+    */
+   public void input(int cmd) {
 
-            key = cmd;
-            key = key - 1;
-            player.addItem(j.shop(key));
-            this.i++;
-            return;
-        } 
-        
-        key = cmd;
-        key = key - 1;
-            
-        if(j.checkChoice(i, key)){
+      if (j.checkShop()) {
 
+         key = cmd;
+         key = key - 1;
+         player.addItem(j.shop(key));
+         this.i++;
+         return;
+      }
 
-            j.printReply(key);
-            this.i = 0;
-            return;
+      key = cmd;
+      key = key - 1;
 
-        }
+      if (j.checkChoice(i, key)) {
 
-        j.printReply(key);
+         j.printReply(key);
+         this.i = 0;
+         return;
 
-        this.i++;
-    }
+      }
 
-    /**
-     *
-     * Controllo delle monete del player con quelle passate.
-     *
-     * @param coin monete
-     */
-    public boolean playerCoin(int coin){
-        if (player.getCoin() >= coin){
-            return false;
-        } else {
-            return true;
-        }
-    }
+      j.printReply(key);
 
-    public int getLevel() {
+      this.i++;
+   }
+
+   /**
+    *
+    * Controllo delle monete del player con quelle passate.
+    *
+    * @param coin monete
+    */
+   public boolean playerCoin(int coin) {
+      if (player.getCoin() >= coin) {
+         return false;
+      } else {
+         return true;
+      }
+   }
+
+   public int getLevel() {
       return level;
-  }
+   }
+
+   public int getDialogo() {
+      return this.dialogo;
+   }
+
+   // metodo per popolare il file checkpoint.json e salvare lo stato del gioco
+   public JSONObject getState() {
+      JSONObject state = new JSONObject();
+
+      // dati che mi interessano per salvare lo stato del gioco
+      state.put("i", this.i);
+      state.put("key", this.key);
+      state.put("player", this.player.getPlayerState()); // metodo della classe Player che salva lo stato del player, inclusi item
+      state.put("futureResponss", new JSONObject(this.futureResponss));
+      state.put("dialogo", this.dialogo);
+      return state;
+   }
+
+   // metodo per caricare il gioco ripristinando i dati dal file checkpoint.json
+   public void loadState(JSONObject state) {
+      // dati che mi servono per ripristinare lo stato del gioco
+      this.i = state.getInt("i");
+      this.key = state.getInt("key");
+      this.player.loadState(state.getJSONObject("player")); // metodo della classe Player che carica lo stato del
+                                                            // player, inclusi item
+      this.futureResponss = convertToMap(state.getJSONObject("futureResponss"));
+      this.dialogo = state.getInt("dialogo"); // Ripristina dialogo
+   }
+
+   // un metodo per convertire JSONObject in Map
+   private Map<Integer, String> convertToMap(JSONObject jsonObject) {
+      Map<Integer, String> map = new HashMap<>();
+      for (String key : jsonObject.keySet()) {
+         map.put(Integer.parseInt(key), jsonObject.getString(key));
+      }
+      return map;
+   }
 }
