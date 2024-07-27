@@ -14,6 +14,9 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -100,22 +103,25 @@ public class MenuSignorCervo extends Application {
    }
 
    private void handleContinuaPartitaButton(Stage primaryStage) throws IOException {
+      // Specifica il percorso del file di checkpoint
+      File checkpointFile = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress/checkpoint.json");
+
       // controllo se il file checkpoint esiste oppure se è vuoto
-      if (!Files.exists(Paths.get("checkpoint.json"))
-            || new String(Files.readAllBytes(Paths.get("checkpoint.json"))).isEmpty()) {
-         Alert errorAlert = new Alert(AlertType.ERROR);
-         errorAlert.setTitle("Errore");
-         errorAlert.setHeaderText("Nessun Checkpoint Salvato");
-         errorAlert.setContentText("Nessun Checkpoint salvato. Inizia una nuova partita.");
-         errorAlert.showAndWait();
-         return;
+      if (!checkpointFile.exists() || checkpointFile.length() == 0) {
+          Alert errorAlert = new Alert(AlertType.ERROR);
+          errorAlert.setTitle("Errore");
+          errorAlert.setHeaderText("Nessun Checkpoint Salvato");
+          errorAlert.setContentText("Nessun Checkpoint salvato. Inizia una nuova partita.");
+          errorAlert.showAndWait();
+          return;
       }
-      String content = new String(Files.readAllBytes(Paths.get("checkpoint.json")));
+
+      String content = new String(Files.readAllBytes(checkpointFile.toPath()));
       primaryStage.close();
       JSONObject checkpoint = new JSONObject(content);
       int dialogo = checkpoint.getInt("dialogo");  // Leggi dialogo dal checkpoint
       loadGameFromCheckpoint(checkpoint, dialogo); // se il file esiste e non è vuoto fai partire il gioco dal checkpoint
-   }
+  }
 
    // carica il gioco usando il file di checkpoint
    private void loadGameFromCheckpoint(JSONObject checkpoint, int dialogo) {
@@ -173,9 +179,35 @@ public class MenuSignorCervo extends Application {
       if (result.get() == buttonTypeYes) {
          primaryStage.close();
          resetLevelFile();
+         clearCheckpoint();
          startGame(0);
       } else {
          alert.close();
+      }
+   }
+
+   private void clearCheckpoint() {
+      try {
+         // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
+         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         if (!resourcesDir.exists()) {
+            resourcesDir.mkdirs();
+            System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
+         }
+   
+         // Specifica il percorso del file 'checkpoint.json'
+         File file = new File(resourcesDir, "checkpoint.json");
+   
+         // Crea o svuota il file 'checkpoint.json'
+         if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("File 'checkpoint.json' creato: " + file.getPath());
+         } else {
+            new FileWriter(file, false).close();
+            System.out.println("File 'checkpoint.json' svuotato: " + file.getPath());
+         }
+      } catch (IOException e) {
+         e.printStackTrace();
       }
    }
 }

@@ -253,7 +253,7 @@ public class SignorCervoGUI extends Application {
    public static void writeNumberToFile(int number) {
       try {
          // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
-         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/date");
+         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
          if (!resourcesDir.exists()) {
             resourcesDir.mkdirs();
             System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
@@ -311,20 +311,36 @@ public class SignorCervoGUI extends Application {
 
    private void saveCheckpoint() {
       JSONObject checkpoint = new JSONObject();
-
+   
       // dati da salvare nel file checkpoint.json
       checkpoint.put("gameState", game.getState());
       checkpoint.put("currentImage", imageView.getImage().getUrl());
       checkpoint.put("terminalText", terminal.getText());
       checkpoint.put("dialogo", game.getDialogo());
-
-      try (FileWriter file = new FileWriter("checkpoint.json")) {
-         file.write(checkpoint.toString());
-         file.flush();
+   
+      try {
+         // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
+         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         if (!resourcesDir.exists()) {
+            resourcesDir.mkdirs();
+            System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
+         }
+   
+         // Specifica il percorso del file 'checkpoint.json'
+         File file = new File(resourcesDir, "checkpoint.json");
+   
+         // Stampa di debug per verificare il percorso assoluto
+         System.out.println("Percorso assoluto del file checkpoint: " + file.getAbsolutePath());
+   
+         // Scrive il JSON nel file
+         try (FileWriter writer = new FileWriter(file)) {
+            writer.write(checkpoint.toString());
+            writer.flush();
+         }
       } catch (IOException e) {
          e.printStackTrace();
       }
-   }
+   }   
 
    private void goToMainMenu() {
       // Chiude la finestra attuale
@@ -340,4 +356,5 @@ public class SignorCervoGUI extends Application {
          ex.printStackTrace();
       }
    }
+   
 }
