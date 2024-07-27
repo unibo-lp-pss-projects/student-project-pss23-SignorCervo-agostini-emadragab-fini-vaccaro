@@ -252,26 +252,23 @@ public class SignorCervoGUI extends Application {
    // Metodo per salvare il numero del livello in un file
    public static void writeNumberToFile(int number) {
       try {
-         // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
          File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         System.out.println("Percorso della cartella 'progress': " + resourcesDir.getAbsolutePath()); 
+
          if (!resourcesDir.exists()) {
             resourcesDir.mkdirs();
-            System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
+            System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());
          }
 
-         // Specifica il percorso del file 'level'
          File file = new File(resourcesDir, "level");
 
-         // Stampa di debug per verificare il percorso assoluto
          System.out.println("Percorso assoluto del file: " + file.getAbsolutePath());
 
-         // Crea il file se non esiste
          if (!file.exists()) {
             file.createNewFile();
             System.out.println("File 'level' creato: " + file.getPath());
          }
 
-         // Scrive il numero nel file
          try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(String.valueOf(number));
             System.out.println("Numero scritto nel file: " + number);
@@ -319,11 +316,11 @@ public class SignorCervoGUI extends Application {
       checkpoint.put("dialogo", game.getDialogo());
    
       try {
-         // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
+         // Trova o crea la directory 'progress' all'interno del package java\it\nibo\io
          File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
          if (!resourcesDir.exists()) {
             resourcesDir.mkdirs();
-            System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
+            System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());
          }
    
          // Specifica il percorso del file 'checkpoint.json'

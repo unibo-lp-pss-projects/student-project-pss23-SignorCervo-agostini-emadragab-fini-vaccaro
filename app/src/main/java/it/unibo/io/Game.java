@@ -7,6 +7,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.json.JSONObject;
 
+import javafx.application.Platform;
+import javafx.scene.control.Alert;
+
 /**
  * La classe Game rappresenta il gioco principale.
  */
@@ -38,12 +41,12 @@ public class Game {
     * Aggiorna l'interfaccia grafica con l'immagine e il dialogo correnti.
     * Stampa le scelte disponibili e gli oggetti nel negozio, se presenti.
     */
-   public boolean output() {
-
+    public boolean output() {
       if (this.i == j.getSize()) {
+         // Mostra l'alert di completamento del livello
+         Platform.runLater(() -> showLevelCompletedAlert());
          return false;
       }
-      ;
 
       j.updateMembers(i);
 
@@ -62,7 +65,6 @@ public class Game {
          j.printIteam();
       return true;
    }
-
    /**
     * Metodo per gestire l'input dell'utente.
     * Elabora la scelta dell'utente e aggiorna lo stato del gioco di conseguenza.
@@ -149,5 +151,14 @@ public class Game {
          map.put(Integer.parseInt(key), jsonObject.getString(key));
       }
       return map;
+   }
+
+   // metodo che mostra un alert quando il livello è completato
+   private static void showLevelCompletedAlert() {
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setTitle("Livello Completato");
+      alert.setHeaderText(null);
+      alert.setContentText("Complimenti hai completato il livello!");
+      alert.showAndWait();
    }
 }

@@ -188,11 +188,11 @@ public class MenuSignorCervo extends Application {
 
    private void clearCheckpoint() {
       try {
-         // Trova o crea la directory 'date' all'interno del package java\it\nibo\io
+         // Trova o crea la directory 'progress' all'interno del package java\it\nibo\io
          File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
          if (!resourcesDir.exists()) {
             resourcesDir.mkdirs();
-            System.out.println("Directory 'date' creata: " + resourcesDir.getPath());
+            System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());
          }
    
          // Specifica il percorso del file 'checkpoint.json'

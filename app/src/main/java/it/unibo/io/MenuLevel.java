@@ -133,15 +133,18 @@ public class MenuLevel extends Application {
 
    // Metodo per leggere un numero da un file
    public static int readNumberFromFile() {
-      int number = 0;
+      int number = -1;
       try {
-         List<File> paths = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "date");
-         if (paths.isEmpty()) {
-            System.err.println("File non trovato.");
-            return 0;
+         File file = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress/level");
+
+         System.out.println("Percorso assoluto del file: " + file.getAbsolutePath());
+
+         if (!file.exists()) {
+            System.out.println("File 'level' non trovato.");
+            return number;
          }
 
-         try (BufferedReader reader = new BufferedReader(new FileReader(paths.get(0).getPath()))) {
+         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line = reader.readLine();
             if (line != null) {
                number = Integer.parseInt(line);
@@ -150,9 +153,8 @@ public class MenuLevel extends Application {
          }
       } catch (IOException e) {
          System.err.println("Errore durante la lettura del file: " + e.getMessage());
-      } catch (NumberFormatException e) {
-         System.err.println("Formato del numero non valido: " + e.getMessage());
       }
       return number;
    }
 }
+
