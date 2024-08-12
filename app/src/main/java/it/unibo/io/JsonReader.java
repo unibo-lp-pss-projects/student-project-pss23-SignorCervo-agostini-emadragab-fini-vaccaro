@@ -55,10 +55,10 @@ public class JsonReader {
     /**
      * Legge il file JSON contenente i dati dei dialoghi.
      */
-    public void readJson() {
+    public void readJson(int dialogPath) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            RootDialog rootdialog = objectMapper.readValue(new File(dialogPath), RootDialog.class);
+            RootDialog rootdialog = objectMapper.readValue(new File(resource.get(dialogPath).toURI().toString().replace("file:/", "")), RootDialog.class);
             rule = rootdialog.getRule() != null ? rootdialog.getRule() : new ArrayList<>();
             members = rootdialog.getMembers() != null ? rootdialog.getMembers() : new ArrayList<>();
         } catch (IOException e) {
