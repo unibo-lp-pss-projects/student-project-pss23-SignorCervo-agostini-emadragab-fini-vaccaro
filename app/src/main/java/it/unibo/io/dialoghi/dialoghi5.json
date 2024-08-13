@@ -49,7 +49,7 @@
                     "resp": "Si.",
                     "replay": "Hai la chiave e la infili nel buco della serratura. Funziona!",
                     "die": false,
-                    "require": "chiave"
+                    "require": "Chiave"
                 },
                 {
                     "resp": "No.",
@@ -67,7 +67,7 @@
                     "resp": "Si.",
                     "replay": "Hai la torcia! Hai fatto bene a prenderla.",
                     "die": false,
-                    "require": "torcia"
+                    "require": "Torcia"
                 },
                 {
                     "resp": "No.",
@@ -109,13 +109,8 @@
             "img": "signorapecora.png",
             "respons": [
                 {
-                    "resp": "Le dai dell'acqua.",
-                    "replay": "Hai trovato la soluzione più veloce.",
-                    "die": false
-                },
-                {
-                    "resp": "Non hai acqua con te, ma la aiuti a respirare e a calmarsi.",
-                    "replay": "Ci mette un pò a calmarsi ma alla finee si riprende.",
+                    "resp": "La aiuti a respirare e a calmarsi.",
+                    "replay": "Ci mette un pò a calmarsi ma alla fine si riprende.",
                     "die": false
                 },
                 {
@@ -147,6 +142,10 @@
             "item": [],
             "img": "storia1.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -154,6 +153,10 @@
             "item": [],
             "img": "storia2.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -161,6 +164,10 @@
             "item": [],
             "img": "storia3.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -168,6 +175,10 @@
             "item": [],
             "img": "storia4.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -175,6 +186,10 @@
             "item": [],
             "img": "storia5.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -182,6 +197,10 @@
             "item": [],
             "img": "storia6.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -189,6 +208,10 @@
             "item": [],
             "img": "storia7.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -196,6 +219,10 @@
             "item": [],
             "img": "signorapecora.jpg",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -203,6 +230,10 @@
             "item": [],
             "img": "signorapecora.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -210,6 +241,10 @@
             "item": [],
             "img": "signorcervo_insanguinato.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         }
     ]

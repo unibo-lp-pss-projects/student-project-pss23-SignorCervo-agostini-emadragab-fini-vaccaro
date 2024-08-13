@@ -73,8 +73,8 @@
                     "die": false
                 },
                 {
-                    "resp": "Avete mangiato la zuppa ieri sera.\nLa prossima volta presta piu' attenzione.",
-                    "replay": "",
+                    "resp": "Una zuppa.",
+                    "replay": "Avete mangiato la zuppa ieri sera.\nLa prossima volta presta piu' attenzione.",
                     "die": false
                 }
             ]
@@ -85,7 +85,7 @@
             "img": "ospiti.png",
             "respons": [
                 {
-                    "resp": "...",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -97,7 +97,7 @@
             "img": "ospiti.png",
             "respons": [
                 {
-                    "resp": "...",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -109,7 +109,7 @@
             "img": "biglietto.png",
             "respons": [
                 {
-                    "resp": "...",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -149,12 +149,12 @@
                 },
                 {
                     "resp": "I libri! GLi scaffali ne sono peini.",
-                    "replay": "Sono troppi.\nNon c'e' tempo scegli qualcos'altro",
+                    "replay": "Sono troppi.\nNon c'e' tempo scegli qualcos'altro e guardi nella scrivania",
                     "die": false
                 },
                 {
                     "resp": "I cassetti, chissa' cosa ci nasconde.",
-                    "replay": "Accidenti, i cassetti sono chiusi a chiave.\nScegli un altro posto.",
+                    "replay": "Accidenti, i cassetti sono chiusi a chiave.\nScegli un altro posto, guardi nella scrivania.",
                     "die": false
                 }
             ]
@@ -165,7 +165,7 @@
             "img": "cartolina.png",
             "respons": [
                 {
-                    "resp": "...",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -250,7 +250,7 @@
             "img": "signorcervo.jpg",
             "respons": [
                 {
-                    "resp": "",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -262,7 +262,7 @@
             "img": "fuori_dalla_finestra1.png",
             "respons": [
                 {
-                    "resp": "",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -274,7 +274,7 @@
             "img": "fuori_dalla_finestra2.png",
             "respons": [
                 {
-                    "resp": "",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -286,7 +286,7 @@
             "img": "fuori_dalla_finestra3.png",
             "respons": [
                 {
-                    "resp": "",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }

@@ -31,7 +31,10 @@ public class Player {
     public void addItem(Item item) {
         if (0 > coin - item.getNumber()){
             gui.updateStatusTerminal("Non hai abbastanza monete");
-        }else{
+        } else if (hasItem(item.getName())) {
+            String fromattedString = String.format("Hai gia' %s ", item.getName());
+            gui.updateStatusTerminal(fromattedString);
+        } else {
             this.coin = this.coin - item.getNumber();
             this.item.add(item);
             String fromattedString = String.format("Hai scelto %s", item.getName());
@@ -46,7 +49,6 @@ public class Player {
      * @param name l'oggetto da verificare
      * @return true se il giocatore possiede l'oggetto, false altrimenti
      */
-    
     public boolean hasItem(String itemName) {
         for ( Item item : this.item) {
             if (item.getName().equals(itemName)) {
@@ -97,5 +99,10 @@ public class Player {
          this.item.add(new Item());
       }
    }
+
+   public int getSizeItem (){
+        return item.size();
+   }
+
 
 }

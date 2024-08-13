@@ -240,7 +240,7 @@ public class SignorCervoGUI extends Application {
    private static void menuLevel() {
       primaryStage.close();
       writeNumberToFile(game.getLevel() + 1);
-      MenuLevel menuLevel = new MenuLevel();
+      MenuLevel menuLevel = new MenuLevel(game.player);
       Stage levelStage = new Stage();
       try {
          menuLevel.start(levelStage);

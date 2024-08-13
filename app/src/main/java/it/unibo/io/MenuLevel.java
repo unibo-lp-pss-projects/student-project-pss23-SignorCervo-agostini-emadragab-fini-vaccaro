@@ -19,6 +19,11 @@ import java.io.IOException;
 public class MenuLevel extends Application {
 
    private Stage primaryStage;
+   private Player player;
+
+   public MenuLevel(Player player) {
+      this.player = player;
+   }
 
    @Override
    public void start(Stage primaryStage) throws Exception {
@@ -98,7 +103,7 @@ public class MenuLevel extends Application {
     * Inizia il gioco con una nuova istanza di SignorCervoGUI
     */
    private void startGame(int level) {
-      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level));
+      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level, player));
       Stage gameStage = new Stage();
       try {
          gameCervoGUI.start(gameStage);

@@ -13,7 +13,7 @@
             ]
         },
         {
-            "dialog": "Quante moente gli consegni sono rimaste?",
+            "dialog": "Quante moente gli consegni?",
             "item": [],
             "img": "sentiero4.png",
             "respons": [
@@ -151,12 +151,12 @@
             "respons": [
                 {
                     "resp": "(1)",
-                    "replay": "E' la stanza delle scarpe!\nLa conosci gia'.\nScegline un'altra.",
+                    "replay": "E' la stanza delle scarpe!\nLa conosci gia'.\nVai nella stanza 3.",
                     "die": false
                 },
                 {
                     "resp": "(2)",
-                    "replay": "E' la cucina!\nScegli un'altra stanza.",
+                    "replay": "E' la cucina!\nScegli un'altra stanza e vai nella stanza 3.",
                     "die": false
                 },
                 {
@@ -187,6 +187,11 @@
             ],
             "img": "signorcervo.jpg",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "replay": "...",
+                    "die": false
+                }
             ]
         },
         {
@@ -213,6 +218,11 @@
             ],
             "img": "mappa.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "replay": "...",
+                    "die": false
+                }
             ]
         },
         {
@@ -221,6 +231,11 @@
             ],
             "img": "casa.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "replay": "...",
+                    "die": false
+                }
             ]
         },
         {
@@ -229,6 +244,11 @@
             ],
             "img": "rivelazione.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "replay": "...",
+                    "die": false
+                }
             ]
         },
         {

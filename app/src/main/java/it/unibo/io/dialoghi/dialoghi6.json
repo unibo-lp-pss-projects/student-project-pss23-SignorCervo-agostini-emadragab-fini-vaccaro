@@ -47,6 +47,7 @@
             "respons": [
                 {
                     "resp": "Aspetti che Signor Cervo ti raggiunga e tiri fuori il coltello per difenderti",
+                    "require": "Coltello",
                     "replay": "Buona idea!\nSfortunatamente Signor Cervo ha una pistola in mano.",
                     "die": false
                 },
@@ -111,6 +112,10 @@
             "item": [],
             "img": "signorcervo.jpg",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -118,6 +123,10 @@
             "item": [],
             "img": "signorcervo.jpg",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         },
         {
@@ -256,6 +265,10 @@
             "item": [],
             "img": "fine.png",
             "respons": [
+                {
+                    "resp": "Continua",
+                    "die": false
+                }
             ]
         }
     ]

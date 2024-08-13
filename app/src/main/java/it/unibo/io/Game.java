@@ -20,20 +20,21 @@ public class Game {
    int i = 0;
    Choice c = new Choice();
    Scanner myObj = new Scanner(System.in);
-   Player player = new Player();
    Integer key = 2;
    int level = 0;
+   Player player;
    private int dialogo;
    Map<Integer, String> futureResponss = new HashMap<Integer, String>();
 
    /**
     * Costruttore della classe Game.
-    * Inizializza il gioco leggendo i dati dal file JSON.
+    * Inizializza il gioco leggendo i dati dal file JSON in base al dialogo passato.
     */
-   Game(int dialogo) {
+   Game(int dialogo, Player p) {
       j.readJson(dialogo);
       level = dialogo;
       this.dialogo = dialogo;
+      player = p;
    }
 
    /**
@@ -74,20 +75,23 @@ public class Game {
    public void input(int cmd) {
 
       if (j.checkShop()) {
-
          key = cmd;
          key = key - 1;
          player.addItem(j.shop(key));
-         this.i++;
+         if (player.getSizeItem() == 3)
+            this.i++;
          return;
       }
 
       key = cmd;
       key = key - 1;
 
-      if (j.checkChoice(i, key)) {
+      if (j.checkChoice(i, key, player)) {
 
-         j.printReply(key);
+         if (j.checkRequire(i, key, player))
+            j.printReply(key);
+         else
+            j.printReply(key+1);
          this.i = 0;
          return;
 

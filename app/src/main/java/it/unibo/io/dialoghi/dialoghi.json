@@ -118,50 +118,7 @@
         }]
       },
       {
-        "dialog": "Hai 4 monete.\nCosa vuoi comprare?",
-        "item": [{
-                "name" : "Coperta",
-                "number" : 2
-            },
-            {
-                "name": "Pianta",
-                "number": 1
-            },
-            {
-                "name": "Libro Verde",
-                "number": 2
-            },
-            {
-                "name": "Colori",
-                "number": 3
-            },
-            {
-                "name": "Porcellana",
-                "number": 2
-            },
-            {
-                "name": "Calzini",
-                "number": 1
-            },
-            {
-                "name": "Zaino",
-                "number": 3
-            },
-            {
-                "name": "Macchina Fotografica",
-                "number": 4
-            },
-            {
-                "name": "Carillon",
-                "number": 4
-            }
-        ],
-        "img": "shop.png",
-        "respons": [        
-        ]
-      },
-      {
-        "dialog": "Ottima scelta!\nSignor Cervo ha deciso di comprare il carillon.\nTi chiede di ascoltare con lui la musica.",
+        "dialog": "Signor Cervo ha deciso di comprare il carillon.\nTi chiede di ascoltare con lui la musica.",
         "item": [],
         "img": "signorcervo.jpg",
         "respons": [{

@@ -26,6 +26,7 @@ public class MenuSignorCervo extends Application {
 
    private Stage primaryStage;
    private int dialogo;
+   private Player player = new Player();
 
    @Override
    public void start(Stage primaryStage) throws Exception {
@@ -92,7 +93,7 @@ public class MenuSignorCervo extends Application {
     * Inizia il gioco con una nuova istanza di SignorCervoGUI
     */
    private void startGame(int level) {
-      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level));
+      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level, new Player()));
       Stage gameStage = new Stage();
       try {
          gameCervoGUI.start(gameStage);
@@ -126,7 +127,7 @@ public class MenuSignorCervo extends Application {
    // carica il gioco usando il file di checkpoint
    private void loadGameFromCheckpoint(JSONObject checkpoint, int dialogo) {
       // partendo da nuova istanza di SignorCervoGUI
-      Game game = new Game(dialogo);
+      Game game = new Game(dialogo, player);
       SignorCervoGUI gameCervoGUI = new SignorCervoGUI(game);
       Stage gameStage = new Stage();
       try {
@@ -145,7 +146,7 @@ public class MenuSignorCervo extends Application {
    }
 
    private void menuLevelStart() {
-      MenuLevel menuLevel = new MenuLevel();
+      MenuLevel menuLevel = new MenuLevel(player);
       Stage levelStage = new Stage();
       try {
          menuLevel.start(levelStage);
