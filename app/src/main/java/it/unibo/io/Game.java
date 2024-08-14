@@ -18,7 +18,6 @@ public class Game {
    private static JsonReader j = new JsonReader();
    private SignorCervoGUI gui;
    int i = 0;
-   Choice c = new Choice();
    Scanner myObj = new Scanner(System.in);
    Integer key = 2;
    int level = 0;
