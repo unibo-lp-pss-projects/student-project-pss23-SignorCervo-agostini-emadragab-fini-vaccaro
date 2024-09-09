@@ -2,6 +2,9 @@ package it.unibo.io;
 
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 /**
  * La classe Player rappresenta il giocatore nel gioco.
  */
@@ -28,7 +31,10 @@ public class Player {
     public void addItem(Item item) {
         if (0 > coin - item.getNumber()){
             gui.updateStatusTerminal("Non hai abbastanza monete");
-        }else{
+        } else if (hasItem(item.getName())) {
+            String fromattedString = String.format("Hai gia' %s ", item.getName());
+            gui.updateStatusTerminal(fromattedString);
+        } else {
             this.coin = this.coin - item.getNumber();
             this.item.add(item);
             String fromattedString = String.format("Hai scelto %s", item.getName());
@@ -43,7 +49,6 @@ public class Player {
      * @param name l'oggetto da verificare
      * @return true se il giocatore possiede l'oggetto, false altrimenti
      */
-    
     public boolean hasItem(String itemName) {
         for ( Item item : this.item) {
             if (item.getName().equals(itemName)) {
@@ -62,5 +67,42 @@ public class Player {
     public Integer getCoin() {
         return this.coin;
     }
+
+    // metodo che salva lo stato del player, inclusi item e coin
+   public JSONObject getPlayerState() {
+      JSONObject state = new JSONObject();
+      // salvataggio delle monete del giocatore
+      state.put("coin", this.coin);
+
+      // salvataggio degli oggetti dell'inventario del giocatore
+      JSONArray items = new JSONArray();
+      for (Item item : this.item) {
+         JSONObject itemJson = new JSONObject();
+         itemJson.put("name", item.getName());
+         itemJson.put("num", item.getNumber());
+         items.put(itemJson);
+      }
+      state.put("items", items);
+
+      return state;
+   }
+
+   // metodo della classe Player che carica lo stato del player, inclusi item
+   public void loadState(JSONObject state) {
+      // ripristino delle monete del giocatore
+      this.coin = state.getInt("coin");
+
+      // ripristino degli oggetti dell'inventario del giocatore
+      this.item.clear();
+      JSONArray items = state.getJSONArray("items");
+      for (int i = 0; i < items.length(); i++) {
+         this.item.add(new Item());
+      }
+   }
+
+   public int getSizeItem (){
+        return item.size();
+   }
+
 
 }

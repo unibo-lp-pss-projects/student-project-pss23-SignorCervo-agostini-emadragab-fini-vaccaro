@@ -4,13 +4,10 @@ import java.io.IOException;
 import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import javafx.scene.control.Button;
 import it.unibo.io.model.SignorCervo.Member;
 import it.unibo.io.model.SignorCervo.Remember;
 import it.unibo.io.model.SignorCervo.Response;
@@ -27,6 +24,7 @@ public class JsonReader {
     private static Member currentMember;
     private static Response currentResponse;
     private static SignorCervoGUI gui;
+    private static boolean require = true;
 
     List<File> resource = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "dialoghi");
     String dialogPath = resource.get(5).toURI().toString().replace("file:/", "");
@@ -129,9 +127,14 @@ public class JsonReader {
      * @param key La scelta fatta dal giocatore.
      * @return True se la scelta porta alla morte, false altrimenti.
      */
-    public Boolean checkChoice(int i, int key){
+    public Boolean checkChoice(int i, int key, Player p){
         updateMembers(i);
-        currentResponse = currentMember.getRespons().get(key);
+        if (currentMember.getRespons().get(key).getRequire() != null)
+            require = p.hasItem(currentMember.getRespons().get(key).getRequire());
+        if (require)
+            currentResponse = currentMember.getRespons().get(key);
+        else
+            currentResponse = currentMember.getRespons().get(key+1);
         return currentResponse.isDie();
     }
 
@@ -142,10 +145,12 @@ public class JsonReader {
      * @param key La scelta fatta dal giocatore.
      * @return Il nome dell'oggetto richiesto, o null se non presente.
      */
-    public String checkRequire(int i, int key) {
+    public boolean checkRequire(int i, int key, Player p) {
         updateMembers(i);
         currentResponse = currentMember.getRespons().get(key);
-        return currentResponse.getRequire();
+        if (currentResponse.getRequire() != null)
+            require = p.hasItem(currentResponse.getRequire());
+        return require;
     }
 
     /**

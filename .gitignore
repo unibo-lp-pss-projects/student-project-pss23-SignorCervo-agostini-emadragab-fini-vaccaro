@@ -4,3 +4,4 @@ build/
 *.class
 .vscode
 .idea/
+app/src/main/java/it/unibo/io/progress/

@@ -19,7 +19,7 @@
             ]
         },
         {
-            "dialog": "Le creature sono venute a prenderti. Ti chiedono di seguirle e ti promettono che finché non uscirai dal sentiero con loto sarai al sicuro.",
+            "dialog": "Le creature sono venute a prenderti. Ti chiedono di seguirle e ti promettono che finché non uscirai dal sentiero con loro sarai al sicuro.",
             "item": [],
             "img": "creature.png",
             "respons": [
@@ -32,11 +32,6 @@
                     "resp": "Chiudi la finestra.",
                     "replay": "Le creature di offendono e ti traformano in polvere. Volevano solo aiutarti.",
                     "die": true
-                },
-                {
-                    "resp": "Segui le creature, non portare nulla con te.",
-                    "replay": "Puoi seguire le creature, ma non sei del tutto sicuro...",
-                    "die": false
                 }
             ]
         },
@@ -61,7 +56,13 @@
             "dialog": "",
             "item": [],
             "img": "warning.png",
-            "respons": []
+            "respons": [
+                {
+                    "resp": "Continua",
+                    "replay": "",
+                    "die": false
+                }
+            ]
         },
         {
             "dialog": "Sull' erba ci sono due corpi:\nSignor Muflone non ha più gli occhi.\nSignor Volpe non ha più le mani.",
@@ -92,7 +93,7 @@
                 },
                 {
                     "resp": "Non riesci a dire né fare niente.",
-                    "replay": "Reagisci. LEcreature si stanno spazientendo e vogliono spiegare.",
+                    "replay": "Reagisci. Le creature si stanno spazientendo e vogliono spiegare.",
                     "die": false
                 }
             ]
@@ -108,13 +109,13 @@
                     "die": true
                 },
                 {
-                    "resp": "Ci credi, ma torni a casa e faifinta di niente. Vuoi prima recuperare le tue cose.",
+                    "resp": "Ci credi, ma torni a casa e fai finta di niente. Vuoi prima recuperare le tue cose.",
                     "replay": "Hai fatto bene. Ci sono ancora delle questioni in sospeso...",
                     "die": false
                 },
                 {
                     "resp": "Non sai dove andare, quindi vaghi nel bosco alla ricerca di una via di fuga.",
-                    "replay": "Sei uscito dal sentiero! LE creature non possono più proteggerti. Vieni ingoiato dal buio.",
+                    "replay": "Sei uscito dal sentiero! Le creature non possono più proteggerti. Vieni ingoiato dal buio.",
                     "die": true
                 }
             ]
@@ -150,11 +151,6 @@
                     "resp": "Si, l'ho presa prima di uscire.",
                     "replay": "Le creature indicano la X di colore rosso.",
                     "die": false
-                },
-                {
-                    "resp": "No, l'ho lasciata volontariamente nella mia stanza.",
-                    "replay": "Le creature sono stanche della tua inattitudine. Vieni liquefatto.",
-                    "die": true
                 }
             ]
         },
@@ -176,43 +172,34 @@
             ]
         },
         {
-            "dialog": "",
+            "dialog": "Puoi scegliere tre cose.\nAlcune di queste saranno inutili.",
             "item": [{
                 "name" : "Chiave",
-                "number" : 1
+                "number" : 0
             },
             {
                 "name": "Moneta",
-                "number": 2
+                "number": 0
             },
             {
                 "name": "Pizza",
-                "number": 3
+                "number": 0
             },
             {
                 "name": "Coltello",
-                "number": 4
+                "number": 0
             },
             {
                 "name": "Acqua",
-                "number": 5
-            },
-            {
-                "name": "Il tuo acquisto al negozio di antiquariato",
-                "number": 6
+                "number": 0
             },
             {
                 "name": "Torcia",
-                "number": 7
+                "number": 0
             }
         ],
             "img": "cose_utili.png",
             "respons": [
-                {
-                    "resp": "Puoi scegliere tre cose.\nAlcune di queste saranno inutili.",
-                    "replay": "",
-                    "die": false
-                }
             ]
         },
         {
@@ -271,7 +258,7 @@
                 },                
                 {
                     "resp": "Annuisci e lo saluti.",
-                    "replay": "Signor Cervo è contrariato per la tua mancanza di afflizione, ma apprezza iltuo saluto.",
+                    "replay": "Signor Cervo è contrariato per la tua mancanza di afflizione, ma apprezza il tuo saluto.",
                     "die": false
                 }
             ]
@@ -304,7 +291,7 @@
             "img": "signorcervo.jpg",
             "respons": [
                 {
-                    "resp": "...",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -316,7 +303,7 @@
             "img": "biblioteca.png",
             "respons": [
                 {
-                    "resp": "",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -328,7 +315,7 @@
             "img": "signorcervo.jpg",
             "respons": [
                 {
-                    "resp": "...",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }
@@ -340,7 +327,7 @@
             "img": "biblioteca2.png",
             "respons": [
                 {
-                    "resp": "",
+                    "resp": "Continua",
                     "replay": "",
                     "die": false
                 }

@@ -15,11 +15,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
 public class MenuLevel extends Application {
 
    private Stage primaryStage;
+   private Player player;
+
+   public MenuLevel(Player player) {
+      this.player = player;
+   }
 
    @Override
    public void start(Stage primaryStage) throws Exception {
@@ -99,7 +103,7 @@ public class MenuLevel extends Application {
     * Inizia il gioco con una nuova istanza di SignorCervoGUI
     */
    private void startGame(int level) {
-      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level));
+      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level, player));
       Stage gameStage = new Stage();
       try {
          gameCervoGUI.start(gameStage);
@@ -131,27 +135,38 @@ public class MenuLevel extends Application {
       return button;
    }
 
-   // Metodo per leggere un numero da un file
+   // Metodo per leggere un numero da un file e creare la cartella/file se non esistono
    public static int readNumberFromFile() {
       int number = 0;
       try {
-         List<File> paths = GetResources.findResourcesDirectory(new File(System.getProperty("user.dir")), "date");
-         if (paths.isEmpty()) {
-            System.err.println("File non trovato.");
-            return 0;
+         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         if (!resourcesDir.exists()) {
+            resourcesDir.mkdirs();
+            System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());
          }
 
-         try (BufferedReader reader = new BufferedReader(new FileReader(paths.get(0).getPath()))) {
-            String line = reader.readLine();
-            if (line != null) {
-               number = Integer.parseInt(line);
-               System.out.println("Numero letto dal file: " + number);
+         File file = new File(resourcesDir, "level");
+
+         System.out.println("Percorso assoluto del file: " + file.getAbsolutePath());
+
+         if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("File 'level' creato: " + file.getPath());
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+               writer.write(String.valueOf(number));
+               System.out.println("Numero iniziale 0 scritto nel file.");
+            }
+         } else {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+               String line = reader.readLine();
+               if (line != null) {
+                  number = Integer.parseInt(line);
+                  System.out.println("Numero letto dal file: " + number);
+               }
             }
          }
       } catch (IOException e) {
-         System.err.println("Errore durante la lettura del file: " + e.getMessage());
-      } catch (NumberFormatException e) {
-         System.err.println("Formato del numero non valido: " + e.getMessage());
+         System.err.println("Errore durante la lettura/scrittura del file: " + e.getMessage());
       }
       return number;
    }

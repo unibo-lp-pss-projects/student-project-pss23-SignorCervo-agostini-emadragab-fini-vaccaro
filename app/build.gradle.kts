@@ -19,14 +19,15 @@ val javaFXModules = listOf(
 val supportedPlatforms = listOf("linux", "mac", "win")
 
 dependencies {
-    val junitVersion = "4.13.2" // Aggiornato alla versione più recente di JUnit 4
+    val junitJupiterVersion = "5.9.3" // Usa l'ultima versione di JUnit 5
     val javaFxVersion = "22"
     for (platform in supportedPlatforms) {
         for (module in javaFXModules) {
             implementation("org.openjfx:javafx-$module:$javaFxVersion:$platform")
         }
     }
-    testImplementation("junit:junit:$junitVersion") // Usa JUnit 4
+    testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     implementation("org.json:json:20230227")
     implementation("com.squareup.moshi:moshi:1.14.0")
@@ -39,9 +40,10 @@ dependencies {
 }
 
 tasks.test {
-    useJUnit()
-    testLogging { events ("PASSED", "FAILED", "SKIPPED")
-    showStandardStreams = true
+    useJUnitPlatform() // Usa JUnit 5
+    testLogging {
+        events("PASSED", "FAILED", "SKIPPED")
+        showStandardStreams = true
     }
 }
 

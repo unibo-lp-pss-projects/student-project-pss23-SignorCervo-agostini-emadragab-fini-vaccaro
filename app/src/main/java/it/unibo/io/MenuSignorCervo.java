@@ -7,18 +7,26 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+
 import java.util.Optional;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import org.json.JSONObject;
 
 public class MenuSignorCervo extends Application {
 
    private Stage primaryStage;
+   private int dialogo;
+   private Player player = new Player();
 
    @Override
    public void start(Stage primaryStage) throws Exception {
@@ -85,7 +93,7 @@ public class MenuSignorCervo extends Application {
     * Inizia il gioco con una nuova istanza di SignorCervoGUI
     */
    private void startGame(int level) {
-      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level));
+      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(new Game(level, new Player()));
       Stage gameStage = new Stage();
       try {
          gameCervoGUI.start(gameStage);
@@ -96,21 +104,49 @@ public class MenuSignorCervo extends Application {
    }
 
    private void handleContinuaPartitaButton(Stage primaryStage) throws IOException {
+      // Specifica il percorso del file di checkpoint
+      File checkpointFile = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress/checkpoint.json");
+
       // controllo se il file checkpoint esiste oppure se è vuoto
-      if (!Files.exists(Paths.get("checkpoint.json"))
-            || new String(Files.readAllBytes(Paths.get("checkpoint.json"))).isEmpty()) {
-         Alert errorAlert = new Alert(AlertType.ERROR);
-         errorAlert.setTitle("Errore");
-         errorAlert.setHeaderText("Nessun Checkpoint Salvato");
-         errorAlert.setContentText("Nessun Checkpoint salvato. Inizia una nuova partita.");
-         errorAlert.showAndWait();
-         return;
+      if (!checkpointFile.exists() || checkpointFile.length() == 0) {
+          Alert errorAlert = new Alert(AlertType.ERROR);
+          errorAlert.setTitle("Errore");
+          errorAlert.setHeaderText("Nessun Checkpoint Salvato");
+          errorAlert.setContentText("Nessun Checkpoint salvato. Inizia una nuova partita.");
+          errorAlert.showAndWait();
+          return;
       }
-      // TODO else carica il file checkpoint.json e continua partita
+
+      String content = new String(Files.readAllBytes(checkpointFile.toPath()));
+      primaryStage.close();
+      JSONObject checkpoint = new JSONObject(content);
+      int dialogo = checkpoint.getInt("dialogo");  // Leggi dialogo dal checkpoint
+      loadGameFromCheckpoint(checkpoint, dialogo); // se il file esiste e non è vuoto fai partire il gioco dal checkpoint
+  }
+
+   // carica il gioco usando il file di checkpoint
+   private void loadGameFromCheckpoint(JSONObject checkpoint, int dialogo) {
+      // partendo da nuova istanza di SignorCervoGUI
+      Game game = new Game(dialogo, player);
+      SignorCervoGUI gameCervoGUI = new SignorCervoGUI(game);
+      Stage gameStage = new Stage();
+      try {
+         gameCervoGUI.start(gameStage);
+
+         // facciamo partire il gioco usando i dati che abbiamo salvato con questi metodi
+         game.loadState(checkpoint.getJSONObject("gameState"));
+         String imageUrl = checkpoint.getString("currentImage");
+         Image image = new Image(imageUrl);
+         gameCervoGUI.updateImageView(image);
+         gameCervoGUI.updateTerminal(checkpoint.getString("terminalText"));
+
+      } catch (InterruptedException | IOException e) {
+         e.printStackTrace();
+      }
    }
 
    private void menuLevelStart() {
-      MenuLevel menuLevel = new MenuLevel();
+      MenuLevel menuLevel = new MenuLevel(player);
       Stage levelStage = new Stage();
       try {
          menuLevel.start(levelStage);
@@ -144,9 +180,35 @@ public class MenuSignorCervo extends Application {
       if (result.get() == buttonTypeYes) {
          primaryStage.close();
          resetLevelFile();
+         clearCheckpoint();
          startGame(0);
       } else {
          alert.close();
+      }
+   }
+
+   private void clearCheckpoint() {
+      try {
+         // Trova o crea la directory 'progress' all'interno del package java\it\nibo\io
+         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         if (!resourcesDir.exists()) {
+            resourcesDir.mkdirs();
+            System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());
+         }
+   
+         // Specifica il percorso del file 'checkpoint.json'
+         File file = new File(resourcesDir, "checkpoint.json");
+   
+         // Crea o svuota il file 'checkpoint.json'
+         if (!file.exists()) {
+            file.createNewFile();
+            System.out.println("File 'checkpoint.json' creato: " + file.getPath());
+         } else {
+            new FileWriter(file, false).close();
+            System.out.println("File 'checkpoint.json' svuotato: " + file.getPath());
+         }
+      } catch (IOException e) {
+         e.printStackTrace();
       }
    }
 }
