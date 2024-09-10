@@ -139,7 +139,7 @@ public class MenuLevel extends Application {
    public static int readNumberFromFile() {
       int number = 0;
       try {
-         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         File resourcesDir = new File(System.getProperty("user.dir") + "/app/src/main/java/it/unibo/io/progress");
          if (!resourcesDir.exists()) {
             resourcesDir.mkdirs();
             System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());

@@ -105,7 +105,7 @@ public class MenuSignorCervo extends Application {
 
    private void handleContinuaPartitaButton(Stage primaryStage) throws IOException {
       // Specifica il percorso del file di checkpoint
-      File checkpointFile = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress/checkpoint.json");
+      File checkpointFile = new File(System.getProperty("user.dir") + "/app/src/main/java/it/unibo/io/progress/checkpoint.json");
 
       // controllo se il file checkpoint esiste oppure se è vuoto
       if (!checkpointFile.exists() || checkpointFile.length() == 0) {
@@ -190,7 +190,7 @@ public class MenuSignorCervo extends Application {
    private void clearCheckpoint() {
       try {
          // Trova o crea la directory 'progress' all'interno del package java\it\nibo\io
-         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         File resourcesDir = new File(System.getProperty("user.dir") + "/app/src/main/java/it/unibo/io/progress");
          if (!resourcesDir.exists()) {
             resourcesDir.mkdirs();
             System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());

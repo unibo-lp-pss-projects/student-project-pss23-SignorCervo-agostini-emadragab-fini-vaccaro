@@ -252,7 +252,7 @@ public class SignorCervoGUI extends Application {
    // Metodo per salvare il numero del livello in un file
    public static void writeNumberToFile(int number) {
       try {
-         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         File resourcesDir = new File(System.getProperty("user.dir") + "/app/src/main/java/it/unibo/io/progress");
          System.out.println("Percorso della cartella 'progress': " + resourcesDir.getAbsolutePath()); 
 
          if (!resourcesDir.exists()) {
@@ -317,7 +317,7 @@ public class SignorCervoGUI extends Application {
    
       try {
          // Trova o crea la directory 'progress' all'interno del package java\it\nibo\io
-         File resourcesDir = new File(System.getProperty("user.dir") + "/src/main/java/it/unibo/io/progress");
+         File resourcesDir = new File(System.getProperty("user.dir") + "/app/main/java/it/unibo/io/progress");
          if (!resourcesDir.exists()) {
             resourcesDir.mkdirs();
             System.out.println("Directory 'progress' creata: " + resourcesDir.getPath());
