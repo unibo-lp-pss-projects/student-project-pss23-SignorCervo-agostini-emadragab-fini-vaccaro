@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import it.unibo.io.AnswerChecker;
 import it.unibo.io.model.Trivia;
 import it.unibo.io.service.TriviaService;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.paint.Color;
 
 public class TriviaQuizController {
 
@@ -25,19 +28,19 @@ public class TriviaQuizController {
     @FXML
     private ToggleGroup answerGroup = new ToggleGroup();
 
+    @FXML
+    private Label responseLabel ;
+
     private List<Trivia> trivias = new ArrayList<>();
     private int currentIndex = 0;
-    private TriviaService triviaService;
+    
+    private AnswerChecker answerChecker;
 
     public void initialize() {
-        triviaService = new TriviaService();
-        loadTriviaQuestions();
+        answerChecker = new AnswerChecker(responseLabel);
+        
     }
 
-    public void loadTriviaQuestions() {
-        triviaService.loadTriviaQuestions(this::setQuestions, Throwable::printStackTrace);
-
-    }
 
     public void setQuestions(List<Trivia> trivias) {
         this.trivias = trivias;
@@ -45,6 +48,7 @@ public class TriviaQuizController {
     }
 
     public void displayNextQuestion() {
+        responseLabel.setText("");
         if (currentIndex < trivias.size()) {
             Trivia currentTrivia = trivias.get(currentIndex);
             questionLabel.setText(currentTrivia.getQuestion());
@@ -74,9 +78,14 @@ public class TriviaQuizController {
     private void handleSubmit() {
         RadioButton selected = (RadioButton) answerGroup.getSelectedToggle();
         if (selected != null) {
-            System.out.println("Selected Answer: " + selected.getText());
+            String userAnswer = selected.getText();
+            String triviaAnswer = trivias.get(currentIndex - 1).getCorrect_answer();
+            
+            answerChecker.checkAnswer(userAnswer, triviaAnswer);
+        } else {
+            responseLabel.setText("CHOOSE AN OPTION");
+            responseLabel.setTextFill(Color.RED);
         }
-        String answer = selected.getText();
 
     }
 

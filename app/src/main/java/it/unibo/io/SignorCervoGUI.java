@@ -41,7 +41,7 @@ import org.json.JSONObject;
 public class SignorCervoGUI extends Application {
 
    private static Stage primaryStage;
-   private MediaPlayer mediaPlayer;
+   private static MediaPlayer mediaPlayer;
    private static List<File> resources;
    private static ImageView imageView = new ImageView();
    private static VBox buttonLayout = new VBox(10);
@@ -164,8 +164,12 @@ public class SignorCervoGUI extends Application {
             }
             javafx.application.Platform.runLater(() -> {
                terminal.clear();
-               if (game.output() == false)
+               if (game.output() == false) {
+                  if (mediaPlayer != null) {
+                     mediaPlayer.stop();
+                  }
                   menuLevel();
+               }
             });
          }).start();
       });
