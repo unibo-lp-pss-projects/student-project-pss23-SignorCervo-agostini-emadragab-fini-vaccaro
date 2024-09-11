@@ -41,6 +41,7 @@ Il gioco prende le scelte del giocatore come input, genera un output e prosegue 
 ### Punti Deboli
 
 - Alcuni dati non sono persistenti e si perdono alla chiusura dell'applicazione (es: inventario del giocatore).
+- Dati come il checkpoint e il livello sbloccabile possono esseere modificati se un'utente conosce JSON base.
 
 ## Utilizzo di Git e Flusso di Lavoro
 
@@ -69,7 +70,8 @@ Le principali entità coinvolte nel gioco sono:
 7. **JsonReader**: Gestisce la lettura dei dati da file JSON utilizzati per il gioco.
 8. **MenuMain**: Il menu principale presentato all'avvio del software.
 9. **MenuSignorCervo**: Menu principale del gioco "Signor Cervo", con opzioni per iniziare una nuova partita o continuare quella in corso.
-10. **SignorCervoGUI**: L'interfaccia grafica del gioco, con pulsanti per le scelte del giocatore.
+10. **MenuLevel**: Menu dove l'utente può scegliere tra i 6 livelli del gioco, se
+11. **SignorCervoGUI**: L'interfaccia grafica del gioco, con pulsanti per le scelte del giocatore.
  
 #### Modello UML di "Signor Cervo" 
 #### Link: [UML](doc:www.plantuml.com/plantuml/png/lLbRR-is4dxth-2ZWYO1zl9K71ZDyMa35xcaSTgNnQAWfOdC7efKISg96vp_lXgHqeuzacCiWis3HN4-3eTpf_A33zA5fjApMkPVPGb2XSl6gBMzL5QypMQY_Skrz5vSomhQ6P7-BiJFtff7a0KuyGUPNgdIMBS0jxNNlov5sIX2L2O8HS6vD0QSg7RtQyfaQGAKxVnNs1sirh05JUOUjDormBfx760B9RKjBPczbVMdnFjSh89JffoBvoOq3Xx1rzPuFnlWttLdpWYdys6xCu9QMwj16c6RK3SXewIjLKKh2auZcxmgnXP6uHTMcOXg1uo9jh9O1HaW-tbrVzTg2_8WF4wSpTuxO6xD5bnuiYsLBl_3MnE7PuG5CbLvtDLlxCiDQdnXgrf3WE9AW-lF-6tFFo2qAhIDoy4JF_ckvtUZVFZqazBGAboPOi1-KGxoODqkGw8e-jTUV9ovanLCYQXRlhZIByqqAxgvRSZkKrptH3oT7HUQwMaPeA9nrAymBVp0VqrJhS5n5YJoA2EgwDxqhj4m0Ra5v3uNLVVq71K18c-S0nFY6qUbk84UrxzpvD7CG5JgaZQvZc8OFiYmcHt6HrCNCa0KqdTXf5WCEP05wWx9X1V3rQu5B3PMvS1P4GYQCgEapocWymtaNoE3kFuSxOdPZABZeIBu4Vvib3k6NbFUgusjit6X7g7MkumpY8xdSI4dZkUDKctX4Q9_38kuEzvAPSOSyHPCWpIqDBKNZREgfMTnlt_zMqXN-ZCHDiw-U87YEDVK0OeVNtEeWxBcN2plXnSk2UxOfQk309Cbe78gwNRTosJz858ElB8z25DwLq4pliTm3YelNvbAJ2fi91r5JA6yN6lut8HWJHOVOjqz61RCAT14o1t80Dq1quhaZW5UmxaW4Z738Gr3wQvBJpyvMs7SZjM4mGFUFa1h5sJbButwAsCAgDhjLaYUaeLae9CzX7SIt6y-udId-yH6caB3mfgWJ2CVsWKgo6J4wJrPv12Es5pWfcZB1UQNshRRqrOX7sRFgKAu2Vge8NQWT0SUGWT0dw5qciO7m14jO6lIwk1PkKhYcMXZGc2v1kd8cRXdzAQa3d7bdDnr9GcpvboezdUaFSLExPGwnwgLB0fadE5Fntmiqs-aHteVc0WZZT19hU5ubRpI-ihu5t1-H1s7ulF4VZnSRg5GCgcqWc7Ck8nLVCzHowfb_vk25w7w4GVzzjc-fbHt8tUs2Hpo1A_Xoe4K0LobZDGSGYyqZ1hlFsNxGunveAjim9nS9NXwfOP2gpR-AKbCC_I4PT-3yYscahywlgmpo-2P-C9TauAZvR9k5F5dftS433c4YF9VRBFMSE-M9gHLs3QFjlKqFMLJsxyu5I1MjYSRKz3GYKzaOgmi3-tEkQhbK7yPriija3p4wAN5-vaoo6q8os-piOlvPUTD-zTph8ZNZVg0IajMOfF9OST50xTLEUmBz-JKLidLG2A9jbRzj1o6DCBsbcQZkIz2Vcd0etW-MxG_JGNkKvTX8dK-5zR4uKsx18fpCS2Uy83OEY7cH-SiDtG1kItm4q6ZGnOVmdMFTonLjSlqc3A6QzFRGQlX4k5ttF7mWXItdgUzVToRCn-xNuPTFNgZUdvMUSjhnscv351QDqBvC-cQKFPkdLBhtsMiC2DihSEBT09CiL26uf0Hlpa56mVPXBso_wd-HHt_lrJuOVevmGylIRbweoUsDdpf6ZfwwgCV4aQ_831L4YTdnqG_7vl5ZfhCzvc-K326nbip9VJNLU7IW0irGDxuvvQLLWLCIyNl59GH_r91vgURoQ68CdYlldcV58xREBScEAirkB64WmLYGH1qCxa6FNXazpP9ZQMHQbmMogPBfQqHyhUZrByVfVxZAFMVXFfaorB3jRDDBM88T6E2eEbVXExf3qoUlbajJG6lXBHVhm9zc_6lkoeegTLVfrKd3YgKH--wWzVGeoY8TXghPbsfC4L53kzr3h9Mbmug6r9CeXR0FSiSQ2ccJSH2Qfsq-5z_B274AQIE9z7WxBCA2wt0X95Bn80GBWs8PXccXCGfMqiFlphzVGgRi-y7q71m7D3JN5pC3ufkXqWlaVv8qqKAQvodAsYUH1hv8ZeMOcHVSGeeYKknI4trYCnImJcLd9egOHnnO2UEefjCKVaPfpKVKGTNp1Q5DwS96hsNZIF8TxyZ038ROTsU5sm3GjXdj4_3QorRi4ofFL67EK4dEUT8nkw_5nR7E4cEDd8CZk0IiqKN9yAeKHYHYya1Ws2J2F9feEU6yyDbXb4O5uv0eN6MM9L4gs0a4loSIEtCISo874B_AyO1WtTyc_q0fcWg_Hy0)
@@ -442,5 +444,70 @@ package it.unibo.io.model.SignorCervo{
 @enduml
 ```
 
+#### Marawan Emad
 
+Mi sono occupato della riorganizzazione del menu principale suddividendolo in tre componenti distinte: `MenuMain` che contiene il bottone per iniziare il quiz trivia e giocare a Signor Cervo, `MenuSignorCervo` e `MenuLevel`, migliorando così la chiarezza e la gestione dell’interfaccia. Ho implementato diverse funzionalità, tra cui l'avvio di una nuova partita e la continuazione di una partita salvata tramite un sistema di checkpoint. Questo sistema permette di salvare e caricare lo stato del gioco attraverso un file JSON, utilizzato per memorizzare informazioni importanti come il dialogo, gli item le monete e l'immagine corrente del gioco.
 
+Ho sviluppato il metodo `handleContinuaPartitaButton`, che verifica l'esistenza del file di checkpoint e, se presente, utilizza il metodo loadGameFromCheckpoint per caricare lo stato salvato e riprendere la partita da dove era stata interrotta. Per avviare una nuova partita, ho implementato i metodi clearCheckpoint e resetLevelFile che svuotano il file di checkpoint con e azzerano i progressi del gioco.
+Inoltre, ho creato una struttura per accedere ai livelli di gioco tramite il pulsante "Livelli del gioco", che richiama il metodo menuLevelStart, avviando così il menu dei livelli con la classe `MenuLevel`.
+
+@startuml
+package it.unibo.io {
+
+    class MenuMain {
+        - Stage primaryStage
+        + void start(Stage primaryStage) throws Exception
+    }
+
+    class MenuSignorCervo {
+        - Stage primaryStage
+        - int dialogo
+        - Player player
+        + void start(Stage primaryStage) throws Exception
+        + void handleContinuaPartitaButton(Stage primaryStage) throws IOException
+        + void loadGameFromCheckpoint(JSONObject checkpoint, int dialogo)
+        + void menuLevelStart()
+        + void showConfirmationAlert()
+        + void clearCheckpoint()
+        + void resetLevelFile()
+    }
+
+    class MenuLevel {
+        - Stage primaryStage
+        + void menuLevelStart(Stage primaryStage)
+    }
+
+    class CheckpointManager {
+        + void saveCheckpoint(JSONObject state)
+        + JSONObject loadCheckpoint()
+        + void clearCheckpoint()
+    }
+
+    class Game {
+        - int level
+        + void startNewGame()
+        + void loadGameFromCheckpoint(JSONObject state)
+    }
+
+    class Player {
+        - int coins
+        - List<Item> items
+        + void addItem(Item item)
+        + void loadState(JSONObject state)
+    }
+
+    class Item {
+        - String name
+        - int quantity
+    }
+}
+
+Game --> Player
+Game --> CheckpointManager
+MenuSignorCervo --> Game
+MenuSignorCervo --> CheckpointManager
+MenuMain --> MenuSignorCervo
+MenuMain --> MenuLevel
+MenuLevel --> Game
+Player --> Item
+@enduml
