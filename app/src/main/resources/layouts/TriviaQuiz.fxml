@@ -27,6 +27,7 @@
                     <children>
                         <Label styleClass="infoLabel, label" text="Question" />
                         <Label fx:id="questionNumber" styleClass="infoLabel, label" text="numero" />
+                        <Label fx:id="responseLabel" styleClass="label" text="" />
                     </children>
                 </HBox>
                 <!-- DOMANDA -->
