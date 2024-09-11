@@ -24,7 +24,8 @@ public class MenuMain extends Application {
         Button quizButton = new Button("Gioca a QuizTrivia");
         quizButton.setOnAction(e -> {
             primaryStage.close();
-            startQuiz();
+            QuizManager quizManager = new QuizManager(new Stage());
+            quizManager.startQuiz();
         });
 
         // Bottone per uscire dal gioco
@@ -32,6 +33,7 @@ public class MenuMain extends Application {
         exitButton.setOnAction(e -> {
             System.exit(0);
         });
+
 
         // Layout del menu con i bottoni
         VBox menuLayout = new VBox(20);
@@ -46,16 +48,6 @@ public class MenuMain extends Application {
 
 
     }
-
-    private void startQuiz() {
-        QuizGui quizGui = new QuizGui();
-        Stage quizStage = new Stage();
-        try {
-            quizGui.start(quizStage);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } 
 
     private void menuStart() {
       MenuSignorCervo menuSG = new MenuSignorCervo();
