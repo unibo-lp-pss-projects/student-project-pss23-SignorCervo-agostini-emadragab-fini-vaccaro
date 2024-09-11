@@ -73,7 +73,200 @@ Le principali entità coinvolte nel gioco sono:
 
 ### Modello UML di "Signor Cervo"
 
-*Inserire qui il diagramma UML, se disponibile.*
+```plantuml
+@startuml
+package it.unibo.io {
+
+    class Game {
+        - JsonReader j
+        - SignorCervoGUI gui
+        - int i
+        - Scanner myObj
+        - Integer key
+        - int level
+        - Player player
+        - int dialogo
+        - Map<Integer, String> futureResponss
+
+        + Game(int dialogo, Player p)
+        + boolean output()
+        + void input(int cmd)
+        + boolean playerCoin(int coin)
+        + void loadState(JSONObject state)
+
+        - Map<Integer, String> convertToMap(JSONObject jsonObject)
+        - static void showLevelCompletedAlert()
+    }
+
+    class GetResources {
+        + static List<File> findResourcesDirectory(File directory, String dirName)
+        - static void listFilesInDirectory(File directory, List<File> foundResources)
+        - static void findResources(File directory, List<File> foundResources, String dirName)
+    }
+
+    class Item {
+        - String name
+        - int number
+    }
+
+    class JsonReader {
+        - static List<String> rule
+        - static List<Member> members
+        - static Member currentMember
+        - static Response currentResponse
+        - static SignorCervoGUI gui
+        - List<File> resource
+        - String dialogPath
+
+        + void updateMembers(int i)
+        + void readJson(int dialogPath)
+        + void printChoices(int i)
+        + void printItem()
+        + Boolean checkChoice(int i, int key)
+        + String checkRequire(int i, int key)
+        + boolean checkShop()
+        + void printReply(int key)
+        + Item shop(int key)
+        + Map<Integer, String> giveRemember(int key)
+    }
+
+    class Main {
+        - static MenuMain gui
+
+        + static void main(String[] args) throws InterruptedException, IOException
+    }
+
+    class MenuLevel {
+        - Stage primaryStage
+        - Player player
+
+        + MenuLevel(Player player)
+        + void start(Stage primaryStage) throws Exception
+        + void startGame(int level)
+        - void disableButton(Button button)
+        - void enableButton(Button button)
+        - Button createLevelButton(String text, int level)
+        + static int readNumberFromFile()
+    }
+
+    class MenuMain {
+        + void start(Stage primaryStage) throws Exception
+        - void startQuiz()
+        - void menuStart()
+    }
+
+    class MenuSignorCervo {
+        - Stage primaryStage
+        - int dialogo
+        - Player player
+        + void start(Stage primaryStage) throws Exception
+        - void startGame(int level)
+        - void handleContinuaPartitaButton(Stage primaryStage) throws IOException
+        - void loadGameFromCheckpoint(JSONObject checkpoint, int dialogo)
+        - void menuLevelStart()
+        - void resetLevelFile()
+        - void updateLevelFile(int level)
+        - void showConfirmationAlert()
+        - void clearCheckpoint()
+    }
+
+    class Player {
+        - ArrayList<Item> item
+        - Integer coin
+        - static SignorCervoGUI gui
+
+        + void addItem(Item item)
+        + boolean hasItem(String itemName)
+        + void loadState(JSONObject state)
+        + void updateAllAnswers()
+    }
+
+    class SignorCervoGUI {
+        - static Stage primaryStage
+        - MediaPlayer mediaPlayer
+        - static List<File> resources
+        - static ImageView imageView
+        - static VBox buttonLayout
+        - static TextArea terminal
+        - static JsonReader j
+        - static Game game
+
+        + SignorCervoGUI(Game game)
+        + void start(Stage primaryStage)
+        + static void updateStatusTerminal(String text)
+        + void updateTerminal(String text)
+        + static void updateButton(String text, int i)
+        + static void updateImage(String imageName)
+        + void updateImageView(Image image)
+        + static void main(String[] args)
+        + static boolean isDoubleOrInt(String num)
+        - static void menuLevel()
+        + static void writeNumberToFile(int number)
+        - void handleMenuPrincipaleButton()
+        - void saveCheckpoint()
+        - void goToMainMenu()
+    }
+}
+
+package it.unibo.io.model.SignorCervo{
+    class RootDialog {
+        - List<String> rule
+        - List<Member> members
+    }
+
+    class Response {
+        - String resp
+        - String replay
+        - boolean die
+        - String require
+        - Remember remember
+    }
+
+    class Remember {
+        - int numSlide
+        - String replay
+    }
+
+    class Member {
+        - String dialog
+        - List<Item> item
+        - String img
+        - List<Response> respons
+    }
+}
+
+    Response --> Remember
+    Member --> Response
+    RootDialog --> Member
+    SignorCervoGUI -> Game 
+    SignorCervoGUI -> JsonReader 
+    SignorCervoGUI -> MenuLevel 
+    SignorCervoGUI -> MenuSignorCervo 
+    Game --> JsonReader 
+    Game --> SignorCervoGUI
+    Game --> Player 
+    Game --> Item
+    Player --> Item 
+    Player --> SignorCervoGUI 
+    Main -> MenuMain
+    MenuLevel -> MenuSignorCervo 
+    MenuLevel -> SignorCervoGUI
+    MenuSignorCervo --> SignorCervoGUI
+    MenuSignorCervo -> Game 
+    MenuSignorCervo --> MenuMain
+    MenuSignorCervo --> MenuLevel
+    MenuSignorCervo --> Player
+    MenuMain --> MenuSignorCervo 
+    MenuMain --> Game
+    JsonReader --> Member 
+    JsonReader --> Remember 
+    JsonReader --> Player 
+    JsonReader --> SignorCervoGUI 
+    JsonReader --> GetResources 
+    JsonReader --> Item 
+}
+@enduml
+```
 
 ### Design Dettagliato
 
@@ -85,5 +278,168 @@ Il team composto da Alessandro Agostini e Lorenzo Fini si è occupato della stru
 
 Per la gestione dell'interfaccia grafica, è stata creata la classe `SignorCervoGUI`, che gestisce i pulsanti per le scelte dell'utente e richiama la classe `Game` per gestire la logica di gioco.
 
----
+#### Modello UML (Alessandro Agostini & Lorenzo Fini)
+
+```plantuml
+@startuml
+package it.unibo.io {
+
+    class Game {
+        - JsonReader j
+        - SignorCervoGUI gui
+        - int i
+        - Scanner myObj
+        - Integer key
+        - int level
+        - Player player
+        - int dialogo
+        - Map<Integer, String> futureResponss
+
+        + Game(int dialogo, Player p)
+        + boolean output()
+        + void input(int cmd)
+        + boolean playerCoin(int coin)
+        + void loadState(JSONObject state)
+
+        - Map<Integer, String> convertToMap(JSONObject jsonObject)
+        - static void showLevelCompletedAlert()
+    }
+
+    class GetResources {
+        + static List<File> findResourcesDirectory(File directory, String dirName)
+        - static void listFilesInDirectory(File directory, List<File> foundResources)
+        - static void findResources(File directory, List<File> foundResources, String dirName)
+    }
+
+    class Item {
+        - String name
+        - int number
+    }
+
+    class JsonReader {
+        - static List<String> rule
+        - static List<Member> members
+        - static Member currentMember
+        - static Response currentResponse
+        - static SignorCervoGUI gui
+        - List<File> resource
+        - String dialogPath
+
+        + void updateMembers(int i)
+        + void readJson(int dialogPath)
+        + void printChoices(int i)
+        + void printItem()
+        + Boolean checkChoice(int i, int key)
+        + String checkRequire(int i, int key)
+        + boolean checkShop()
+        + void printReply(int key)
+        + Item shop(int key)
+        + Map<Integer, String> giveRemember(int key)
+    }
+
+    class MenuSignorCervo {
+        - Stage primaryStage
+        - int dialogo
+        - Player player
+        + void start(Stage primaryStage) throws Exception
+        - void startGame(int level)
+        - void handleContinuaPartitaButton(Stage primaryStage) throws IOException
+        - void loadGameFromCheckpoint(JSONObject checkpoint, int dialogo)
+        - void menuLevelStart()
+        - void resetLevelFile()
+        - void updateLevelFile(int level)
+        - void showConfirmationAlert()
+        - void clearCheckpoint()
+    }
+
+    class Player {
+        - ArrayList<Item> item
+        - Integer coin
+        - static SignorCervoGUI gui
+
+        + void addItem(Item item)
+        + boolean hasItem(String itemName)
+        + void loadState(JSONObject state)
+        + void updateAllAnswers()
+    }
+
+    class SignorCervoGUI {
+        - static Stage primaryStage
+        - MediaPlayer mediaPlayer
+        - static List<File> resources
+        - static ImageView imageView
+        - static VBox buttonLayout
+        - static TextArea terminal
+        - static JsonReader j
+        - static Game game
+
+        + SignorCervoGUI(Game game)
+        + void start(Stage primaryStage)
+        + static void updateStatusTerminal(String text)
+        + void updateTerminal(String text)
+        + static void updateButton(String text, int i)
+        + static void updateImage(String imageName)
+        + void updateImageView(Image image)
+        + static void main(String[] args)
+        + static boolean isDoubleOrInt(String num)
+        - static void menuLevel()
+        + static void writeNumberToFile(int number)
+        - void handleMenuPrincipaleButton()
+        - void saveCheckpoint()
+        - void goToMainMenu()
+    }
+}
+
+package it.unibo.io.model.SignorCervo{
+    class RootDialog {
+        - List<String> rule
+        - List<Member> members
+    }
+
+    class Response {
+        - String resp
+        - String replay
+        - boolean die
+        - String require
+        - Remember remember
+    }
+
+    class Remember {
+        - int numSlide
+        - String replay
+    }
+
+    class Member {
+        - String dialog
+        - List<Item> item
+        - String img
+        - List<Response> respons
+    }
+}
+
+    Response --> Remember
+    Member --> Response
+    RootDialog --> Member
+    SignorCervoGUI -> Game 
+    SignorCervoGUI -> JsonReader 
+    Game --> JsonReader 
+    Game --> SignorCervoGUI
+    Game --> Player 
+    Game --> Item
+    Player --> Item 
+    Player --> SignorCervoGUI 
+    MenuSignorCervo --> SignorCervoGUI
+    MenuSignorCervo -> Game 
+    MenuSignorCervo --> Player
+    JsonReader --> Member 
+    JsonReader --> Remember 
+    JsonReader --> Player 
+    JsonReader --> SignorCervoGUI 
+    JsonReader --> GetResources 
+    JsonReader --> Item 
+}
+@enduml
+```
+
+
 
