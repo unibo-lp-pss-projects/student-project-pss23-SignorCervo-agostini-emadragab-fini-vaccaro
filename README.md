@@ -451,6 +451,8 @@ Mi sono occupato della riorganizzazione del menu principale suddividendolo in tr
 Ho sviluppato il metodo `handleContinuaPartitaButton`, che verifica l'esistenza del file di checkpoint e, se presente, utilizza il metodo loadGameFromCheckpoint per caricare lo stato salvato e riprendere la partita da dove era stata interrotta. Per avviare una nuova partita, ho implementato i metodi clearCheckpoint e resetLevelFile che svuotano il file di checkpoint con e azzerano i progressi del gioco.
 Inoltre, ho creato una struttura per accedere ai livelli di gioco tramite il pulsante "Livelli del gioco", che richiama il metodo menuLevelStart, avviando così il menu dei livelli con la classe `MenuLevel`.
 
+
+```plantuml
 @startuml
 package it.unibo.io {
 
@@ -511,3 +513,4 @@ MenuMain --> MenuLevel
 MenuLevel --> Game
 Player --> Item
 @enduml
+```
