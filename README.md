@@ -5,7 +5,7 @@
 Il progetto prevede lo sviluppo di un software che presenta una schermata iniziale in cui l'utente può scegliere tra due opzioni:
 
 - Avviare il gioco principale: **Signor Cervo**
-- Partecipare al minigioco: **Quiz**
+- Partecipare al minigioco: **QuizTrivia**
 
 L'utente può selezionare il gioco tramite due pulsanti presenti nella schermata principale.
 
@@ -514,3 +514,93 @@ MenuLevel --> Game
 Player --> Item
 @enduml
 ```
+
+#### Brayan Vaccaro
+## Descrizione Generale di "QuizTrivia"
+Mi sono occupato di implementare il menu principale dell'applicazione, creando la classe `MenuMain`, che offre tre opzioni: avviare *SignorCervo*, avviare *QuizTrivia*, o uscire dall'applicazione. Successivamente, ho sviluppato un minigioco chiamato *QuizTrivia*, che consiste in una serie di domande a cui l'utente deve rispondere per valutare le sue conoscenze in diverse materie.
+
+## Analisi
+
+### Requisiti
+QuizTrivia è un minigioco che ha l'obiettivo di valutare le conoscenze dell'utente su una varietà di argomenti tramite una serie di domande con risposte multiple. Il sistema deve fornire all'utente una serie di domande, mostrare le opzioni di risposta e verificare la correttezza delle risposte fornite. L'utente riceve un feedback immediato su ogni risposta, indicandogli se è corretta o meno. 
+
+Inoltre, il sistema deve garantire un'esperienza utente fluida, con caricamenti rapidi e una navigazione semplice tra le diverse schermate del gioco, come il menu principale, il quiz stesso, e la schermata di caricamento.
+
+#### Funzionalità principali richieste:
+1. **Menu di avvio**: l'utente deve poter scegliere tra avviare *SignorCervo*, *QuizTrivia* o uscire dall'applicazione.
+2. **Quiz basato su domande a risposta multipla**: il sistema deve visualizzare domande e opzioni di risposta.
+3. **Verifica delle risposte**: dopo che l'utente seleziona una risposta, il sistema deve confrontarla con la risposta corretta e fornire un feedback immediato.
+4. **Caricamento delle domande da una fonte esterna**: il gioco deve ottenere le domande dinamicamente da una fonte remota, un'API esterna.
+5. **Gestione degli errori**: il sistema deve gestire eventuali errori durante il caricamento delle domande e garantire un'esperienza utente senza interruzioni.
+
+### Analisi del problema
+La sfida principale risiede nel garantire che il sistema sia in grado di ottenere e visualizzare correttamente domande da una fonte esterna, gestendo in modo efficiente la comunicazione con l'API e fornendo un feedback immediato e visibile all'utente. 
+
+Un altro aspetto critico è la necessità di una gestione efficace degli errori che possono sorgere durante il caricamento delle domande, in modo che l'app non si blocchi e possa comunque offrire una buona esperienza utente.
+
+## Design
+
+### Architettura
+
+L'architettura dell'applicazione segue il modello **MVC (Model-View-Controller)**, con l'aggiunta di un **Service Layer** per gestire la logica di business e le interazioni con l'API esterna. I componenti principali e le loro interazioni sono descritte di seguito.
+
+#### Componenti principali:
+- **Model**: gestisce i dati del quiz, incluse le domande e le risposte. Gli oggetti `Trivia`, `TriviaResponse` e `Result` rappresentano le entità principali.
+- **View**: comprende le interfacce utente come il menu principale (`MenuMain`), l'interfaccia del quiz (`QuizGui`), la schermata di caricamento (`LoadingScreen`) e file FXML associati. Questi componenti si occupano di presentare i dati e ricevere l'input dell'utente.
+- **Controller**: il controller principale (`TriviaQuizController`) gestisce la logica del quiz, riceve gli input dall'utente, interagisce con il modello per ottenere le domande e le risposte e aggiorna la vista di conseguenza.
+- **Service Layer**: `TriviaService` gestisce la comunicazione con l'API esterna, recupera le domande e gestisce gli errori che potrebbero verificarsi durante il caricamento.
+
+### Interazioni tra i componenti
+1. **MenuMain**: è il punto di ingresso dell'applicazione. Fornisce all'utente le opzioni per avviare il quiz, l'altro gioco, o uscire. Quando l'utente avvia *QuizTrivia*, il manager del quiz prende il controllo.
+2. **QuizManager**: mostra la schermata di caricamento (`LoadingScreen`) e carica le domande dal service layer (`TriviaService`) per passarle a `QuizGui`. Gestisce la visualizzazione di una schermata di errore in caso di fallimento nel caricamento dei quiz
+3. **QuizGui**: passa al controller i trivia ricevuti e si occupa di impostare la scena e visualizzare lo stage
+2. **TriviaQuizController**:  riceve le domande da (`QuizGui`) e le passa alla vista (`QuizGui`). Quando l'utente seleziona una risposta, il controller verifica la correttezza e aggiorna la vista con il feedback tramite `AnswerChecker`.
+3. **TriviaService**: si occupa di inviare richieste all'API per ottenere le domande e restituirle al manager. In caso di errori, come la mancata connessione all'API, il servizio gestisce la situazione e comunica eventuali problemi al manager.
+
+```mermaid
+classDiagram
+    class QuizGui {
+        - List<Trivia> trivias
+        + QuizGui(List<Trivia> trivias)
+        + start(Stage primaryStage): void
+        + stop(): void
+    }
+
+    class TriviaQuizController {
+        - Label questionLabel
+        - Label questionNumber
+        - RadioButton option1, option2, option3, option4
+        - ToggleGroup answerGroup
+        - Label responseLabel
+        - List<Trivia> trivias
+        - int currentIndex
+        - AnswerChecker answerChecker
+        + initialize(): void
+        + setQuestions(List<Trivia> trivias): void
+        + displayNextQuestion(): void
+        + handleSubmit(): void
+        + handleNext(): void
+    }
+
+    class QuizManager {
+        - Stage stage
+        + QuizManager(Stage stage)
+        + startQuiz(): void
+        - showQuiz(List<Trivia> trivias): void
+        - showErrorScreen(): void
+    }
+
+    class TriviaService {
+        - ApiService apiService
+        + TriviaService()
+        + loadTriviaQuestions(Consumer<List<Trivia>> onTriviaLoaded, Consumer<Throwable> onError): void
+        - decodeResult(Result result): void
+    }
+
+    QuizGui --> TriviaQuizController
+    QuizManager --> QuizGui
+    QuizManager --> TriviaService
+
+```
+
+---
